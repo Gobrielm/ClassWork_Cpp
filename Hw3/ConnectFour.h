@@ -3,8 +3,8 @@
   DONE : this header file has been fully written for you
 
 */
-
-#pragma once
+#ifndef CONNECTFOUR_H
+#define CONNECTFOUR_H
 #include <vector>
 
 class ConnectFour{ // DONE FOR YOU - PLEASE DO NOT CHANGE THIS FILE
@@ -44,3 +44,5 @@ class ConnectFour{ // DONE FOR YOU - PLEASE DO NOT CHANGE THIS FILE
     // bool takeAITurn(); // BONUS: computer AI takes a turn, alternating with takeTurn() above
 
 };
+
+#endif
