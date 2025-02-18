@@ -56,14 +56,15 @@ ConnectFour::ConnectFour(
 void ConnectFour::printInstructions() {}; // print instructions for the game
 void ConnectFour::printBoard() {
     for (int r = 0; r < numRows; r++) {
-        for (int c = 0; r < numCols; r++) {
+        for (int c = 0; c < numCols; c++) {
             std::cout << board[r][c];
         }
         std::cout << '\n';
     }
 }
-char ConnectFour::getCurrentPlayerToken(){return 'c';}; // return the character that represents the current player, based on currentPlayerId
-void ConnectFour::nextPlayer(){}; // advance to the next player in the game
+char ConnectFour::getCurrentPlayerToken(){return playerTokens[currentPlayerId];}; // return the character that represents the current player, based on currentPlayerId
+void ConnectFour::nextPlayer(){currentPlayerId = (currentPlayerId + 1) % 2}; // advance to the next player in the game
+
 bool ConnectFour::takeTurn(){return false;};  // prompt the current human player and process their turn, returning true if it was successful
 bool ConnectFour::isWin(){return false;}; // determine if the CURRENT PLAYER has won the game and update winningPlayerId to the winning player's Id
 int ConnectFour::getWinningPlayerId(){return 1;}; // return the value of the private winningPlayerId, as set by isWin().
