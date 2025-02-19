@@ -39,6 +39,9 @@ class ConnectFour{ // DONE FOR YOU - PLEASE DO NOT CHANGE THIS FILE
     bool isDiagonalTieLD(int c);
     bool tieTracker(char &curr, int r, int c, int &tracker);
     void takeTurnAI();
+    std::array<int, 7> getColumnWeights();
+    int getColumnWeight(int c);
+    int getSpaceWeight(int r, int c);
 
   public:
     ConnectFour(                   // constructor ARGUMENTS are listed below

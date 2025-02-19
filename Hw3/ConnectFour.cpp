@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <array>
 // play() is DONE FOR YOU - uncomment when ready
 
 void ConnectFour::play() { 
@@ -11,7 +12,11 @@ void ConnectFour::play() {
 	while (
 		!this->isWin() &&
 		!this->isTie()) { // keep playing as long as the game is not won or tied
-		isGoodMove = this->takeTurn(); // current player takes a turn
+		if (playingWithAi && currentPlayerId == 1) {
+			this -> takeTurnAI();
+		} else {
+			isGoodMove = this->takeTurn(); // current player takes a turn
+		}
 		if (isGoodMove) {
 			this->printBoard(); // print the board if that was a good move
 			if (this->isWin())
@@ -63,6 +68,9 @@ void ConnectFour::promptUserForAI() {
 	std::cin >> answer;
 	std:: cout << '\n';
 	playingWithAi = (answer == 'y');
+	if (playingWithAi && playerTokens.size() != 2) {
+		quick_exit(1);
+	}
 }
 
 void ConnectFour::printBoard() {
@@ -298,5 +306,106 @@ bool ConnectFour::tieTracker(char &curr, int r, int c, int &tracker) {
 }
 
 void ConnectFour::takeTurnAI() {
+	std::array<int, 7> weights = getColumnWeights();
+	int col;
+	int max = 0;
+	for (int i = 0; i < numCols; i++) {
+		if (weights[i] > max) {
+			max = weights[i];
+			col = i;
+		}
+	}
+	placeTileInCol(col);
+}
 
+std::array<int, 7> ConnectFour::getColumnWeights() {
+	std::array<int, 7> toReturn;
+	for (int c = 0; c < numCols; c++) {
+		toReturn[c] = getColumnWeight(c);
+	}
+	return toReturn;
+}
+
+int ConnectFour::getColumnWeight(int c) {
+	int weight = 0;
+	for (int r = numRows - 1; r >= 0; r--) {
+		if (board[r][c] == emptyToken) {
+			weight = getSpaceWeight(r, c);
+		}
+	}
+	return weight;
+}
+
+int ConnectFour::getSpaceWeight(int r, int c) {
+	char token = getCurrentPlayerToken();
+	char enemy = playerTokens[(currentPlayerId + 1) % 2];
+	int weight = 0;
+	int aiTokens = 0;
+	int enemyTokens = 0;
+	int emptyTokens = 0;
+	char tracked = ' ';
+	for (int ct = c + 1; ct < numCols; ct++) {
+		if (board[r][ct] == emptyToken) {
+			emptyTokens += 1;
+		} else if (board[r][ct] == tracked || tracked == ' ') {
+			tracked = board[r][ct];
+			if (tracked = token) {
+				aiTokens += 1;
+			} else {
+				enemyTokens += 1;
+			}
+		} else {
+			break;
+		}
+	}
+	tracked = ' ';
+	for (int ct = c - 1; ct >= 0; ct--) {
+		if (board[r][ct] == emptyToken) {
+			emptyTokens += 1;
+		} else if (board[r][ct] == tracked || tracked == ' ') {
+			tracked = board[r][ct];
+			if (tracked = token) {
+				aiTokens += 1;
+			} else {
+				enemyTokens += 1;
+			}
+		} else {
+			break;
+		}
+	}
+	weight += aiTokens + enemyTokens - emptyTokens / 2;
+
+	for (int rt = r + 1; rt < numRows; rt++) {
+		if (board[rt][c] == emptyToken) {
+			emptyTokens += 1;
+		} else if (board[rt][c] == tracked || tracked == ' ') {
+			tracked = board[rt][c];
+			if (tracked = token) {
+				aiTokens += 1;
+			} else {
+				enemyTokens += 1;
+			}
+		} else {
+			break;
+		}
+	}
+	tracked = ' ';
+	for (int rt = r - 1; rt >= 0; rt--) {
+		if (board[rt][c] == emptyToken) {
+			emptyTokens += 1;
+		} else if (board[rt][c] == tracked || tracked == ' ') {
+			tracked = board[rt][c];
+			if (tracked = token) {
+				aiTokens += 1;
+			} else {
+				enemyTokens += 1;
+			}
+		} else {
+			break;
+		}
+	}
+
+	weight += aiTokens + enemyTokens - emptyTokens / 2;
+
+	return weight;
 }
