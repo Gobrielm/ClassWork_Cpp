@@ -65,7 +65,7 @@ void ConnectFour::printBoard() {
 char ConnectFour::getCurrentPlayerToken(){return playerTokens[currentPlayerId];}
 
 // advance to the next player in the game
-void ConnectFour::nextPlayer() {currentPlayerId = (currentPlayerId + 1) % 2;} 
+void ConnectFour::nextPlayer() {currentPlayerId = (currentPlayerId + 1) % playerTokens.size();} 
 
 // prompt the current human player and process their turn, returning true if it was successful
 bool ConnectFour::takeTurn() {
@@ -92,25 +92,35 @@ bool ConnectFour::placeTileInCol(int col) {
  // determine if the CURRENT PLAYER has won the game and update winningPlayerId to the winning player's Id
 bool ConnectFour::isWin() {
 	char token = playerTokens[currentPlayerId];
-	if (checkForWinRowsCols(token) || checkForWinDiagonal(token)) {
+	if (checkForWinRows(token) || checkForWinCols(token) || checkForWinDiagonal(token)) {
 		winningPlayerId = currentPlayerId;
 		return true;
 	}
 	return false;
 }
 
-bool ConnectFour::checkForWinRowsCols(char token) {
-	int countRows = 0;
-	int countCols = 0;
+bool ConnectFour::checkForWinRows(char token) {
+	int currentCount = 0;
 	for (int r = 0; r < numRows; r++) {
 		for (int c = 0; c < numCols; c++) {
-			if (checkForToken(r, c, token, countRows)) {
-				return true;
-			}
-			if (checkForToken(c, r, token, countCols)) {
+			if (checkForToken(r, c, token, currentCount)) {
 				return true;
 			}
 		}
+		currentCount = 0;
+	}
+	return false;
+}
+
+bool ConnectFour::checkForWinCols(char token) {
+	int currentCount = 0;
+	for (int c = 0; c < numCols; c++) {
+		for (int r = 0; r < numRows; r++) {
+			if (checkForToken(r, c, token, currentCount)) {
+				return true;
+			}
+		}
+		currentCount = 0;
 	}
 	return false;
 }
@@ -164,7 +174,114 @@ bool ConnectFour::checkForToken(int r, int c, char token, int &currentCount) {
 	return false;
 }
 // return the value of the private winningPlayerId, as set by isWin().
-int ConnectFour::getWinningPlayerId(){return winningPlayerId;}
+int ConnectFour::getWinningPlayerId() {return winningPlayerId;}
 
 // determine if the game cannot be won by either player regardless of the number of moves
-bool ConnectFour::isTie(){return false;} 
+bool ConnectFour::isTie() {
+	return isRowTie() && isColTie() && isDiagonalTie();
+}
+
+bool ConnectFour::isRowTie() {
+	int tracker = 0;
+	char curr = 'a';
+	for (int r = 0; r < numRows; r++) {
+		for (int c = 0; c < numCols; c++) {
+			if (!tieTracker(curr, r, c, tracker)) {
+				return false;
+			}
+		}
+		tracker = 0;
+		curr = 'a';
+	}
+	return true;
+}
+
+bool ConnectFour::isColTie() {
+	int tracker = 0;
+	char curr = 'a';
+	for (int c = 0; c < numCols; c++) {
+		for (int r = 0; r < numRows; r++) {
+			if (!tieTracker(curr, r, c, tracker)) {
+				return false;
+			}
+		}
+		tracker = 0;
+		curr = 'a';
+	}
+	return true;
+}
+
+bool ConnectFour::isDiagonalTie() {
+	bool currentStatus = true;
+	for (int c = 0; c < numCols; c++) {
+		currentStatus = currentStatus && isDiagonalTieRD(c) && isDiagonalTieLD(c);
+	}
+	return currentStatus;
+}
+
+
+bool ConnectFour::isDiagonalTieLD(int c) {
+	int tracker = 0;
+	char curr = 'a';
+	for (int r = 0; r < numRows; r++) {
+		if (board[r][c] == emptyToken) {
+			tracker += 1;
+		} else if (curr == board[r][c] || curr == 'a') {
+			tracker += 1;
+			curr = board[r][c];
+		} else {
+			curr = board[r][c];
+			tracker = 1;
+		}
+		if (tracker >= 4) {
+			return false;
+		}
+
+		c -= 1;
+		if (c < 0) {
+			break;
+		}
+	}
+	return true;
+}
+
+bool ConnectFour::isDiagonalTieRD(int c) {
+	int tracker = 0;
+	char curr = 'a';
+	for (int r = 0; r < numRows; r++) {
+		if (board[r][c] == emptyToken) {
+			tracker += 1;
+		} else if (curr == board[r][c] || curr == 'a') {
+			tracker += 1;
+			curr = board[r][c];
+		} else {
+			curr = board[r][c];
+			tracker = 1;
+		}
+		if (tracker >= 4) {
+			return false;
+		}
+
+		c += 1;
+		if (c >= numCols) {
+			break;
+		}
+	}
+	return true;
+}
+
+bool ConnectFour::tieTracker(char &curr, int r, int c, int &tracker) {
+	if (board[r][c] == emptyToken) {
+		tracker += 1;
+	} else if (curr == board[r][c] || curr == 'a') {
+		tracker += 1;
+		curr = board[r][c];
+	} else {
+		curr = board[r][c];
+		tracker = 1;
+	}
+	if (tracker >= 4) {
+		return false;
+	}
+	return true;
+}
