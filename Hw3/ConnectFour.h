@@ -23,11 +23,12 @@ class ConnectFour{ // DONE FOR YOU - PLEASE DO NOT CHANGE THIS FILE
     // Note also that the currentPlayerId must always be from 0 to playerTokens.size()-1 (inclusive) to avoid illegal access in playerTokens[] 
     // ...So a safer way to determine the current player might be: playerTokens[ currentPlayerId%playerTokens.size() ]
     bool placeTileInCol(int col);
+    bool checkForWinRowsCols(char token);
     bool checkForWinCols(char token);
     bool checkForWinRows(char token);
     bool checkForWinDiagonal(char token);
-    bool checkForWinDiagonalLD(int c);
-    bool checkForWinDiagonalRD(int c);
+    bool checkForWinDiagonalLD(char token, int c);
+    bool checkForWinDiagonalRD(char token, int c);
     bool checkForToken(int r, int c, char token, int &currentCount);
 
   public:

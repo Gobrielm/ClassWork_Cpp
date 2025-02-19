@@ -45,7 +45,7 @@ ConnectFour::ConnectFour(
         int col = i % numRows;
         board[row].push_back(initTokens[i]);
     }
-    for (int i = 0; i < totalTiles; i++) {
+    for (int i = initTokens.size(); i < totalTiles; i++) {
         int row = i / numCols;
         board[row].push_back(emptyToken);
     }
@@ -92,35 +92,25 @@ bool ConnectFour::placeTileInCol(int col) {
  // determine if the CURRENT PLAYER has won the game and update winningPlayerId to the winning player's Id
 bool ConnectFour::isWin() {
 	char token = playerTokens[currentPlayerId];
-	if (checkForWinCols(token) || checkForWinRows(token) || checkForWinDiagonal(token)) {
+	if (checkForWinRowsCols(token) || checkForWinDiagonal(token)) {
 		winningPlayerId = currentPlayerId;
 		return true;
 	}
 	return false;
 }
 
-bool ConnectFour::checkForWinCols(char token) {
-	int currentCount = 0;
+bool ConnectFour::checkForWinRowsCols(char token) {
+	int countRows = 0;
+	int countCols = 0;
 	for (int r = 0; r < numRows; r++) {
 		for (int c = 0; c < numCols; c++) {
-			if (checkForToken(r, c, token, currentCount)) {
+			if (checkForToken(r, c, token, countRows)) {
+				return true;
+			}
+			if (checkForToken(c, r, token, countCols)) {
 				return true;
 			}
 		}
-		currentCount = 0;
-	}
-	return false;
-}
-
-bool ConnectFour::checkForWinRows(char token) {
-	int currentCount = 0;
-	for (int c = 0; c < numCols; c++) {
-		for (int r = 0; r < numRows; r++) {
-			if (checkForToken(r, c, token, currentCount)) {
-				return true;
-			}
-		}
-		currentCount = 0;
 	}
 	return false;
 }
@@ -150,7 +140,6 @@ bool ConnectFour::checkForWinDiagonalLD(char token, int c) {
 
 bool ConnectFour::checkForWinDiagonalRD(char token, int c) {
 	int currentCount = 0;
-	char token = playerTokens[currentPlayerId];
 	for (int r = 0; r < numRows; r++) {
 		if (checkForToken(r, c, token, currentCount)) {
 			return true;
@@ -176,4 +165,6 @@ bool ConnectFour::checkForToken(int r, int c, char token, int &currentCount) {
 }
 // return the value of the private winningPlayerId, as set by isWin().
 int ConnectFour::getWinningPlayerId(){return winningPlayerId;}
-bool ConnectFour::isTie(){return false;} // determine if the game cannot be won by either player regardless of the number of moves
+
+// determine if the game cannot be won by either player regardless of the number of moves
+bool ConnectFour::isTie(){return false;} 
