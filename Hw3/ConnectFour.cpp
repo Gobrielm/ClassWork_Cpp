@@ -38,8 +38,7 @@ ConnectFour::ConnectFour(
  ): emptyToken(_emptyToken), playerTokens(_playerTokens), currentPlayerId(_startingPlayerId) {
     int totalTiles = (numCols + 1) * (numRows + 1);
 	for (int r = 0; r < numRows; r++) {
-		std::vector<char> a;
-		board.push_back(a);
+		board.push_back({});
 	}
 	for (int i = 0; i < fmin(initTokens.size(), totalTiles); i++) {
         int row = i / numCols;
@@ -53,7 +52,7 @@ ConnectFour::ConnectFour(
  }
 
 
-void ConnectFour::printInstructions() {}; // print instructions for the game
+void ConnectFour::printInstructions() {return;} // print instructions for the game
 void ConnectFour::printBoard() {
     for (int r = 0; r < numRows; r++) {
         for (int c = 0; c < numCols; c++) {
@@ -62,10 +61,119 @@ void ConnectFour::printBoard() {
         std::cout << '\n';
     }
 }
-char ConnectFour::getCurrentPlayerToken(){return playerTokens[currentPlayerId];}; // return the character that represents the current player, based on currentPlayerId
-void ConnectFour::nextPlayer(){currentPlayerId = (currentPlayerId + 1) % 2}; // advance to the next player in the game
+// return the character that represents the current player, based on currentPlayerId
+char ConnectFour::getCurrentPlayerToken(){return playerTokens[currentPlayerId];}
 
-bool ConnectFour::takeTurn(){return false;};  // prompt the current human player and process their turn, returning true if it was successful
-bool ConnectFour::isWin(){return false;}; // determine if the CURRENT PLAYER has won the game and update winningPlayerId to the winning player's Id
-int ConnectFour::getWinningPlayerId(){return 1;}; // return the value of the private winningPlayerId, as set by isWin().
-bool ConnectFour::isTie(){return false;}; // determine if the game cannot be won by either player regardless of the number of moves
+// advance to the next player in the game
+void ConnectFour::nextPlayer() {currentPlayerId = (currentPlayerId + 1) % 2;} 
+
+// prompt the current human player and process their turn, returning true if it was successful
+bool ConnectFour::takeTurn() {
+	std::cout << "Please Enter a column number to put a piece into.";
+	int col;
+	std::cin >> col;
+	col -= 1;
+	if (col >= 0 && col < 7) {
+		return placeTileInCol(col);
+	}
+	return false;
+}  
+
+bool ConnectFour::placeTileInCol(int col) {
+	for (int row = numRows - 1; row >= 0; row--) {
+		if (board[row][col] == emptyToken) {
+			board[row][col] = playerTokens[currentPlayerId];
+			return true;
+		}
+	}
+	return false;
+}
+
+ // determine if the CURRENT PLAYER has won the game and update winningPlayerId to the winning player's Id
+bool ConnectFour::isWin() {
+	char token = playerTokens[currentPlayerId];
+	if (checkForWinCols(token) || checkForWinRows(token) || checkForWinDiagonal(token)) {
+		winningPlayerId = currentPlayerId;
+		return true;
+	}
+	return false;
+}
+
+bool ConnectFour::checkForWinCols(char token) {
+	int currentCount = 0;
+	for (int r = 0; r < numRows; r++) {
+		for (int c = 0; c < numCols; c++) {
+			if (checkForToken(r, c, token, currentCount)) {
+				return true;
+			}
+		}
+		currentCount = 0;
+	}
+	return false;
+}
+
+bool ConnectFour::checkForWinRows(char token) {
+	int currentCount = 0;
+	for (int c = 0; c < numCols; c++) {
+		for (int r = 0; r < numRows; r++) {
+			if (checkForToken(r, c, token, currentCount)) {
+				return true;
+			}
+		}
+		currentCount = 0;
+	}
+	return false;
+}
+
+bool ConnectFour::checkForWinDiagonal(char token) {
+	for (int c = 0; c < numCols; c++) {
+		if (checkForWinDiagonalLD(token, c) || checkForWinDiagonalRD(token, c)) {
+			return true;
+		}
+	}
+	return false;
+}
+
+bool ConnectFour::checkForWinDiagonalLD(char token, int c) {
+	int currentCount = 0;
+	for (int r = 0; r < numRows; r++) {
+		if (checkForToken(r, c, token, currentCount)) {
+			return true;
+		}
+		c -= 1;
+		if (c < 0) {
+			break;
+		}
+	}
+	return false;
+}
+
+bool ConnectFour::checkForWinDiagonalRD(char token, int c) {
+	int currentCount = 0;
+	char token = playerTokens[currentPlayerId];
+	for (int r = 0; r < numRows; r++) {
+		if (checkForToken(r, c, token, currentCount)) {
+			return true;
+		}	
+		c += 1;
+		if (c >= numCols) {
+			break;
+		}
+	}
+	return false;
+}
+
+bool ConnectFour::checkForToken(int r, int c, char token, int &currentCount) {
+	if (board[r][c] == token) {
+		currentCount += 1;
+		if (currentCount == 4) {
+			return true;
+		}
+	} else {
+		currentCount = 0;
+	}
+	return false;
+}
+// return the value of the private winningPlayerId, as set by isWin().
+int ConnectFour::getWinningPlayerId(){return winningPlayerId;}
+bool ConnectFour::isTie(){return false;} // determine if the game cannot be won by either player regardless of the number of moves
