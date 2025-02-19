@@ -1,6 +1,7 @@
 
 ***********************
 Starting Test #0: isWin(): Vertical Win (far right column)
+1234567
 *******
 *******
 ******P
@@ -11,6 +12,7 @@ Passed test #0
 
 ***********************
 Starting Test #1: isWin(): Vertical Win (3rd column from left)
+1234567
 *******
 **P****
 **P****
@@ -21,6 +23,7 @@ Passed test #1
 
 ***********************
 Starting Test #2: Diagonal Down-Right Win
+1234567
 **P****
 ***P***
 ****P**
@@ -31,6 +34,7 @@ Passed test #2
 
 ***********************
 Starting Test #3: Diagonal UP-Right NOT-Win (wrong player)
+1234567
 *******
 *******
 *****Q*
@@ -41,13 +45,15 @@ Passed test #3
 
 ***********************
 Starting Test #4: takeTurn() Bad Move Test  (nearly full board)
+1234567
 P******
 QPQPQP*
 PQQQPQ*
 PQQQPQ*
 PQPQPQ*
 QPQPQP*
-Please Enter a column number to put a piece into.P******
+P's turn: 1234567
+P******
 QPQPQP*
 PQQQPQ*
 PQQQPQ*
@@ -57,13 +63,15 @@ Passed test #4
 
 ***********************
 Starting Test #5: takeTurn() Good Move Test (nearly full board)
+1234567
 *QPQPQ*
 QPQPQP*
 PQQQPQ*
 PQQQPQ*
 PQPQPQ*
 QPQPQP*
-Please Enter a column number to put a piece into.PQPQPQ*
+P's turn: 1234567
+PQPQPQ*
 QPQPQP*
 PQQQPQ*
 PQQQPQ*
@@ -73,6 +81,7 @@ Passed test #5
 
 ***********************
 Starting Test #6: isTie() Simple Is-A-Tie Test (full board)
+1234567
 PPQQPQQ
 QQPPQQP
 QPQPPPQ
@@ -83,6 +92,7 @@ Passed test #6
 
 ***********************
 Starting Test #7: isTie() Complex Not-A-Tie Test (nearly full board)
+1234567
 *QPQPQQ
 PPQPQPP
 PQQQPQQ
@@ -93,6 +103,7 @@ Passed test #7
 
 ***********************
 Starting Test #8: Next Player Test  - inc to 2nd player of 2 players, using nextPlayer(), getCurrentPlayerToken() 
+1234567
 *******
 *******
 *******
@@ -103,6 +114,7 @@ Passed test #8
 
 ***********************
 Starting Test #9: Next Player Test  - inc to 1st player of 2 players, using nextPlayer(), getCurrentPlayerToken() 
+1234567
 *******
 *******
 *******
@@ -113,6 +125,7 @@ Passed test #9
 
 ***********************
 Starting Test #10: Next Player Test  - inc to 1st player of 3 players, , using nextPlayer(), getCurrentPlayerToken() 
+1234567
 *******
 *******
 *******
@@ -123,6 +136,7 @@ Passed test #10
 
 ***********************
 Starting Test #11: Get Current Player Token Test  - see if the current player token is the 1st player, using getCurrentPlayerToken() 
+1234567
 *******
 *******
 *******
@@ -133,6 +147,7 @@ Passed test #11
 
 ***********************
 Starting Test #12: Get Current Player Token Test  - testing 4th argument of constructor for default starting player, using getCurrentPlayerToken() 
+1234567
 *******
 *******
 *******
@@ -143,6 +158,7 @@ Passed test #12
 
 ***********************
 Starting Test #13: isWin(): Diagonal UP-Right NOT-Win (3 players correct player, but not a win)
+1234567
 QWQWQW*
 WPWPWPQ
 PQPQPQP
@@ -153,6 +169,7 @@ Passed test #13
 
 ***********************
 Starting Test #14: isTie(): 3 player tie full board 
+1234567
 QWQWQWW
 WPWPWPQ
 PQPQPQP
@@ -163,6 +180,7 @@ Passed test #14
 
 ***********************
 Starting Test #15: isWin(): Diagonal Up-Right Win
+1234567
 *******
 ****P**
 ***P***
@@ -173,6 +191,7 @@ Passed test #15
 
 ***********************
 Starting Test #16: isWin(): Diagonal Down-Right Win at lower right corner
+1234567
 *******
 *******
 ***P***
@@ -183,6 +202,7 @@ Passed test #16
 
 ***********************
 Starting Test #17: isWin(): Diagonal Down-Right Win at upper left corner
+1234567
 P******
 *P*****
 **P****
@@ -193,6 +213,7 @@ Passed test #17
 
 ***********************
 Starting Test #18: isWin(): Diagonal Up-Right Win at lower left corner
+1234567
 *******
 *******
 ***P***
@@ -203,6 +224,7 @@ Passed test #18
 
 ***********************
 Starting Test #19: isWin(): Diagonal Up-Right Win at upper right corner
+1234567
 ******P
 *****P*
 ****P**
@@ -213,6 +235,7 @@ Passed test #19
 
 ***********************
 Starting Test #20: isWin(): Diagonal Down-Right NOT WIN at lower right corner
+1234567
 *******
 *******
 *******
@@ -223,6 +246,7 @@ Passed test #20
 
 ***********************
 Starting Test #21: isWin(): Diagonal Down-Right NOT WIN at upper left corner
+1234567
 P******
 *P*****
 **P****
@@ -233,6 +257,7 @@ Passed test #21
 
 ***********************
 Starting Test #22: isWin(): Diagonal Up-Right NOT WIN at lower left corner
+1234567
 *******
 ****P**
 *******
@@ -243,6 +268,7 @@ Passed test #22
 
 ***********************
 Starting Test #23: isWin(): Diagonal Up-Right NOT WIN at upper right corner
+1234567
 ******P
 *****P*
 ****P**
@@ -253,6 +279,7 @@ Passed test #23
 
 ***********************
 Starting Test #24: isWin(): Horizontal NOT WIN bottom row
+1234567
 *******
 *******
 *******
@@ -263,6 +290,7 @@ Passed test #24
 
 ***********************
 Starting Test #25: isWin(): Horizontal NOT WIN top row
+1234567
 PPP*P**
 *******
 *******
@@ -273,6 +301,7 @@ Passed test #25
 
 ***********************
 Starting Test #26: isWin(): Vertical NOT WIN far left column
+1234567
 P******
 P******
 P******
@@ -283,6 +312,7 @@ Passed test #26
 
 ***********************
 Starting Test #27: isWin(): Vertical NOT WIN far right column
+1234567
 *******
 ******P
 ******P
@@ -293,6 +323,7 @@ Passed test #27
 
 ***********************
 Starting Test #28: isWin(): Vertical WIN far left column
+1234567
 P******
 P******
 P******
@@ -303,6 +334,7 @@ Passed test #28
 
 ***********************
 Starting Test #29: isWin(): Vertical NOT WIN far right column
+1234567
 *******
 ******P
 ******P
@@ -313,6 +345,7 @@ Passed test #29
 
 ***********************
 Starting Bonus Test #0: BONUS: Complex Is-A-Tie Test (nearly full board)
+1234567
 PPQQPQ*
 QQPPQQP
 QPQPPPQ
@@ -323,6 +356,7 @@ Passed bonus test #0
 
 ***********************
 Starting Bonus Test #1: BONUS: Complex Is-A-Tie Test (nearly full board)
+1234567
 PPQQPQ*
 QQPPQQ*
 QPQPPPQ
@@ -333,6 +367,7 @@ Passed bonus test #1
 
 ***********************
 Starting Bonus Test #2: BONUS: Complex Is-A-Tie Test (nearly full board)
+1234567
 PPQQPQ*
 QQPPQQ*
 QPQPPPQ
@@ -343,6 +378,7 @@ Passed bonus test #2
 
 ***********************
 Starting Bonus Test #3: BONUS: Complex NOT-A-Tie Test (nearly full board)
+1234567
 PPQQPQ*
 QQPPQQ*
 QPQPPP*
@@ -353,6 +389,7 @@ Passed bonus test #3
 
 ***********************
 Starting Bonus Test #4: BONUS: Complex NOT-A-Tie Test (nearly full board)
+1234567
 PPQQPQ*
 QQPPQQ*
 QPQPPP*

@@ -52,11 +52,17 @@ ConnectFour::ConnectFour(
  }
 
 
-void ConnectFour::printInstructions() {return;} // print instructions for the game
+void ConnectFour::printInstructions() {
+	std::cout << "Try to get 4 of your token in a line in any orientation to win.\nEnter a column number such as \"2\" to drop a token into column 2.\n";
+}
 void ConnectFour::printBoard() {
-    for (int r = 0; r < numRows; r++) {
+    for (int r = -1; r < numRows; r++) {
         for (int c = 0; c < numCols; c++) {
-            std::cout << board[r][c];
+			if (r == -1) {
+				std::cout << std::to_string(c + 1);
+			} else {
+				std::cout << board[r][c];
+			}
         }
         std::cout << '\n';
     }
@@ -69,7 +75,7 @@ void ConnectFour::nextPlayer() {currentPlayerId = (currentPlayerId + 1) % player
 
 // prompt the current human player and process their turn, returning true if it was successful
 bool ConnectFour::takeTurn() {
-	std::cout << "Please Enter a column number to put a piece into.";
+	std::cout << playerTokens[currentPlayerId] << "'s turn: ";
 	int col;
 	std::cin >> col;
 	col -= 1;
@@ -79,10 +85,11 @@ bool ConnectFour::takeTurn() {
 	return false;
 }  
 
+//Puts a tile in the lowest row of col and returns t/f based on completion
 bool ConnectFour::placeTileInCol(int col) {
 	for (int row = numRows - 1; row >= 0; row--) {
 		if (board[row][col] == emptyToken) {
-			board[row][col] = playerTokens[currentPlayerId];
+			board[row][col] = getCurrentPlayerToken();
 			return true;
 		}
 	}
@@ -91,7 +98,7 @@ bool ConnectFour::placeTileInCol(int col) {
 
  // determine if the CURRENT PLAYER has won the game and update winningPlayerId to the winning player's Id
 bool ConnectFour::isWin() {
-	char token = playerTokens[currentPlayerId];
+	char token = getCurrentPlayerToken();
 	if (checkForWinRows(token) || checkForWinCols(token) || checkForWinDiagonal(token)) {
 		winningPlayerId = currentPlayerId;
 		return true;
@@ -99,6 +106,7 @@ bool ConnectFour::isWin() {
 	return false;
 }
 
+//Checks rows for wins
 bool ConnectFour::checkForWinRows(char token) {
 	int currentCount = 0;
 	for (int r = 0; r < numRows; r++) {
@@ -112,6 +120,7 @@ bool ConnectFour::checkForWinRows(char token) {
 	return false;
 }
 
+//Checks cols for wins
 bool ConnectFour::checkForWinCols(char token) {
 	int currentCount = 0;
 	for (int c = 0; c < numCols; c++) {
@@ -125,6 +134,7 @@ bool ConnectFour::checkForWinCols(char token) {
 	return false;
 }
 
+//Checks diagonals for wins
 bool ConnectFour::checkForWinDiagonal(char token) {
 	for (int c = 0; c < numCols; c++) {
 		if (checkForWinDiagonalLD(token, c) || checkForWinDiagonalRD(token, c)) {
@@ -133,7 +143,7 @@ bool ConnectFour::checkForWinDiagonal(char token) {
 	}
 	return false;
 }
-
+//Checks the left-down diagonals
 bool ConnectFour::checkForWinDiagonalLD(char token, int c) {
 	int currentCount = 0;
 	for (int r = 0; r < numRows; r++) {
@@ -147,7 +157,7 @@ bool ConnectFour::checkForWinDiagonalLD(char token, int c) {
 	}
 	return false;
 }
-
+//Checks the Right-Down diagonals
 bool ConnectFour::checkForWinDiagonalRD(char token, int c) {
 	int currentCount = 0;
 	for (int r = 0; r < numRows; r++) {
@@ -161,7 +171,7 @@ bool ConnectFour::checkForWinDiagonalRD(char token, int c) {
 	}
 	return false;
 }
-
+//Checks for the chosen token and updates count and returns true if there is 4 in a direction
 bool ConnectFour::checkForToken(int r, int c, char token, int &currentCount) {
 	if (board[r][c] == token) {
 		currentCount += 1;
@@ -181,9 +191,10 @@ bool ConnectFour::isTie() {
 	return isRowTie() && isColTie() && isDiagonalTie();
 }
 
+//Checks rows for ties
 bool ConnectFour::isRowTie() {
 	int tracker = 0;
-	char curr = 'a';
+	char curr = ' ';
 	for (int r = 0; r < numRows; r++) {
 		for (int c = 0; c < numCols; c++) {
 			if (!tieTracker(curr, r, c, tracker)) {
@@ -191,14 +202,15 @@ bool ConnectFour::isRowTie() {
 			}
 		}
 		tracker = 0;
-		curr = 'a';
+		curr = ' ';
 	}
 	return true;
 }
 
+//Checks cols for ties
 bool ConnectFour::isColTie() {
 	int tracker = 0;
-	char curr = 'a';
+	char curr = ' ';
 	for (int c = 0; c < numCols; c++) {
 		for (int r = 0; r < numRows; r++) {
 			if (!tieTracker(curr, r, c, tracker)) {
@@ -206,11 +218,12 @@ bool ConnectFour::isColTie() {
 			}
 		}
 		tracker = 0;
-		curr = 'a';
+		curr = ' ';
 	}
 	return true;
 }
 
+//Checks diagonals for ties
 bool ConnectFour::isDiagonalTie() {
 	bool currentStatus = true;
 	for (int c = 0; c < numCols; c++) {
@@ -219,21 +232,12 @@ bool ConnectFour::isDiagonalTie() {
 	return currentStatus;
 }
 
-
+//Checks the left-down diagonals
 bool ConnectFour::isDiagonalTieLD(int c) {
 	int tracker = 0;
-	char curr = 'a';
+	char curr = ' ';
 	for (int r = 0; r < numRows; r++) {
-		if (board[r][c] == emptyToken) {
-			tracker += 1;
-		} else if (curr == board[r][c] || curr == 'a') {
-			tracker += 1;
-			curr = board[r][c];
-		} else {
-			curr = board[r][c];
-			tracker = 1;
-		}
-		if (tracker >= 4) {
+		if (!tieTracker(curr, r, c, tracker)) {
 			return false;
 		}
 
@@ -245,20 +249,12 @@ bool ConnectFour::isDiagonalTieLD(int c) {
 	return true;
 }
 
+//Checks the right-down diagonals
 bool ConnectFour::isDiagonalTieRD(int c) {
 	int tracker = 0;
-	char curr = 'a';
+	char curr = ' ';
 	for (int r = 0; r < numRows; r++) {
-		if (board[r][c] == emptyToken) {
-			tracker += 1;
-		} else if (curr == board[r][c] || curr == 'a') {
-			tracker += 1;
-			curr = board[r][c];
-		} else {
-			curr = board[r][c];
-			tracker = 1;
-		}
-		if (tracker >= 4) {
+		if (!tieTracker(curr, r, c, tracker)) {
 			return false;
 		}
 
@@ -270,12 +266,16 @@ bool ConnectFour::isDiagonalTieRD(int c) {
 	return true;
 }
 
+//Keeps track of if a player could win
 bool ConnectFour::tieTracker(char &curr, int r, int c, int &tracker) {
+	//Anyone could place in emptyToken
 	if (board[r][c] == emptyToken) {
 		tracker += 1;
-	} else if (curr == board[r][c] || curr == 'a') {
+	//If the token matches current token or is empty then set tracked token
+	} else if (curr == board[r][c] || curr == ' ') {
 		tracker += 1;
 		curr = board[r][c];
+	//Found a different token so reset
 	} else {
 		curr = board[r][c];
 		tracker = 1;
