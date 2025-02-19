@@ -22,6 +22,9 @@ class ConnectFour{ // DONE FOR YOU - PLEASE DO NOT CHANGE THIS FILE
     // NOTE: the current player token can always be found by playerTokens[ currentPlayerId ]
     // Note also that the currentPlayerId must always be from 0 to playerTokens.size()-1 (inclusive) to avoid illegal access in playerTokens[] 
     // ...So a safer way to determine the current player might be: playerTokens[ currentPlayerId%playerTokens.size() ]
+    bool playingWithAi;
+    
+    void promptUserForAI();
     bool placeTileInCol(int col);
     bool checkForWinRows(char token);
     bool checkForWinCols(char token);
@@ -35,6 +38,7 @@ class ConnectFour{ // DONE FOR YOU - PLEASE DO NOT CHANGE THIS FILE
     bool isDiagonalTieRD(int c);
     bool isDiagonalTieLD(int c);
     bool tieTracker(char &curr, int r, int c, int &tracker);
+    void takeTurnAI();
 
   public:
     ConnectFour(                   // constructor ARGUMENTS are listed below

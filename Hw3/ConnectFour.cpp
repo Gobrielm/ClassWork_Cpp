@@ -54,7 +54,17 @@ ConnectFour::ConnectFour(
 
 void ConnectFour::printInstructions() {
 	std::cout << "Try to get 4 of your token in a line in any orientation to win.\nEnter a column number such as \"2\" to drop a token into column 2.\n";
+	promptUserForAI();
 }
+
+void ConnectFour::promptUserForAI() {
+	char answer;
+	std::cout << "Do you want to play against an AI y/n: ";
+	std::cin >> answer;
+	std:: cout << '\n';
+	playingWithAi = (answer == 'y');
+}
+
 void ConnectFour::printBoard() {
     for (int r = -1; r < numRows; r++) {
         for (int c = 0; c < numCols; c++) {
@@ -280,8 +290,13 @@ bool ConnectFour::tieTracker(char &curr, int r, int c, int &tracker) {
 		curr = board[r][c];
 		tracker = 1;
 	}
+	//If 4 in a direction then return no tie
 	if (tracker >= 4) {
 		return false;
 	}
 	return true;
+}
+
+void ConnectFour::takeTurnAI() {
+
 }
