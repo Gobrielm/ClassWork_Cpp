@@ -114,6 +114,26 @@ bool ConnectFour::placeTileInCol(int col) {
 	return false;
 }
 
+//Puts a tile in the lowest row of col and returns t/f based on completion
+bool ConnectFour::placeTileInCol(int col, int playerID) {
+	for (int row = numRows - 1; row >= 0; row--) {
+		if (board[row][col] == emptyToken) {
+			board[row][col] = playerTokens[playerID];
+			return true;
+		}
+	}
+	return false;
+}
+
+//Takes tile away from row
+void ConnectFour::removeTileInCol(int col) {
+	for (int row = 0; row < numRows; row++) {
+		if (board[row][col] != emptyToken) {
+			board[row][col] = emptyToken;
+		}
+	}
+}
+
  // determine if the CURRENT PLAYER has won the game and update winningPlayerId to the winning player's Id
 bool ConnectFour::isWin() {
 	char token = getCurrentPlayerToken();
@@ -427,6 +447,34 @@ int ConnectFour::getSpaceWeight(int r, int c) {
 	}
 	weight += calculateWeight(emptyTokens, enemyTokens, aiTokens);
 	return weight;
+}
+
+int ConnectFour::miniMax(int isMaximising) {
+	if (isWin()) {
+		if (isMaximising) {
+			return 100;
+		} else {
+			return -100;
+		}
+	}
+	if (isTie()) {
+		return 0;
+	}
+	int colStored;
+	int maxOrMin = 0;
+	for (int col = 0; col < numCols; col++) {
+		placeTileInCol(col, isMaximising); // 0 for player 1 for comp
+		int temp = miniMax(1 - isMaximising);
+		if (isMaximising && temp >= maxOrMin) {
+			colStored = col;
+			maxOrMin = temp;
+		} else if (!isMaximising && temp <= maxOrMin) {
+			colStored = col;
+			maxOrMin = temp;
+		}
+		removeTileInCol(col);
+	}
+	return colStored;
 }
 
 bool ConnectFour::trackTokens(int r, int c, char &tracked, int &emptyTokens, int &aiTokens, int &enemyTokens) {
