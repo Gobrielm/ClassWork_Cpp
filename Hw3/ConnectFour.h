@@ -42,6 +42,9 @@ class ConnectFour{ // DONE FOR YOU - PLEASE DO NOT CHANGE THIS FILE
     std::array<int, 7> getColumnWeights();
     int getColumnWeight(int c);
     int getSpaceWeight(int r, int c);
+    bool trackTokens(int r, int c, char &tracked, int &emptyTokens, int &aiTokens, int &enemyTokens);
+    void resetCounts(char &tracked, int &aiTokens, int &enemyTokens, int &emptyTokens);
+    int calculateWeight(int emptyTokens, int enemyTokens, int aiTokens);
 
   public:
     ConnectFour(                   // constructor ARGUMENTS are listed below

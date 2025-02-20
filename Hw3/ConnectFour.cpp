@@ -308,8 +308,9 @@ bool ConnectFour::tieTracker(char &curr, int r, int c, int &tracker) {
 void ConnectFour::takeTurnAI() {
 	std::array<int, 7> weights = getColumnWeights();
 	int col;
-	int max = 0;
+	int max = -999;
 	for (int i = 0; i < numCols; i++) {
+		std::cout << std::to_string(i + 1) << " has weight: " << std::to_string(weights[i]) << "\n";
 		if (weights[i] > max) {
 			max = weights[i];
 			col = i;
@@ -327,85 +328,141 @@ std::array<int, 7> ConnectFour::getColumnWeights() {
 }
 
 int ConnectFour::getColumnWeight(int c) {
-	int weight = 0;
 	for (int r = numRows - 1; r >= 0; r--) {
 		if (board[r][c] == emptyToken) {
-			weight = getSpaceWeight(r, c);
+			return getSpaceWeight(r, c);
 		}
 	}
-	return weight;
+	return -99;
 }
 
 int ConnectFour::getSpaceWeight(int r, int c) {
 	char token = getCurrentPlayerToken();
-	char enemy = playerTokens[(currentPlayerId + 1) % 2];
 	int weight = 0;
 	int aiTokens = 0;
 	int enemyTokens = 0;
 	int emptyTokens = 0;
 	char tracked = ' ';
-	for (int ct = c + 1; ct < numCols; ct++) {
-		if (board[r][ct] == emptyToken) {
-			emptyTokens += 1;
-		} else if (board[r][ct] == tracked || tracked == ' ') {
-			tracked = board[r][ct];
-			if (tracked = token) {
-				aiTokens += 1;
-			} else {
-				enemyTokens += 1;
-			}
-		} else {
+	
+	//Checking row right
+	for (int ct = c + 1; ct < fmin(numCols, c + 4); ct++) {
+		if (trackTokens(r, ct, tracked, emptyTokens, aiTokens, enemyTokens)) {
+			break;
+		} 
+	}
+	tracked = ' ';
+	//Checking row left
+	for (int ct = c - 1; ct >= fmax(0, c - 4); ct--) {
+		if (trackTokens(r, ct, tracked, emptyTokens, aiTokens, enemyTokens)) {
+			break;
+		} 
+	}
+	
+	weight += calculateWeight(emptyTokens, enemyTokens, aiTokens);
+	//Checking column down
+	resetCounts(tracked, aiTokens, enemyTokens, emptyTokens);
+	for (int rt = r + 1; rt < fmin(numRows, r + 4); rt++) {
+		if (trackTokens(rt, c, tracked, emptyTokens, aiTokens, enemyTokens)) {
+			break;
+		} 
+	}
+	tracked = ' ';
+	//Checking column up
+	for (int rt = r - 1; rt >= fmax(0, r - 4); rt--) {
+		if (trackTokens(rt, c, tracked, emptyTokens, aiTokens, enemyTokens)) {
+			break;
+		} 
+	}
+	weight += calculateWeight(emptyTokens, enemyTokens, aiTokens);
+	//Checking diagonals left-up
+	resetCounts(tracked, aiTokens, enemyTokens, emptyTokens);
+	int ct = c - 1;
+	for (int rt = r - 1; rt >= fmax(0, r - 4); rt--) {
+		if (trackTokens(rt, ct, tracked, emptyTokens, aiTokens, enemyTokens)) {
+			break;
+		} 
+		ct -= 1;
+		if (ct < fmax(0, c - 4)) {
 			break;
 		}
 	}
 	tracked = ' ';
-	for (int ct = c - 1; ct >= 0; ct--) {
-		if (board[r][ct] == emptyToken) {
-			emptyTokens += 1;
-		} else if (board[r][ct] == tracked || tracked == ' ') {
-			tracked = board[r][ct];
-			if (tracked = token) {
-				aiTokens += 1;
-			} else {
-				enemyTokens += 1;
-			}
-		} else {
+	//Checking diagonals right-down
+	ct = c + 1;
+	for (int rt = r + 1; rt < fmin(numRows, r + 4); rt++) {
+		if (trackTokens(rt, ct, tracked, emptyTokens, aiTokens, enemyTokens)) {
+			break;
+		} 
+
+		ct += 1;
+		if (ct >= fmin(numRows, c + 4)) {
 			break;
 		}
 	}
-	weight += aiTokens + enemyTokens - emptyTokens / 2;
+	weight += calculateWeight(emptyTokens, enemyTokens, aiTokens);
+	//Checking diagonals right-up
+	resetCounts(tracked, aiTokens, enemyTokens, emptyTokens);
+	ct = c + 1;
+	for (int rt = r - 1; rt >= fmax(0, r - 4); rt--) {
+		if (trackTokens(rt, ct, tracked, emptyTokens, aiTokens, enemyTokens)) {
+			break;
+		} 
 
-	for (int rt = r + 1; rt < numRows; rt++) {
-		if (board[rt][c] == emptyToken) {
-			emptyTokens += 1;
-		} else if (board[rt][c] == tracked || tracked == ' ') {
-			tracked = board[rt][c];
-			if (tracked = token) {
-				aiTokens += 1;
-			} else {
-				enemyTokens += 1;
-			}
-		} else {
+		ct += 1;
+		if (ct >= fmin(numRows, c + 4)) {
 			break;
 		}
 	}
 	tracked = ' ';
-	for (int rt = r - 1; rt >= 0; rt--) {
-		if (board[rt][c] == emptyToken) {
-			emptyTokens += 1;
-		} else if (board[rt][c] == tracked || tracked == ' ') {
-			tracked = board[rt][c];
-			if (tracked = token) {
-				aiTokens += 1;
-			} else {
-				enemyTokens += 1;
-			}
-		} else {
+	//Checking diagonals left-down
+	ct = c - 1;
+	for (int rt = r + 1; rt < fmin(numRows, r + 4); rt++) {
+		if (trackTokens(rt, ct, tracked, emptyTokens, aiTokens, enemyTokens)) {
+			break;
+		} 
+		ct -= 1;
+		if (ct < fmax(0, r - 4)) {
 			break;
 		}
 	}
-
-	weight += aiTokens + enemyTokens - emptyTokens / 2;
-
+	weight += calculateWeight(emptyTokens, enemyTokens, aiTokens);
 	return weight;
+}
+
+bool ConnectFour::trackTokens(int r, int c, char &tracked, int &emptyTokens, int &aiTokens, int &enemyTokens) {
+	char token = getCurrentPlayerToken();
+	if (board[r][c] == emptyToken) {
+		emptyTokens += 1;
+		if (tracked = ' ') {
+			tracked = emptyToken;
+		}
+	} else if (board[r][c] == tracked || tracked == ' ') {
+		tracked = board[r][c];
+		if (tracked == token) {
+			aiTokens += 1;
+		} else {
+			enemyTokens += 1;
+		}
+	} else {
+		return true;
+	}
+	return false;
+}
+
+void ConnectFour::resetCounts(char &tracked, int &aiTokens, int &enemyTokens, int &emptyTokens) {
+	tracked = ' ';
+	aiTokens = 0;
+	enemyTokens = 0;
+	emptyTokens = 0;
+}
+
+int ConnectFour::calculateWeight(int emptyTokens, int enemyTokens, int aiTokens) {
+	if (enemyTokens >= 3) {
+		return 99;
+	} else if (aiTokens >= 3) {
+		return 99;
+	} else if (emptyTokens < 4 && (enemyTokens + aiTokens + emptyTokens) > 2) {
+		return enemyTokens + aiTokens;
+	} 
+	return 0;
 }
