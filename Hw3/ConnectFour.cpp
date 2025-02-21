@@ -1,4 +1,5 @@
 #include "ConnectFour.h"
+#include "weightedColumn.h"
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -149,7 +150,6 @@ bool ConnectFour::isWin() {
 bool ConnectFour::isWin(int playerID) {
 	char token = playerTokens[playerID];
 	if (checkForWinRows(token) || checkForWinCols(token) || checkForWinDiagonal(token)) {
-		winningPlayerId = currentPlayerId;
 		return true;
 	}
 	return false;
@@ -339,7 +339,7 @@ bool ConnectFour::tieTracker(char &curr, int r, int c, int &tracker) {
 
 void ConnectFour::takeTurnAI() {
 	// std::array<int, 7> weights = getColumnWeights();
-	int col = miniMax(1, 0);
+	int col = miniMax(1, 0).getColumn();
 	// int max = -999;
 	// for (int i = 0; i < numCols; i++) {
 	// 	std::cout << std::to_string(i + 1) << " has weight: " << std::to_string(weights[i]) << "\n";
@@ -464,39 +464,42 @@ int ConnectFour::getSpaceWeight(int r, int c) {
 	return weight;
 }
 
-int ConnectFour::miniMax(int isMaximising, int depth) {
-	if (depth >= 10) {
-		return -1;
+weightedColumn ConnectFour::miniMax(int isMaximising, int depth) {
+	weightedColumn currentBest;
+	if (depth > 6) {
+		return weightedColumn(0, -1);
 	}
+
 	for (int col = 0; col < numCols; col++) {
 		bool valid = placeTileInCol(col, isMaximising); // 0 for player 1 for comp
+		weightedColumn current(0, col);
 		if (!valid) {
 			continue;
 		}
 		if (isWin(isMaximising)) {
-			
+			removeTileInCol(col);
 			if (isMaximising == 1) {
-				removeTileInCol(col);
-				return col;
-			}
-		} else if (isWin(!isMaximising)) {
-			if (isMaximising == 0) {
-				removeTileInCol(col);
-				return col;
+				return weightedColumn(1000 / (depth + 1), col);
+			} else {
+				return weightedColumn(-1000 / (depth + 1), col);
 			}
 		}
 		if (isTie()) {
 			removeTileInCol(col);
-			continue;
+			return weightedColumn(-10, col);
 		}
-		int temp = miniMax(1 - isMaximising, depth + 1);
+		weightedColumn futureMove = miniMax(1 - isMaximising, depth + 1);
+		current.changeWeight(futureMove.getWeight());
+		if (current.getWeight() > currentBest.getWeight() && isMaximising == 1) {
+			currentBest = current;
+		} else if (current.getWeight() < currentBest.getWeight() && isMaximising == 0) {
+			currentBest = current;
+		} else if (currentBest.getColumn() == -1) {
+			currentBest = current;
+		}
 		removeTileInCol(col);
-		if (temp == -1) {
-			continue;
-		}
-		return temp;
 	}
-	return -1;
+	return currentBest;
 }
 
 bool ConnectFour::trackTokens(int r, int c, char &tracked, int &emptyTokens, int &aiTokens, int &enemyTokens) {

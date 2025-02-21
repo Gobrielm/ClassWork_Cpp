@@ -6,6 +6,7 @@
 #ifndef CONNECTFOUR_H
 #define CONNECTFOUR_H
 #include <vector>
+#include "weightedColumn.h"
 
 class ConnectFour{ // DONE FOR YOU - PLEASE DO NOT CHANGE THIS FILE
 
@@ -22,6 +23,7 @@ class ConnectFour{ // DONE FOR YOU - PLEASE DO NOT CHANGE THIS FILE
     // NOTE: the current player token can always be found by playerTokens[ currentPlayerId ]
     // Note also that the currentPlayerId must always be from 0 to playerTokens.size()-1 (inclusive) to avoid illegal access in playerTokens[] 
     // ...So a safer way to determine the current player might be: playerTokens[ currentPlayerId%playerTokens.size() ]
+    
     bool playingWithAi;
     
     void promptUserForAI();
@@ -48,7 +50,7 @@ class ConnectFour{ // DONE FOR YOU - PLEASE DO NOT CHANGE THIS FILE
     bool trackTokens(int r, int c, char &tracked, int &emptyTokens, int &aiTokens, int &enemyTokens);
     void resetCounts(char &tracked, int &aiTokens, int &enemyTokens, int &emptyTokens);
     int calculateWeight(int emptyTokens, int enemyTokens, int aiTokens);
-    int miniMax(int isMaximising, int depth);
+    weightedColumn miniMax(int isMaximising, int depth);
 
   public:
     ConnectFour(                   // constructor ARGUMENTS are listed below
