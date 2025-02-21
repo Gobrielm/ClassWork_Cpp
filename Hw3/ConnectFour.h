@@ -25,7 +25,10 @@ class ConnectFour{ // DONE FOR YOU - PLEASE DO NOT CHANGE THIS FILE
     bool playingWithAi;
     
     void promptUserForAI();
+    bool isWin(int playerID);
     bool placeTileInCol(int col);
+    bool placeTileInCol(int col, int playerID);
+    void removeTileInCol(int col);
     bool checkForWinRows(char token);
     bool checkForWinCols(char token);
     bool checkForWinDiagonal(char token);
@@ -45,6 +48,7 @@ class ConnectFour{ // DONE FOR YOU - PLEASE DO NOT CHANGE THIS FILE
     bool trackTokens(int r, int c, char &tracked, int &emptyTokens, int &aiTokens, int &enemyTokens);
     void resetCounts(char &tracked, int &aiTokens, int &enemyTokens, int &emptyTokens);
     int calculateWeight(int emptyTokens, int enemyTokens, int aiTokens);
+    int miniMax(int isMaximising, int depth);
 
   public:
     ConnectFour(                   // constructor ARGUMENTS are listed below

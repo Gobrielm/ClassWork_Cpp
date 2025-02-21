@@ -130,8 +130,10 @@ void ConnectFour::removeTileInCol(int col) {
 	for (int row = 0; row < numRows; row++) {
 		if (board[row][col] != emptyToken) {
 			board[row][col] = emptyToken;
+			return;
 		}
 	}
+	throw __EXCEPTION__;
 }
 
  // determine if the CURRENT PLAYER has won the game and update winningPlayerId to the winning player's Id
@@ -143,6 +145,16 @@ bool ConnectFour::isWin() {
 	}
 	return false;
 }
+
+bool ConnectFour::isWin(int playerID) {
+	char token = playerTokens[playerID];
+	if (checkForWinRows(token) || checkForWinCols(token) || checkForWinDiagonal(token)) {
+		winningPlayerId = currentPlayerId;
+		return true;
+	}
+	return false;
+}
+
 
 //Checks rows for wins
 bool ConnectFour::checkForWinRows(char token) {
@@ -326,15 +338,18 @@ bool ConnectFour::tieTracker(char &curr, int r, int c, int &tracker) {
 }
 
 void ConnectFour::takeTurnAI() {
-	std::array<int, 7> weights = getColumnWeights();
-	int col;
-	int max = -999;
-	for (int i = 0; i < numCols; i++) {
-		std::cout << std::to_string(i + 1) << " has weight: " << std::to_string(weights[i]) << "\n";
-		if (weights[i] > max) {
-			max = weights[i];
-			col = i;
-		}
+	// std::array<int, 7> weights = getColumnWeights();
+	int col = miniMax(1, 0);
+	// int max = -999;
+	// for (int i = 0; i < numCols; i++) {
+	// 	std::cout << std::to_string(i + 1) << " has weight: " << std::to_string(weights[i]) << "\n";
+	// 	if (weights[i] > max) {
+	// 		max = weights[i];
+	// 		col = i;
+	// 	}
+	// }
+	if (col == -1) {
+		std::cout<<"AAAAA";
 	}
 	placeTileInCol(col);
 }
@@ -449,32 +464,39 @@ int ConnectFour::getSpaceWeight(int r, int c) {
 	return weight;
 }
 
-int ConnectFour::miniMax(int isMaximising) {
-	if (isWin()) {
-		if (isMaximising) {
-			return 100;
-		} else {
-			return -100;
-		}
+int ConnectFour::miniMax(int isMaximising, int depth) {
+	if (depth >= 10) {
+		return -1;
 	}
-	if (isTie()) {
-		return 0;
-	}
-	int colStored;
-	int maxOrMin = 0;
 	for (int col = 0; col < numCols; col++) {
-		placeTileInCol(col, isMaximising); // 0 for player 1 for comp
-		int temp = miniMax(1 - isMaximising);
-		if (isMaximising && temp >= maxOrMin) {
-			colStored = col;
-			maxOrMin = temp;
-		} else if (!isMaximising && temp <= maxOrMin) {
-			colStored = col;
-			maxOrMin = temp;
+		bool valid = placeTileInCol(col, isMaximising); // 0 for player 1 for comp
+		if (!valid) {
+			continue;
 		}
+		if (isWin(isMaximising)) {
+			
+			if (isMaximising == 1) {
+				removeTileInCol(col);
+				return col;
+			}
+		} else if (isWin(!isMaximising)) {
+			if (isMaximising == 0) {
+				removeTileInCol(col);
+				return col;
+			}
+		}
+		if (isTie()) {
+			removeTileInCol(col);
+			continue;
+		}
+		int temp = miniMax(1 - isMaximising, depth + 1);
 		removeTileInCol(col);
+		if (temp == -1) {
+			continue;
+		}
+		return temp;
 	}
-	return colStored;
+	return -1;
 }
 
 bool ConnectFour::trackTokens(int r, int c, char &tracked, int &emptyTokens, int &aiTokens, int &enemyTokens) {
