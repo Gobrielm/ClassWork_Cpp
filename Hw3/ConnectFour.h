@@ -26,6 +26,7 @@ class ConnectFour{ // DONE FOR YOU - PLEASE DO NOT CHANGE THIS FILE
     
     bool playingWithAi;
     
+    int getPlayerIDFromToken(char token);
     void promptUserForAI();
     bool isWin(int playerID);
     bool placeTileInCol(int col);
@@ -51,6 +52,7 @@ class ConnectFour{ // DONE FOR YOU - PLEASE DO NOT CHANGE THIS FILE
     void resetCounts(char &tracked, int &aiTokens, int &enemyTokens, int &emptyTokens);
     int calculateWeight(int emptyTokens, int enemyTokens, int aiTokens);
     weightedColumn miniMax(int isMaximising, int depth);
+    int evalutateBoard();
 
   public:
     ConnectFour(                   // constructor ARGUMENTS are listed below

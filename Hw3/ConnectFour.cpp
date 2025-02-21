@@ -74,6 +74,15 @@ void ConnectFour::promptUserForAI() {
 	}
 }
 
+int ConnectFour::getPlayerIDFromToken(char token) {
+	for (int i = 0; i < playerTokens.size(); i++) {
+		if (playerTokens[i] == token) {
+			return i;
+		}
+	}
+	return -1;
+}
+
 void ConnectFour::printBoard() {
     for (int r = -1; r < numRows; r++) {
         for (int c = 0; c < numCols; c++) {
@@ -465,41 +474,95 @@ int ConnectFour::getSpaceWeight(int r, int c) {
 }
 
 weightedColumn ConnectFour::miniMax(int isMaximising, int depth) {
-	weightedColumn currentBest;
+	
 	if (depth > 6) {
-		return weightedColumn(0, -1);
+		return weightedColumn(evalutateBoard(), -1);
 	}
-
+	weightedColumn currentBest(-1000, -1);
+	if (isMaximising == 0) {
+		currentBest.changeWeight(2000);
+	} 
 	for (int col = 0; col < numCols; col++) {
 		bool valid = placeTileInCol(col, isMaximising); // 0 for player 1 for comp
-		weightedColumn current(0, col);
 		if (!valid) {
 			continue;
 		}
 		if (isWin(isMaximising)) {
 			removeTileInCol(col);
-			if (isMaximising == 1) {
-				return weightedColumn(1000 / (depth + 1), col);
-			} else {
-				return weightedColumn(-1000 / (depth + 1), col);
-			}
+			return weightedColumn((isMaximising == 1 ? 1000 : -1000) / (depth + 1), col);
 		}
 		if (isTie()) {
 			removeTileInCol(col);
 			return weightedColumn(-10, col);
 		}
-		weightedColumn futureMove = miniMax(1 - isMaximising, depth + 1);
-		current.changeWeight(futureMove.getWeight());
-		if (current.getWeight() > currentBest.getWeight() && isMaximising == 1) {
-			currentBest = current;
-		} else if (current.getWeight() < currentBest.getWeight() && isMaximising == 0) {
-			currentBest = current;
-		} else if (currentBest.getColumn() == -1) {
-			currentBest = current;
+		weightedColumn futureMove = weightedColumn(miniMax(1 - isMaximising, depth + 1).getWeight(), col);
+		if (isMaximising == 1) {
+			if (futureMove.getWeight() > currentBest.getWeight()) {
+				currentBest = futureMove;
+			}
+		} else {
+			if (futureMove.getWeight() < currentBest.getWeight()) {
+				currentBest = futureMove;
+			}
 		}
+		
 		removeTileInCol(col);
 	}
 	return currentBest;
+}
+
+int ConnectFour::evalutateBoard() {
+	int tracker = 0;
+	char current = emptyToken;
+	int boardStatus = 0;
+	for (int row = 0; row < numRows; row++) {
+		for (int col = 0; col < numCols; col++) {
+			if (board[row][col] == emptyToken) {
+				if (current != emptyToken) {
+					boardStatus += (getPlayerIDFromToken(current) == 1 ? 1: -1) * tracker * 20;
+				}
+				tracker = 0;
+				current = emptyToken;
+			} else if (board[row][col] == current) {
+				tracker += 1;
+			}  else if (current == emptyToken) {
+				current = board[row][col];
+				tracker += 1;
+			}
+		}
+		if (current != emptyToken) {
+			boardStatus += (getPlayerIDFromToken(current) == 1 ? 1: -1) * tracker * 20;
+		}
+		current = emptyToken;
+		tracker = 0;
+	}
+	if (current != emptyToken) {
+		boardStatus += (getPlayerIDFromToken(current) == 1 ? 1: -1) * tracker * 20;
+	}
+	current = emptyToken;
+	tracker = 0;
+	for (int col = 0; col < numCols; col++) {
+		for (int row = 0; row < numRows; row++) {
+			if (board[row][col] == emptyToken) {
+				if (current != emptyToken) {
+					boardStatus += (getPlayerIDFromToken(current) == 1 ? 1: -1) * tracker * 20;
+				}
+				tracker = 0;
+				current = emptyToken;
+			} else if (board[row][col] == current) {
+				tracker += 1;
+			}  else if (current == emptyToken) {
+				current = board[row][col];
+				tracker += 1;
+			}
+		}
+		if (current != emptyToken) {
+			boardStatus += (getPlayerIDFromToken(current) == 1 ? 1: -1) * tracker * 20;
+		}
+		current = emptyToken;
+		tracker = 0;
+	}
+	return boardStatus;
 }
 
 bool ConnectFour::trackTokens(int r, int c, char &tracked, int &emptyTokens, int &aiTokens, int &enemyTokens) {
