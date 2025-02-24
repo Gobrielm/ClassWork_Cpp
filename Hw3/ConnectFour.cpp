@@ -457,7 +457,14 @@ int ConnectFour::getValueToAddFromDiagonals(int col, int row) {
 
 int ConnectFour::updateBoardStatus(char &current, int &tracker) {
 	if (current != emptyToken) {
-		return (getPlayerIDFromToken(current) == 1 ? 1: -1) * tracker * 20;
+		if (tracker == 2) {
+			return (getPlayerIDFromToken(current) == 1 ? 1: -1) * tracker * 5;
+		} else if (tracker == 3) {
+			return (getPlayerIDFromToken(current) == 1 ? 1: -1) * tracker * 20;
+		} else if (tracker == 4) {
+			return (getPlayerIDFromToken(current) == 1 ? 1: -1) * tracker * 100;
+		}
+		
 	}
 	current = emptyToken;
 	tracker = 0;
