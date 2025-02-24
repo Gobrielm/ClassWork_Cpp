@@ -48,7 +48,9 @@ class ConnectFour{ // DONE FOR YOU - PLEASE DO NOT CHANGE THIS FILE
     weightedColumn miniMax(int isMaximising, int depth);
     int evalutateBoard();
     int getValueToAddFromDiagonals(int col, int row);
-    int updateBoardStatus(char &current, int &tracker);
+    int updateBoardStatus(char &current, int &tracker, int r, int c);
+    bool checkIfWinIsPossibleRow(char token, int r, int c);
+    bool checkIfWinIsPossibleCol(char token, int r, int c);
 
   public:
     ConnectFour(                   // constructor ARGUMENTS are listed below

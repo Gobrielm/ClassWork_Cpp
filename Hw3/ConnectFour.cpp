@@ -399,29 +399,33 @@ int ConnectFour::evalutateBoard() {
 	for (int row = 0; row < numRows; row++) {
 		for (int col = 0; col < numCols; col++) {
 			if (board[row][col] == emptyToken) {
-				boardStatus += updateBoardStatus(current, tracker);
+				boardStatus += updateBoardStatus(current, tracker, row, col);
 			} else if (board[row][col] == current) {
 				tracker += 1;
 			}  else if (current == emptyToken) {
 				current = board[row][col];
 				tracker += 1;
+			} else {
+				boardStatus += updateBoardStatus(current, tracker, row, col);
 			}
 		}
-		boardStatus += updateBoardStatus(current, tracker);
+		boardStatus += updateBoardStatus(current, tracker, row, numCols - 1);
 	}
-	boardStatus += updateBoardStatus(current, tracker);
+
 	for (int col = 0; col < numCols; col++) {
 		for (int row = 0; row < numRows; row++) {
 			if (board[row][col] == emptyToken) {
-				boardStatus += updateBoardStatus(current, tracker);
+				boardStatus += updateBoardStatus(current, tracker, row, col);
 			} else if (board[row][col] == current) {
 				tracker += 1;
-			}  else if (current == emptyToken) {
+			} else if (current == emptyToken) {
 				current = board[row][col];
 				tracker += 1;
+			} else {
+				boardStatus += updateBoardStatus(current, tracker, row, col);
 			}
 		}
-		boardStatus += updateBoardStatus(current, tracker);
+		boardStatus += updateBoardStatus(current, tracker, numRows - 1, col);
 	}
 	
 	boardStatus += getValueToAddFromDiagonals(0, 2);
@@ -440,7 +444,7 @@ int ConnectFour::getValueToAddFromDiagonals(int col, int row) {
 	char current = emptyToken;
 	while (col < numCols && row < numRows) {
 		if (board[row][col] == emptyToken) {
-			boardStatus += updateBoardStatus(current, tracker);
+			boardStatus += updateBoardStatus(current, tracker, row, col);
 		} else if (board[row][col] == current) {
 			tracker += 1;
 		}  else if (current == emptyToken) {
@@ -450,25 +454,70 @@ int ConnectFour::getValueToAddFromDiagonals(int col, int row) {
 		col += 1;
 		row += 1;
 	}
-	boardStatus += updateBoardStatus(current, tracker);
+	boardStatus += updateBoardStatus(current, tracker, row, col);
 	return boardStatus;
 }
 
 
-int ConnectFour::updateBoardStatus(char &current, int &tracker) {
-	if (current != emptyToken) {
-		if (tracker == 2) {
-			return (getPlayerIDFromToken(current) == 1 ? 1: -1) * tracker * 5;
+int ConnectFour::updateBoardStatus(char &current, int &tracker, int r, int c) {
+	if (current != emptyToken && (checkIfWinIsPossibleRow(current, r, c) || checkIfWinIsPossibleCol(current, r, c))) {
+		if (tracker == 2 ) {
+			return (getPlayerIDFromToken(current) == 1 ? 1: -1) * 10;
 		} else if (tracker == 3) {
-			return (getPlayerIDFromToken(current) == 1 ? 1: -1) * tracker * 20;
+			return (getPlayerIDFromToken(current) == 1 ? 1: -1) * 40;
 		} else if (tracker == 4) {
-			return (getPlayerIDFromToken(current) == 1 ? 1: -1) * tracker * 100;
+			return (getPlayerIDFromToken(current) == 1 ? 1: -1) * 500;
 		}
-		
 	}
 	current = emptyToken;
 	tracker = 0;
 	return 0;
 }
 
+
+bool ConnectFour::checkIfWinIsPossibleRow(char token, int r, int c) {
+	int space = 1;
+	int col = c + 1;
+	while (col < numCols) {
+		if (board[r][col] == emptyToken || board[r][col] == token) {
+			space += 1;
+		} else {
+			break;
+		}
+		col += 1;
+	}
+	col = c - 1;
+	while (col >= 0) {
+		if (board[r][col] == emptyToken || board[r][col] == token) {
+			space += 1;
+		} else {
+			break;
+		}
+		col -= 1;
+	}
+	return space >= 4;
+}
+
+bool ConnectFour::checkIfWinIsPossibleCol(char token, int r, int c) {
+	int space = 1;
+	int row = r + 1;
+	while (row < numRows) {
+		if (board[row][c] == emptyToken || board[row][c] == token) {
+			space += 1;
+		} else {
+			break;
+		}
+		row += 1;
+	}
+	row = r - 1;
+	while (row >= 0) {
+		if (board[row][c] == emptyToken || board[row][c] == token) {
+			space += 1;
+		} else {
+			break;
+		}
+		row -= 1;
+	}
+	return space >= 4;
+}
 
