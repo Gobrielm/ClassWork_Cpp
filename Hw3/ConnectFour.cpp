@@ -1,5 +1,4 @@
 #include "ConnectFour.h"
-#include "weightedColumn.h"
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -351,7 +350,20 @@ bool ConnectFour::tieTracker(char &curr, int r, int c, int &tracker) {
 //AI's turn
 void ConnectFour::takeTurnAI() {
 	//Finds best column
-	int col = miniMax(1, 0).getColumn();
+	int val = -10000;
+	int col = -1;
+	for (int c = 0; c < numCols; c++) {
+		bool valid = placeTileInCol(c, 1);
+		if (!valid) {
+			continue;
+		}
+		int currentWeight = miniMax(0, 1);
+		if (currentWeight > val) {
+			val = currentWeight;
+			col = c;
+		}
+		removeTileInCol(c);
+	}
 	//If there is no best outcome, choose randomly, will almost never happen
 	if (col == -1) {
 		col = rand() % 7;
@@ -360,15 +372,16 @@ void ConnectFour::takeTurnAI() {
 }
 
 //Returns a weightColumn which has a column number and a weight
-weightedColumn ConnectFour::miniMax(int playerID/*0: Player, 1: AI*/, int depth) {
-	//Base case at final depth
+int ConnectFour::miniMax(int playerID/*0: Player, 1: AI*/, int depth) {
+	//How many moves deep the AI can check
 	if (depth > 6) {
-		return weightedColumn(evalutateBoard(), -1);
+		return evalutateBoard();
 	}
 	//Makes currentBest start with a huge +/- penalty
-	weightedColumn currentBest(-1000, -1);
+	int bestWeight = -1000;
+	int bestCol = -1;
 	if (playerID == 0) {
-		currentBest.changeWeight(2000);
+		bestWeight += 2000;
 	} 
 	for (int col = 0; col < numCols; col++) {
 		//For Each col, place a token and see the results
@@ -379,28 +392,30 @@ weightedColumn ConnectFour::miniMax(int playerID/*0: Player, 1: AI*/, int depth)
 		//Found win, add huge weight
 		if (isWin(playerID)) {
 			removeTileInCol(col);
-			return weightedColumn((playerID == 1 ? 1000 : -1000) / (depth + 1), col);
+			return (playerID == 1 ? 10000 : -10000) / (depth + 1);
 		}
 		//Found tie, ignore
 		if (isTie()) {
 			removeTileInCol(col);
-			return weightedColumn(-10, col);
+			return -10;
 		}
 		//Tries moves and saves the best one
-		weightedColumn futureMove = weightedColumn(miniMax(1 - playerID, depth + 1).getWeight(), col);
+		int weight = miniMax(1 - playerID, depth + 1);
 		if (playerID == 1) {
-			if (futureMove.getWeight() > currentBest.getWeight()) {
-				currentBest = futureMove;
+			if (weight > bestWeight) {
+				bestCol = col;
+				bestWeight = weight;
 			}
 		} else {
-			if (futureMove.getWeight() < currentBest.getWeight()) {
-				currentBest = futureMove;
+			if (bestWeight < weight) {
+				bestCol = col;
+				bestWeight = weight;
 			}
 		}
 		//Returns board to how it was
 		removeTileInCol(col);
 	}
-	return currentBest;
+	return bestWeight;
 }
 
 //Estimates how well each user is doing
@@ -472,9 +487,9 @@ int ConnectFour::updateBoardStatusInternals(char &currentToken, int &numberOfTok
 		if (numberOfTokens == 2 ) {
 			toReturn = (getPlayerIDFromToken(currentToken) == 1 ? 1: -1) * 10;
 		} else if (numberOfTokens == 3) {
-			toReturn = (getPlayerIDFromToken(currentToken) == 1 ? 1: -1) * 40;
+			toReturn = (getPlayerIDFromToken(currentToken) == 1 ? 1: -1) * 50;
 		} else if (numberOfTokens == 4) {
-			toReturn = (getPlayerIDFromToken(currentToken) == 1 ? 1: -1) * 500;
+			toReturn = (getPlayerIDFromToken(currentToken) == 1 ? 1: -1) * 5000;
 		}
 	}
 	currentToken = emptyToken;
