@@ -26,6 +26,5 @@ int main() {
 
   ConnectFour game('.', {'X', 'O'}); // construct the game, specify an empty character and  vector of any number of player tokens
   game.play();                       // play the game until over
-  // game.printBoard();
   cout <<  "\nGoodbye!"  << endl;
 }
