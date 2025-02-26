@@ -1,5 +1,4 @@
 #include "ConnectFour.h"
-#include "weightedColumn.h"
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -63,6 +62,7 @@ void ConnectFour::printInstructions() {
 	promptUserForAI();
 }
 
+//Asks the user if they want to play with AI
 void ConnectFour::promptUserForAI() {
 	char answer;
 	std::cout << "Do you want to play against an AI y/n: ";
@@ -74,6 +74,7 @@ void ConnectFour::promptUserForAI() {
 	}
 }
 
+//Given the token, it finds the playerID
 int ConnectFour::getPlayerIDFromToken(char token) {
 	for (int i = 0; i < playerTokens.size(); i++) {
 		if (playerTokens[i] == token) {
@@ -346,88 +347,99 @@ bool ConnectFour::tieTracker(char &curr, int r, int c, int &tracker) {
 	return true;
 }
 
+//AI's turn
 void ConnectFour::takeTurnAI() {
-	int col = miniMax(1, 0).getColumn();
+	//Finds best column
+	int val = -10000;
+	int col = -1;
+	for (int c = 0; c < numCols; c++) {
+		bool valid = placeTileInCol(c, 1);
+		if (!valid) {
+			continue;
+		}
+		int currentWeight = miniMax(0, 1);
+		if (currentWeight > val) {
+			val = currentWeight;
+			col = c;
+		}
+		removeTileInCol(c);
+	}
+	//If there is no best outcome, choose randomly, will almost never happen
 	if (col == -1) {
 		col = rand() % 7;
 	}
 	placeTileInCol(col);
 }
 
-weightedColumn ConnectFour::miniMax(int isMaximising, int depth) {
-	
+//Returns a weightColumn which has a column number and a weight
+int ConnectFour::miniMax(int playerID/*0: Player, 1: AI*/, int depth) {
+	//How many moves deep the AI can check
 	if (depth > 6) {
-		return weightedColumn(evalutateBoard(), -1);
+		return evalutateBoard();
 	}
-	weightedColumn currentBest(-1000, -1);
-	if (isMaximising == 0) {
-		currentBest.changeWeight(2000);
+	//Makes currentBest start with a huge +/- penalty
+	int bestWeight = -1000;
+	int bestCol = -1;
+	if (playerID == 0) {
+		bestWeight += 2000;
 	} 
 	for (int col = 0; col < numCols; col++) {
-		bool valid = placeTileInCol(col, isMaximising); // 0 for player 1 for comp
+		//For Each col, place a token and see the results
+		bool valid = placeTileInCol(col, playerID); // 0 for player 1 for comp
 		if (!valid) {
 			continue;
 		}
-		if (isWin(isMaximising)) {
+		//Found win, add huge weight
+		if (isWin(playerID)) {
 			removeTileInCol(col);
-			return weightedColumn((isMaximising == 1 ? 1000 : -1000) / (depth + 1), col);
+			return (playerID == 1 ? 10000 : -10000) / (depth + 1);
 		}
+		//Found tie, ignore
 		if (isTie()) {
 			removeTileInCol(col);
-			return weightedColumn(-10, col);
+			return -10;
 		}
-		weightedColumn futureMove = weightedColumn(miniMax(1 - isMaximising, depth + 1).getWeight(), col);
-		if (isMaximising == 1) {
-			if (futureMove.getWeight() > currentBest.getWeight()) {
-				currentBest = futureMove;
+		//Tries moves and saves the best one
+		int weight = miniMax(1 - playerID, depth + 1);
+		if (playerID == 1) {
+			if (weight > bestWeight) {
+				bestCol = col;
+				bestWeight = weight;
 			}
 		} else {
-			if (futureMove.getWeight() < currentBest.getWeight()) {
-				currentBest = futureMove;
+			if (bestWeight < weight) {
+				bestCol = col;
+				bestWeight = weight;
 			}
 		}
-		
+		//Returns board to how it was
 		removeTileInCol(col);
 	}
-	return currentBest;
+	return bestWeight;
 }
 
+//Estimates how well each user is doing
 int ConnectFour::evalutateBoard() {
-	int tracker = 0;
-	char current = emptyToken;
+	int numberOfTokens = 0;
+	int numberOfEmptyTokens = 0;
+	char currentToken = emptyToken;
+	//Current Score
 	int boardStatus = 0;
+	//Going through rows
 	for (int row = 0; row < numRows; row++) {
 		for (int col = 0; col < numCols; col++) {
-			if (board[row][col] == emptyToken) {
-				boardStatus += updateBoardStatus(current, tracker, row, col);
-			} else if (board[row][col] == current) {
-				tracker += 1;
-			}  else if (current == emptyToken) {
-				current = board[row][col];
-				tracker += 1;
-			} else {
-				boardStatus += updateBoardStatus(current, tracker, row, col);
-			}
+			boardStatus += updateBoardStatus(row, col, currentToken, numberOfTokens, numberOfEmptyTokens);
 		}
-		boardStatus += updateBoardStatus(current, tracker, row, numCols - 1);
+		boardStatus += updateBoardStatusInternals(currentToken, numberOfTokens, numberOfEmptyTokens);
 	}
-
+	//Going through cols
 	for (int col = 0; col < numCols; col++) {
 		for (int row = 0; row < numRows; row++) {
-			if (board[row][col] == emptyToken) {
-				boardStatus += updateBoardStatus(current, tracker, row, col);
-			} else if (board[row][col] == current) {
-				tracker += 1;
-			} else if (current == emptyToken) {
-				current = board[row][col];
-				tracker += 1;
-			} else {
-				boardStatus += updateBoardStatus(current, tracker, row, col);
-			}
+			boardStatus += updateBoardStatus(row, col, currentToken, numberOfTokens, numberOfEmptyTokens);
 		}
-		boardStatus += updateBoardStatus(current, tracker, numRows - 1, col);
+		boardStatus += updateBoardStatusInternals(currentToken, numberOfTokens, numberOfEmptyTokens);
 	}
-	
+	//Tries only 5 diagonals because only those can produce a win
 	boardStatus += getValueToAddFromDiagonals(0, 2);
 	boardStatus += getValueToAddFromDiagonals(0, 1);
 	boardStatus += getValueToAddFromDiagonals(0, 0);
@@ -440,84 +452,50 @@ int ConnectFour::evalutateBoard() {
 
 int ConnectFour::getValueToAddFromDiagonals(int col, int row) {
 	int boardStatus = 0;
-	int tracker = 0;
-	char current = emptyToken;
+	int numberOfTokens = 0;
+	int numberOfEmptyTokens = 0;
+	char currentToken = emptyToken;
+	//Iterates diagonally so check both
 	while (col < numCols && row < numRows) {
-		if (board[row][col] == emptyToken) {
-			boardStatus += updateBoardStatus(current, tracker, row, col);
-		} else if (board[row][col] == current) {
-			tracker += 1;
-		}  else if (current == emptyToken) {
-			current = board[row][col];
-			tracker += 1;
-		}
+		boardStatus += updateBoardStatus(row, col, currentToken, numberOfTokens, numberOfEmptyTokens);
 		col += 1;
 		row += 1;
 	}
-	boardStatus += updateBoardStatus(current, tracker, row, col);
 	return boardStatus;
 }
 
-
-int ConnectFour::updateBoardStatus(char &current, int &tracker, int r, int c) {
-	if (current != emptyToken && (checkIfWinIsPossibleRow(current, r, c) || checkIfWinIsPossibleCol(current, r, c))) {
-		if (tracker == 2 ) {
-			return (getPlayerIDFromToken(current) == 1 ? 1: -1) * 10;
-		} else if (tracker == 3) {
-			return (getPlayerIDFromToken(current) == 1 ? 1: -1) * 40;
-		} else if (tracker == 4) {
-			return (getPlayerIDFromToken(current) == 1 ? 1: -1) * 500;
-		}
+//Updates the trackers and then returns how much to change boardStatus
+int ConnectFour::updateBoardStatus(int row, int col, char &currentToken, int &numberOfTokens, int &numberOfEmptyTokens) {
+	if (board[row][col] == emptyToken) {
+		numberOfEmptyTokens += 1;
+	} else if (board[row][col] == currentToken) {
+		numberOfTokens += 1;
+	}  else if (currentToken == emptyToken) {
+		currentToken = board[row][col];
+		numberOfTokens += 1;
+	} else {
+		return updateBoardStatusInternals(currentToken, numberOfTokens, numberOfEmptyTokens);
 	}
-	current = emptyToken;
-	tracker = 0;
 	return 0;
 }
 
 
-bool ConnectFour::checkIfWinIsPossibleRow(char token, int r, int c) {
-	int space = 1;
-	int col = c + 1;
-	while (col < numCols) {
-		if (board[r][col] == emptyToken || board[r][col] == token) {
-			space += 1;
-		} else {
-			break;
+//If there is space for atleast 4 tokens then it adds score based on how many, 2, 3, and 4 in-a-row
+int ConnectFour::updateBoardStatusInternals(char &currentToken, int &numberOfTokens, int &numberOfEmptyTokens) {
+	int toReturn = 0;
+	if (currentToken != emptyToken && (numberOfTokens + numberOfEmptyTokens) >= 4) {
+		if (numberOfTokens == 2 ) {
+			toReturn = (getPlayerIDFromToken(currentToken) == 1 ? 1: -1) * 10;
+		} else if (numberOfTokens == 3) {
+			toReturn = (getPlayerIDFromToken(currentToken) == 1 ? 1: -1) * 50;
+		} else if (numberOfTokens == 4) {
+			toReturn = (getPlayerIDFromToken(currentToken) == 1 ? 1: -1) * 5000;
 		}
-		col += 1;
 	}
-	col = c - 1;
-	while (col >= 0) {
-		if (board[r][col] == emptyToken || board[r][col] == token) {
-			space += 1;
-		} else {
-			break;
-		}
-		col -= 1;
-	}
-	return space >= 4;
+	currentToken = emptyToken;
+	numberOfTokens = 0;
+	numberOfEmptyTokens = 0;
+	return toReturn;
 }
 
-bool ConnectFour::checkIfWinIsPossibleCol(char token, int r, int c) {
-	int space = 1;
-	int row = r + 1;
-	while (row < numRows) {
-		if (board[row][c] == emptyToken || board[row][c] == token) {
-			space += 1;
-		} else {
-			break;
-		}
-		row += 1;
-	}
-	row = r - 1;
-	while (row >= 0) {
-		if (board[row][c] == emptyToken || board[row][c] == token) {
-			space += 1;
-		} else {
-			break;
-		}
-		row -= 1;
-	}
-	return space >= 4;
-}
 

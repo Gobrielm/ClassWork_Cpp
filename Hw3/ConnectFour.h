@@ -6,7 +6,6 @@
 #ifndef CONNECTFOUR_H
 #define CONNECTFOUR_H
 #include <vector>
-#include "weightedColumn.h"
 
 class ConnectFour{ // DONE FOR YOU - PLEASE DO NOT CHANGE THIS FILE
 
@@ -45,12 +44,11 @@ class ConnectFour{ // DONE FOR YOU - PLEASE DO NOT CHANGE THIS FILE
     bool isDiagonalTieLD(int c);
     bool tieTracker(char &curr, int r, int c, int &tracker);
     void takeTurnAI();
-    weightedColumn miniMax(int isMaximising, int depth);
+    int miniMax(int playerID, int depth);
     int evalutateBoard();
     int getValueToAddFromDiagonals(int col, int row);
-    int updateBoardStatus(char &current, int &tracker, int r, int c);
-    bool checkIfWinIsPossibleRow(char token, int r, int c);
-    bool checkIfWinIsPossibleCol(char token, int r, int c);
+    int updateBoardStatus(int row, int col, char &currentToken, int &numberOfTokens, int &numberOfEmptyTokens);
+    int updateBoardStatusInternals(char &currentToken, int &numberOfTokens, int &numberOfEmptyTokens);
 
   public:
     ConnectFour(                   // constructor ARGUMENTS are listed below
