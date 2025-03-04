@@ -12,7 +12,7 @@
 
 class Hand {
   std::list<Card> cards;  // list container - no brackets avaialble!  []; so you must use iterators!
-  
+
   public:     
     Hand(std::vector<int> initialCards = {}); // constructor: converts requested vector of card IDs into Card instances; defaults to empty Hand
     void printMe (); // print out the hand from “top to bottom”

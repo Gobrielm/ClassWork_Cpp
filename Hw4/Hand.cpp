@@ -4,7 +4,7 @@
 
 // constructor: converts requested vector of card IDs into Card instances; defaults to empty Hand
 Hand::Hand(std::vector<int> initialCards) {
-    for (int x: initialCards) {
+    for (const int &x: initialCards) {
         cards.push_back(Card(x));
     }
 }
@@ -13,10 +13,12 @@ Hand::Hand(std::vector<int> initialCards) {
 void Hand::printMe () {
     std:: cout << "{ ";
     int counter = 0;
-    for (Card card: cards) {
+    for (const Card &card: cards) {
         std::cout << card;
         if (counter != cards.size() - 1) {
             std::cout << ", ";
+        } else {
+            std::cout << " ";
         }
         counter++;
     }
@@ -43,15 +45,28 @@ void Hand::addACard(Card newCard) {
 // return an integer value that represents the sum of all card values in this Hand
 int Hand::getPoints() {
     int sum = 0;
-    for (Card card: cards) {
-        sum += card.value;
+    //Assumes all aces are 11's to start
+    int aceCount = 0;
+    for (const Card &card: cards) {
+        if (card.name == "Ace") {
+            
+            aceCount++;
+            sum += 11;
+        } else {
+            sum += card.value;
+        }
+    }
+    //If ace's exist, turn each 11 Ace to 1 Ace until the sum is under 21
+    while (sum > 21 && aceCount > 0) {
+        sum -= 10;
+        aceCount--;
     }
     return sum;
 } 
 
 // BONUS: return true if the Hand currently contains any Ace card
 bool Hand::hasAnAce() {
-    for (Card card: cards) {
+    for (const Card &card: cards) {
         if (card.name == "Ace") {
             return true;
         }

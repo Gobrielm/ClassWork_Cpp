@@ -2,104 +2,239 @@
 ***********************
 Starting Test #0: Test A: Dealer Should win with larger hand (20)
 Let's Play BlackJack!
-TODO
-** printBoard() Before the game:
-------------------------------------
+Your goal is to score above the deal but not exceed 21. You may either Hit(h) or Stand(s). 
+Hitting will give you a new card with value between 1-10. Face cards are always equal to 10 and Ace's are 1
 Player's hand: { } 0 Points
 Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
 
-** printBoard() After Player's Turn:
-------------------------------------
-Player's hand: { Two of Diamonds(2), Two of Hearts(2), Two of Spades(2)} 6 Points
+Player's hand: { Two of Spades(2) } 2 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
+
+Player's hand: { Two of Hearts(2), Two of Spades(2) } 4 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
+
+Player's hand: { Two of Diamonds(2), Two of Hearts(2), Two of Spades(2) } 6 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player stands...
+
+Player's hand: { Two of Diamonds(2), Two of Hearts(2), Two of Spades(2) } 6 Points
 Dealer's hand: { } 0 Points
 
-** printBoard() After Dealer's Turn:
-------------------------------------
-Player's hand: { Two of Diamonds(2), Two of Hearts(2), Two of Spades(2)} 6 Points
-Dealer's hand: { Eight of Diamonds(8), Six of Hearts(6), Six of Spades(6)} 20 Points
+Player's hand: { Two of Diamonds(2), Two of Hearts(2), Two of Spades(2) } 6 Points
+Dealer's hand: { } 0 Points
+Dealer's Turn...
+Dealer hits...
+
+Player's hand: { Two of Diamonds(2), Two of Hearts(2), Two of Spades(2) } 6 Points
+Dealer's hand: { Six of Spades(6) } 6 Points
+Dealer hits...
+
+Player's hand: { Two of Diamonds(2), Two of Hearts(2), Two of Spades(2) } 6 Points
+Dealer's hand: { Six of Hearts(6), Six of Spades(6) } 12 Points
+Dealer hits...
+
+Player's hand: { Two of Diamonds(2), Two of Hearts(2), Two of Spades(2) } 6 Points
+Dealer's hand: { Eight of Diamonds(8), Six of Hearts(6), Six of Spades(6) } 20 Points
+Dealer stays...
+
+Player's hand: { Two of Diamonds(2), Two of Hearts(2), Two of Spades(2) } 6 Points
+Dealer's hand: { Eight of Diamonds(8), Six of Hearts(6), Six of Spades(6) } 20 Points
+
+Player's hand: { Two of Diamonds(2), Two of Hearts(2), Two of Spades(2) } 6 Points
+Dealer's hand: { Eight of Diamonds(8), Six of Hearts(6), Six of Spades(6) } 20 Points
 Congratulations: Dealer has won the game!
 Passed test #0
 
 ***********************
 Starting Test #1: Test B : Player should win with larger hand (19)
 Let's Play BlackJack!
-TODO
-** printBoard() Before the game:
-------------------------------------
+Your goal is to score above the deal but not exceed 21. You may either Hit(h) or Stand(s). 
+Hitting will give you a new card with value between 1-10. Face cards are always equal to 10 and Ace's are 1
 Player's hand: { } 0 Points
 Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
 
-** printBoard() After Player's Turn:
-------------------------------------
-Player's hand: { Ace of Diamonds(1), Nine of Clubs(9), King of Spades(10)} 20 Points
+Player's hand: { King of Spades(10) } 10 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
+
+Player's hand: { Nine of Clubs(9), King of Spades(10) } 19 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
+
+Player's hand: { Ace of Diamonds(1), Nine of Clubs(9), King of Spades(10) } 20 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player stands...
+
+Player's hand: { Ace of Diamonds(1), Nine of Clubs(9), King of Spades(10) } 20 Points
 Dealer's hand: { } 0 Points
 
-** printBoard() After Dealer's Turn:
-------------------------------------
-Player's hand: { Ace of Diamonds(1), Nine of Clubs(9), King of Spades(10)} 20 Points
-Dealer's hand: { Three of Diamonds(3), Three of Hearts(3), Three of Spades(3), Two of Clubs(2), Two of Diamonds(2), Two of Hearts(2), Two of Spades(2), Ace of Clubs(1), Ace of Hearts(1)} 19 Points
+Player's hand: { Ace of Diamonds(1), Nine of Clubs(9), King of Spades(10) } 20 Points
+Dealer's hand: { } 0 Points
+Dealer's Turn...
+Dealer hits...
+
+Player's hand: { Ace of Diamonds(1), Nine of Clubs(9), King of Spades(10) } 20 Points
+Dealer's hand: { Ace of Hearts(1) } 11 Points
+Dealer hits...
+
+Player's hand: { Ace of Diamonds(1), Nine of Clubs(9), King of Spades(10) } 20 Points
+Dealer's hand: { Ace of Clubs(1), Ace of Hearts(1) } 12 Points
+Dealer hits...
+
+Player's hand: { Ace of Diamonds(1), Nine of Clubs(9), King of Spades(10) } 20 Points
+Dealer's hand: { Two of Spades(2), Ace of Clubs(1), Ace of Hearts(1) } 14 Points
+Dealer hits...
+
+Player's hand: { Ace of Diamonds(1), Nine of Clubs(9), King of Spades(10) } 20 Points
+Dealer's hand: { Two of Hearts(2), Two of Spades(2), Ace of Clubs(1), Ace of Hearts(1) } 16 Points
+Dealer hits...
+
+Player's hand: { Ace of Diamonds(1), Nine of Clubs(9), King of Spades(10) } 20 Points
+Dealer's hand: { Two of Diamonds(2), Two of Hearts(2), Two of Spades(2), Ace of Clubs(1), Ace of Hearts(1) } 18 Points
+Dealer stays...
+
+Player's hand: { Ace of Diamonds(1), Nine of Clubs(9), King of Spades(10) } 20 Points
+Dealer's hand: { Two of Diamonds(2), Two of Hearts(2), Two of Spades(2), Ace of Clubs(1), Ace of Hearts(1) } 18 Points
+
+Player's hand: { Ace of Diamonds(1), Nine of Clubs(9), King of Spades(10) } 20 Points
+Dealer's hand: { Two of Diamonds(2), Two of Hearts(2), Two of Spades(2), Ace of Clubs(1), Ace of Hearts(1) } 18 Points
 Congratulations: Player has won the game!
 Passed test #1
 
 ***********************
 Starting Test #2: Test C:  Player Should win with 21
 Let's Play BlackJack!
-TODO
-** printBoard() Before the game:
-------------------------------------
+Your goal is to score above the deal but not exceed 21. You may either Hit(h) or Stand(s). 
+Hitting will give you a new card with value between 1-10. Face cards are always equal to 10 and Ace's are 1
 Player's hand: { } 0 Points
 Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
 
-** printBoard() After Player's Turn:
-------------------------------------
-Player's hand: { Ace of Diamonds(1), King of Spades(10), King of Spades(10)} 21 Points
+Player's hand: { King of Spades(10) } 10 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
+
+Player's hand: { King of Spades(10), King of Spades(10) } 20 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player stands...
+
+Player's hand: { Ace of Diamonds(1), King of Spades(10), King of Spades(10) } 21 Points
 Dealer's hand: { } 0 Points
 
-** printBoard() After Dealer's Turn:
-------------------------------------
-Player's hand: { Ace of Diamonds(1), King of Spades(10), King of Spades(10)} 21 Points
-Dealer's hand: { Three of Diamonds(3), Three of Hearts(3), Three of Spades(3), Two of Clubs(2), Two of Diamonds(2), Two of Hearts(2), Two of Spades(2), Ace of Clubs(1), Ace of Hearts(1)} 19 Points
+Player's hand: { Ace of Diamonds(1), King of Spades(10), King of Spades(10) } 21 Points
+Dealer's hand: { } 0 Points
+Dealer's Turn...
+Dealer hits...
+
+Player's hand: { Ace of Diamonds(1), King of Spades(10), King of Spades(10) } 21 Points
+Dealer's hand: { Ace of Hearts(1) } 11 Points
+Dealer hits...
+
+Player's hand: { Ace of Diamonds(1), King of Spades(10), King of Spades(10) } 21 Points
+Dealer's hand: { Ace of Clubs(1), Ace of Hearts(1) } 12 Points
+Dealer hits...
+
+Player's hand: { Ace of Diamonds(1), King of Spades(10), King of Spades(10) } 21 Points
+Dealer's hand: { Two of Spades(2), Ace of Clubs(1), Ace of Hearts(1) } 14 Points
+Dealer hits...
+
+Player's hand: { Ace of Diamonds(1), King of Spades(10), King of Spades(10) } 21 Points
+Dealer's hand: { Two of Hearts(2), Two of Spades(2), Ace of Clubs(1), Ace of Hearts(1) } 16 Points
+Dealer hits...
+
+Player's hand: { Ace of Diamonds(1), King of Spades(10), King of Spades(10) } 21 Points
+Dealer's hand: { Two of Diamonds(2), Two of Hearts(2), Two of Spades(2), Ace of Clubs(1), Ace of Hearts(1) } 18 Points
+Dealer stays...
+
+Player's hand: { Ace of Diamonds(1), King of Spades(10), King of Spades(10) } 21 Points
+Dealer's hand: { Two of Diamonds(2), Two of Hearts(2), Two of Spades(2), Ace of Clubs(1), Ace of Hearts(1) } 18 Points
+
+Player's hand: { Ace of Diamonds(1), King of Spades(10), King of Spades(10) } 21 Points
+Dealer's hand: { Two of Diamonds(2), Two of Hearts(2), Two of Spades(2), Ace of Clubs(1), Ace of Hearts(1) } 18 Points
 Congratulations: Player has won the game!
 Passed test #2
 
 ***********************
 Starting Test #3: Test D:  Player Should win with 20
 Let's Play BlackJack!
-TODO
-** printBoard() Before the game:
-------------------------------------
+Your goal is to score above the deal but not exceed 21. You may either Hit(h) or Stand(s). 
+Hitting will give you a new card with value between 1-10. Face cards are always equal to 10 and Ace's are 1
 Player's hand: { } 0 Points
 Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
 
-** printBoard() After Player's Turn:
-------------------------------------
-Player's hand: { Four of Hearts(4), Eight of Hearts(8), Eight of Spades(8)} 20 Points
+Player's hand: { Eight of Spades(8) } 8 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
+
+Player's hand: { Eight of Hearts(8), Eight of Spades(8) } 16 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
+
+Player's hand: { Four of Hearts(4), Eight of Hearts(8), Eight of Spades(8) } 20 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player stands...
+
+Player's hand: { Four of Hearts(4), Eight of Hearts(8), Eight of Spades(8) } 20 Points
 Dealer's hand: { } 0 Points
 
-** printBoard() After Dealer's Turn:
-------------------------------------
-Player's hand: { Four of Hearts(4), Eight of Hearts(8), Eight of Spades(8)} 20 Points
-Dealer's hand: { Three of Diamonds(3), Three of Hearts(3), Three of Spades(3), Two of Clubs(2), Two of Diamonds(2), Two of Hearts(2), Two of Spades(2), Ace of Clubs(1), Ace of Hearts(1)} 19 Points
+Player's hand: { Four of Hearts(4), Eight of Hearts(8), Eight of Spades(8) } 20 Points
+Dealer's hand: { } 0 Points
+Dealer's Turn...
+Dealer hits...
+
+Player's hand: { Four of Hearts(4), Eight of Hearts(8), Eight of Spades(8) } 20 Points
+Dealer's hand: { Ace of Hearts(1) } 11 Points
+Dealer hits...
+
+Player's hand: { Four of Hearts(4), Eight of Hearts(8), Eight of Spades(8) } 20 Points
+Dealer's hand: { Ace of Clubs(1), Ace of Hearts(1) } 12 Points
+Dealer hits...
+
+Player's hand: { Four of Hearts(4), Eight of Hearts(8), Eight of Spades(8) } 20 Points
+Dealer's hand: { Two of Spades(2), Ace of Clubs(1), Ace of Hearts(1) } 14 Points
+Dealer hits...
+
+Player's hand: { Four of Hearts(4), Eight of Hearts(8), Eight of Spades(8) } 20 Points
+Dealer's hand: { Two of Hearts(2), Two of Spades(2), Ace of Clubs(1), Ace of Hearts(1) } 16 Points
+Dealer hits...
+
+Player's hand: { Four of Hearts(4), Eight of Hearts(8), Eight of Spades(8) } 20 Points
+Dealer's hand: { Two of Diamonds(2), Two of Hearts(2), Two of Spades(2), Ace of Clubs(1), Ace of Hearts(1) } 18 Points
+Dealer stays...
+
+Player's hand: { Four of Hearts(4), Eight of Hearts(8), Eight of Spades(8) } 20 Points
+Dealer's hand: { Two of Diamonds(2), Two of Hearts(2), Two of Spades(2), Ace of Clubs(1), Ace of Hearts(1) } 18 Points
+
+Player's hand: { Four of Hearts(4), Eight of Hearts(8), Eight of Spades(8) } 20 Points
+Dealer's hand: { Two of Diamonds(2), Two of Hearts(2), Two of Spades(2), Ace of Clubs(1), Ace of Hearts(1) } 18 Points
 Congratulations: Player has won the game!
 Passed test #3
 
 ***********************
 Starting Test #4: Test E: Dealer Should Win (Player Busts)
 Let's Play BlackJack!
-TODO
-** printBoard() Before the game:
-------------------------------------
+Your goal is to score above the deal but not exceed 21. You may either Hit(h) or Stand(s). 
+Hitting will give you a new card with value between 1-10. Face cards are always equal to 10 and Ace's are 1
 Player's hand: { } 0 Points
 Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
 
-** printBoard() After Player's Turn:
-------------------------------------
-Player's hand: { Nine of Clubs(9), Eight of Hearts(8), Ten of Hearts(10)} 27 Points
+Player's hand: { Ten of Hearts(10) } 10 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
+
+Player's hand: { Eight of Hearts(8), Ten of Hearts(10) } 18 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? 
+Player's hand: { Nine of Clubs(9), Eight of Hearts(8), Ten of Hearts(10) } 27 Points
 Dealer's hand: { } 0 Points
 
-** printBoard() After Dealer's Turn:
-------------------------------------
-Player's hand: { Nine of Clubs(9), Eight of Hearts(8), Ten of Hearts(10)} 27 Points
+Player's hand: { Nine of Clubs(9), Eight of Hearts(8), Ten of Hearts(10) } 27 Points
 Dealer's hand: { } 0 Points
 Congratulations: Dealer has won the game!
 Passed test #4
@@ -107,126 +242,254 @@ Passed test #4
 ***********************
 Starting Test #5: Test F: Player Wins (Dealer Busts)
 Let's Play BlackJack!
-TODO
-** printBoard() Before the game:
-------------------------------------
+Your goal is to score above the deal but not exceed 21. You may either Hit(h) or Stand(s). 
+Hitting will give you a new card with value between 1-10. Face cards are always equal to 10 and Ace's are 1
 Player's hand: { } 0 Points
 Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
 
-** printBoard() After Player's Turn:
-------------------------------------
-Player's hand: { Ace of Hearts(1), Two of Diamonds(2), Four of Spades(4)} 7 Points
+Player's hand: { Four of Spades(4) } 4 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
+
+Player's hand: { Two of Diamonds(2), Four of Spades(4) } 6 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
+
+Player's hand: { Ace of Hearts(1), Two of Diamonds(2), Four of Spades(4) } 17 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player stands...
+
+Player's hand: { Ace of Hearts(1), Two of Diamonds(2), Four of Spades(4) } 17 Points
 Dealer's hand: { } 0 Points
 
-** printBoard() After Dealer's Turn:
-------------------------------------
-Player's hand: { Ace of Hearts(1), Two of Diamonds(2), Four of Spades(4)} 7 Points
-Dealer's hand: { Jack of Clubs(10), Ten of Spades(10), Three of Spades(3)} 23 Points
+Player's hand: { Ace of Hearts(1), Two of Diamonds(2), Four of Spades(4) } 17 Points
+Dealer's hand: { } 0 Points
+Dealer's Turn...
+Dealer hits...
+
+Player's hand: { Ace of Hearts(1), Two of Diamonds(2), Four of Spades(4) } 17 Points
+Dealer's hand: { Three of Spades(3) } 3 Points
+Dealer hits...
+
+Player's hand: { Ace of Hearts(1), Two of Diamonds(2), Four of Spades(4) } 17 Points
+Dealer's hand: { Ten of Spades(10), Three of Spades(3) } 13 Points
+
+Player's hand: { Ace of Hearts(1), Two of Diamonds(2), Four of Spades(4) } 17 Points
+Dealer's hand: { Jack of Clubs(10), Ten of Spades(10), Three of Spades(3) } 23 Points
 Congratulations: Player has won the game!
 Passed test #5
 
 ***********************
 Starting Test #6: Test G: Player Wins (Dealer Busts)
 Let's Play BlackJack!
-TODO
-** printBoard() Before the game:
-------------------------------------
+Your goal is to score above the deal but not exceed 21. You may either Hit(h) or Stand(s). 
+Hitting will give you a new card with value between 1-10. Face cards are always equal to 10 and Ace's are 1
 Player's hand: { } 0 Points
 Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
 
-** printBoard() After Player's Turn:
-------------------------------------
-Player's hand: { Ace of Hearts(1), Two of Diamonds(2), Four of Spades(4)} 7 Points
+Player's hand: { Four of Spades(4) } 4 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
+
+Player's hand: { Two of Diamonds(2), Four of Spades(4) } 6 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
+
+Player's hand: { Ace of Hearts(1), Two of Diamonds(2), Four of Spades(4) } 17 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player stands...
+
+Player's hand: { Ace of Hearts(1), Two of Diamonds(2), Four of Spades(4) } 17 Points
 Dealer's hand: { } 0 Points
 
-** printBoard() After Dealer's Turn:
-------------------------------------
-Player's hand: { Ace of Hearts(1), Two of Diamonds(2), Four of Spades(4)} 7 Points
-Dealer's hand: { Jack of Clubs(10), Ten of Spades(10), Three of Spades(3)} 23 Points
+Player's hand: { Ace of Hearts(1), Two of Diamonds(2), Four of Spades(4) } 17 Points
+Dealer's hand: { } 0 Points
+Dealer's Turn...
+Dealer hits...
+
+Player's hand: { Ace of Hearts(1), Two of Diamonds(2), Four of Spades(4) } 17 Points
+Dealer's hand: { Three of Spades(3) } 3 Points
+Dealer hits...
+
+Player's hand: { Ace of Hearts(1), Two of Diamonds(2), Four of Spades(4) } 17 Points
+Dealer's hand: { Ten of Spades(10), Three of Spades(3) } 13 Points
+
+Player's hand: { Ace of Hearts(1), Two of Diamonds(2), Four of Spades(4) } 17 Points
+Dealer's hand: { Jack of Clubs(10), Ten of Spades(10), Three of Spades(3) } 23 Points
 Congratulations: Player has won the game!
 Passed test #6
 
 ***********************
 Starting Test #7: Test H: Player Win's with 21
 Let's Play BlackJack!
-TODO
-** printBoard() Before the game:
-------------------------------------
+Your goal is to score above the deal but not exceed 21. You may either Hit(h) or Stand(s). 
+Hitting will give you a new card with value between 1-10. Face cards are always equal to 10 and Ace's are 1
 Player's hand: { } 0 Points
 Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
 
-** printBoard() After Player's Turn:
-------------------------------------
-Player's hand: { Ace of Diamonds(1), King of Spades(10), Queen of Spades(10)} 21 Points
+Player's hand: { Queen of Spades(10) } 10 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
+
+Player's hand: { King of Spades(10), Queen of Spades(10) } 20 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player stands...
+
+Player's hand: { Ace of Diamonds(1), King of Spades(10), Queen of Spades(10) } 21 Points
 Dealer's hand: { } 0 Points
 
-** printBoard() After Dealer's Turn:
-------------------------------------
-Player's hand: { Ace of Diamonds(1), King of Spades(10), Queen of Spades(10)} 21 Points
-Dealer's hand: { King of Hearts(10), Queen of Clubs(10)} 20 Points
+Player's hand: { Ace of Diamonds(1), King of Spades(10), Queen of Spades(10) } 21 Points
+Dealer's hand: { } 0 Points
+Dealer's Turn...
+Dealer hits...
+
+Player's hand: { Ace of Diamonds(1), King of Spades(10), Queen of Spades(10) } 21 Points
+Dealer's hand: { Queen of Clubs(10) } 10 Points
+Dealer hits...
+
+Player's hand: { Ace of Diamonds(1), King of Spades(10), Queen of Spades(10) } 21 Points
+Dealer's hand: { King of Hearts(10), Queen of Clubs(10) } 20 Points
+Dealer stays...
+
+Player's hand: { Ace of Diamonds(1), King of Spades(10), Queen of Spades(10) } 21 Points
+Dealer's hand: { King of Hearts(10), Queen of Clubs(10) } 20 Points
+
+Player's hand: { Ace of Diamonds(1), King of Spades(10), Queen of Spades(10) } 21 Points
+Dealer's hand: { King of Hearts(10), Queen of Clubs(10) } 20 Points
 Congratulations: Player has won the game!
 Passed test #7
 
 ***********************
 Starting Test #8: Test I: Test Player Points - should be 14
 Let's Play BlackJack!
-TODO
-** printBoard() Before the game:
-------------------------------------
+Your goal is to score above the deal but not exceed 21. You may either Hit(h) or Stand(s). 
+Hitting will give you a new card with value between 1-10. Face cards are always equal to 10 and Ace's are 1
 Player's hand: { } 0 Points
 Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
 
-** printBoard() After Player's Turn:
-------------------------------------
-Player's hand: { Four of Diamonds(4), Five of Hearts(5), Five of Spades(5)} 14 Points
+Player's hand: { Five of Spades(5) } 5 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
+
+Player's hand: { Five of Hearts(5), Five of Spades(5) } 10 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
+
+Player's hand: { Four of Diamonds(4), Five of Hearts(5), Five of Spades(5) } 14 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player stands...
+
+Player's hand: { Four of Diamonds(4), Five of Hearts(5), Five of Spades(5) } 14 Points
 Dealer's hand: { } 0 Points
 
-** printBoard() After Dealer's Turn:
-------------------------------------
-Player's hand: { Four of Diamonds(4), Five of Hearts(5), Five of Spades(5)} 14 Points
-Dealer's hand: { King of Hearts(10), Queen of Clubs(10)} 20 Points
+Player's hand: { Four of Diamonds(4), Five of Hearts(5), Five of Spades(5) } 14 Points
+Dealer's hand: { } 0 Points
+Dealer's Turn...
+Dealer hits...
+
+Player's hand: { Four of Diamonds(4), Five of Hearts(5), Five of Spades(5) } 14 Points
+Dealer's hand: { Queen of Clubs(10) } 10 Points
+Dealer hits...
+
+Player's hand: { Four of Diamonds(4), Five of Hearts(5), Five of Spades(5) } 14 Points
+Dealer's hand: { King of Hearts(10), Queen of Clubs(10) } 20 Points
+Dealer stays...
+
+Player's hand: { Four of Diamonds(4), Five of Hearts(5), Five of Spades(5) } 14 Points
+Dealer's hand: { King of Hearts(10), Queen of Clubs(10) } 20 Points
+
+Player's hand: { Four of Diamonds(4), Five of Hearts(5), Five of Spades(5) } 14 Points
+Dealer's hand: { King of Hearts(10), Queen of Clubs(10) } 20 Points
 Congratulations: Dealer has won the game!
 Passed test #8
 
 ***********************
 Starting Test #9: Test J: Test Dealer Points - should be 17 (dealer stands on > 16)
 Let's Play BlackJack!
-TODO
-** printBoard() Before the game:
-------------------------------------
+Your goal is to score above the deal but not exceed 21. You may either Hit(h) or Stand(s). 
+Hitting will give you a new card with value between 1-10. Face cards are always equal to 10 and Ace's are 1
 Player's hand: { } 0 Points
 Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
 
-** printBoard() After Player's Turn:
-------------------------------------
-Player's hand: { Four of Diamonds(4), Five of Hearts(5), Five of Spades(5)} 14 Points
+Player's hand: { Five of Spades(5) } 5 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
+
+Player's hand: { Five of Hearts(5), Five of Spades(5) } 10 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
+
+Player's hand: { Four of Diamonds(4), Five of Hearts(5), Five of Spades(5) } 14 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player stands...
+
+Player's hand: { Four of Diamonds(4), Five of Hearts(5), Five of Spades(5) } 14 Points
 Dealer's hand: { } 0 Points
 
-** printBoard() After Dealer's Turn:
-------------------------------------
-Player's hand: { Four of Diamonds(4), Five of Hearts(5), Five of Spades(5)} 14 Points
-Dealer's hand: { Five of Clubs(5), Six of Hearts(6), Six of Spades(6)} 17 Points
+Player's hand: { Four of Diamonds(4), Five of Hearts(5), Five of Spades(5) } 14 Points
+Dealer's hand: { } 0 Points
+Dealer's Turn...
+Dealer hits...
+
+Player's hand: { Four of Diamonds(4), Five of Hearts(5), Five of Spades(5) } 14 Points
+Dealer's hand: { Six of Spades(6) } 6 Points
+Dealer hits...
+
+Player's hand: { Four of Diamonds(4), Five of Hearts(5), Five of Spades(5) } 14 Points
+Dealer's hand: { Six of Hearts(6), Six of Spades(6) } 12 Points
+Dealer hits...
+
+Player's hand: { Four of Diamonds(4), Five of Hearts(5), Five of Spades(5) } 14 Points
+Dealer's hand: { Five of Clubs(5), Six of Hearts(6), Six of Spades(6) } 17 Points
+Dealer stays...
+
+Player's hand: { Four of Diamonds(4), Five of Hearts(5), Five of Spades(5) } 14 Points
+Dealer's hand: { Five of Clubs(5), Six of Hearts(6), Six of Spades(6) } 17 Points
+
+Player's hand: { Four of Diamonds(4), Five of Hearts(5), Five of Spades(5) } 14 Points
+Dealer's hand: { Five of Clubs(5), Six of Hearts(6), Six of Spades(6) } 17 Points
 Congratulations: Dealer has won the game!
 Passed test #9
 
 ***********************
 Starting Test #10: Test K (WIP): Dealer wins on tie with player at 21 (dealer stands on > 16)
 Let's Play BlackJack!
-TODO
-** printBoard() Before the game:
-------------------------------------
+Your goal is to score above the deal but not exceed 21. You may either Hit(h) or Stand(s). 
+Hitting will give you a new card with value between 1-10. Face cards are always equal to 10 and Ace's are 1
 Player's hand: { } 0 Points
 Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
 
-** printBoard() After Player's Turn:
-------------------------------------
-Player's hand: { Seven of Diamonds(7), Seven of Hearts(7), Seven of Spades(7)} 21 Points
+Player's hand: { Seven of Spades(7) } 7 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
+
+Player's hand: { Seven of Hearts(7), Seven of Spades(7) } 14 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player stands...
+
+Player's hand: { Seven of Diamonds(7), Seven of Hearts(7), Seven of Spades(7) } 21 Points
 Dealer's hand: { } 0 Points
 
-** printBoard() After Dealer's Turn:
-------------------------------------
-Player's hand: { Seven of Diamonds(7), Seven of Hearts(7), Seven of Spades(7)} 21 Points
-Dealer's hand: { Eight of Clubs(8), Seven of Clubs(7), Six of Clubs(6)} 21 Points
+Player's hand: { Seven of Diamonds(7), Seven of Hearts(7), Seven of Spades(7) } 21 Points
+Dealer's hand: { } 0 Points
+Dealer's Turn...
+Dealer hits...
+
+Player's hand: { Seven of Diamonds(7), Seven of Hearts(7), Seven of Spades(7) } 21 Points
+Dealer's hand: { Six of Clubs(6) } 6 Points
+Dealer hits...
+
+Player's hand: { Seven of Diamonds(7), Seven of Hearts(7), Seven of Spades(7) } 21 Points
+Dealer's hand: { Seven of Clubs(7), Six of Clubs(6) } 13 Points
+
+Player's hand: { Seven of Diamonds(7), Seven of Hearts(7), Seven of Spades(7) } 21 Points
+Dealer's hand: { Eight of Clubs(8), Seven of Clubs(7), Six of Clubs(6) } 21 Points
 Congratulations: Dealer has won the game!
 Passed test #10
 
@@ -237,62 +500,141 @@ Passed bonus test #0
 ***********************
 Starting Bonus Test #1: : Player wins with True Black Jack: Ace of Diamonds (11) and a King of Spades (10)
 Let's Play BlackJack!
-TODO
-** printBoard() Before the game:
-------------------------------------
+Your goal is to score above the deal but not exceed 21. You may either Hit(h) or Stand(s). 
+Hitting will give you a new card with value between 1-10. Face cards are always equal to 10 and Ace's are 1
 Player's hand: { } 0 Points
 Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
 
-** printBoard() After Player's Turn:
-------------------------------------
-Player's hand: { Ace of Hearts(1), Ace of Diamonds(1), King of Spades(10)} 12 Points
+Player's hand: { King of Spades(10) } 10 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? 
+Player's hand: { Ace of Diamonds(1), King of Spades(10) } 21 Points
 Dealer's hand: { } 0 Points
 
-** printBoard() After Dealer's Turn:
-------------------------------------
-Player's hand: { Ace of Hearts(1), Ace of Diamonds(1), King of Spades(10)} 12 Points
-Dealer's hand: { Three of Diamonds(3), Three of Hearts(3), Three of Spades(3), Two of Clubs(2), Two of Diamonds(2), Two of Hearts(2), Two of Spades(2), Ace of Clubs(1)} 18 Points
-Congratulations: Dealer has won the game!
-Failed bonus test #1
+Player's hand: { Ace of Diamonds(1), King of Spades(10) } 21 Points
+Dealer's hand: { } 0 Points
+Congratulations: Player has won the game!
+Passed bonus test #1
 
 ***********************
 Starting Bonus Test #2: : Player Wins with Two Aces and Nine: Ace of Hearts (11) and Ace of Diamonds (1) and a Nine of Clubs (9)
 Let's Play BlackJack!
-TODO
-** printBoard() Before the game:
-------------------------------------
+Your goal is to score above the deal but not exceed 21. You may either Hit(h) or Stand(s). 
+Hitting will give you a new card with value between 1-10. Face cards are always equal to 10 and Ace's are 1
 Player's hand: { } 0 Points
 Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
 
-** printBoard() After Player's Turn:
-------------------------------------
-Player's hand: { Nine of Clubs(9), Ace of Hearts(1), Ace of Diamonds(1)} 11 Points
+Player's hand: { Ace of Diamonds(1) } 11 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
+
+Player's hand: { Ace of Hearts(1), Ace of Diamonds(1) } 12 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player stands...
+
+Player's hand: { Nine of Clubs(9), Ace of Hearts(1), Ace of Diamonds(1) } 21 Points
 Dealer's hand: { } 0 Points
 
-** printBoard() After Dealer's Turn:
-------------------------------------
-Player's hand: { Nine of Clubs(9), Ace of Hearts(1), Ace of Diamonds(1)} 11 Points
-Dealer's hand: { Three of Diamonds(3), Three of Hearts(3), Three of Spades(3), Two of Clubs(2), Two of Diamonds(2), Two of Hearts(2), Two of Spades(2)} 17 Points
-Congratulations: Dealer has won the game!
-Failed bonus test #2
+Player's hand: { Nine of Clubs(9), Ace of Hearts(1), Ace of Diamonds(1) } 21 Points
+Dealer's hand: { } 0 Points
+Dealer's Turn...
+Dealer hits...
+
+Player's hand: { Nine of Clubs(9), Ace of Hearts(1), Ace of Diamonds(1) } 21 Points
+Dealer's hand: { Two of Spades(2) } 2 Points
+Dealer hits...
+
+Player's hand: { Nine of Clubs(9), Ace of Hearts(1), Ace of Diamonds(1) } 21 Points
+Dealer's hand: { Two of Hearts(2), Two of Spades(2) } 4 Points
+Dealer hits...
+
+Player's hand: { Nine of Clubs(9), Ace of Hearts(1), Ace of Diamonds(1) } 21 Points
+Dealer's hand: { Two of Diamonds(2), Two of Hearts(2), Two of Spades(2) } 6 Points
+Dealer hits...
+
+Player's hand: { Nine of Clubs(9), Ace of Hearts(1), Ace of Diamonds(1) } 21 Points
+Dealer's hand: { Two of Clubs(2), Two of Diamonds(2), Two of Hearts(2), Two of Spades(2) } 8 Points
+Dealer hits...
+
+Player's hand: { Nine of Clubs(9), Ace of Hearts(1), Ace of Diamonds(1) } 21 Points
+Dealer's hand: { Three of Spades(3), Two of Clubs(2), Two of Diamonds(2), Two of Hearts(2), Two of Spades(2) } 11 Points
+Dealer hits...
+
+Player's hand: { Nine of Clubs(9), Ace of Hearts(1), Ace of Diamonds(1) } 21 Points
+Dealer's hand: { Three of Hearts(3), Three of Spades(3), Two of Clubs(2), Two of Diamonds(2), Two of Hearts(2), Two of Spades(2) } 14 Points
+Dealer hits...
+
+Player's hand: { Nine of Clubs(9), Ace of Hearts(1), Ace of Diamonds(1) } 21 Points
+Dealer's hand: { Three of Diamonds(3), Three of Hearts(3), Three of Spades(3), Two of Clubs(2), Two of Diamonds(2), Two of Hearts(2), Two of Spades(2) } 17 Points
+Dealer stays...
+
+Player's hand: { Nine of Clubs(9), Ace of Hearts(1), Ace of Diamonds(1) } 21 Points
+Dealer's hand: { Three of Diamonds(3), Three of Hearts(3), Three of Spades(3), Two of Clubs(2), Two of Diamonds(2), Two of Hearts(2), Two of Spades(2) } 17 Points
+
+Player's hand: { Nine of Clubs(9), Ace of Hearts(1), Ace of Diamonds(1) } 21 Points
+Dealer's hand: { Three of Diamonds(3), Three of Hearts(3), Three of Spades(3), Two of Clubs(2), Two of Diamonds(2), Two of Hearts(2), Two of Spades(2) } 17 Points
+Congratulations: Player has won the game!
+Passed bonus test #2
 
 ***********************
 Starting Bonus Test #3: : Player Wins with and Eight, a Two, and Ace
-{ Eight of Spades(8), Two of Spades(2), Ace of Spades(1), Two of Diamonds(2), Two of Clubs(2), Three of Spades(3), Three of Hearts(3), Three of Diamonds(3), Three of Clubs(3), Four of Spades(4), Four of Hearts(4), Four of Diamonds(4), Four of Clubs(4), Five of Spades(5), Five of Hearts(5)} Let's Play BlackJack!
-TODO
-** printBoard() Before the game:
-------------------------------------
+{ Eight of Spades(8), Two of Spades(2), Ace of Spades(1), Two of Diamonds(2), Two of Clubs(2), Three of Spades(3), Three of Hearts(3), Three of Diamonds(3), Three of Clubs(3), Four of Spades(4), Four of Hearts(4), Four of Diamonds(4), Four of Clubs(4), Five of Spades(5), Five of Hearts(5) } Let's Play BlackJack!
+Your goal is to score above the deal but not exceed 21. You may either Hit(h) or Stand(s). 
+Hitting will give you a new card with value between 1-10. Face cards are always equal to 10 and Ace's are 1
 Player's hand: { } 0 Points
 Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
 
-** printBoard() After Player's Turn:
-------------------------------------
-Player's hand: { Ace of Spades(1), Two of Spades(2), Eight of Spades(8)} 11 Points
+Player's hand: { Eight of Spades(8) } 8 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player hits...
+
+Player's hand: { Two of Spades(2), Eight of Spades(8) } 10 Points
+Dealer's hand: { } 0 Points
+Player's Turn: Hit(h) or Stand(s)? Player stands...
+
+Player's hand: { Ace of Spades(1), Two of Spades(2), Eight of Spades(8) } 21 Points
 Dealer's hand: { } 0 Points
 
-** printBoard() After Dealer's Turn:
-------------------------------------
-Player's hand: { Ace of Spades(1), Two of Spades(2), Eight of Spades(8)} 11 Points
-Dealer's hand: { Four of Spades(4), Three of Clubs(3), Three of Diamonds(3), Three of Hearts(3), Three of Spades(3), Two of Clubs(2), Two of Diamonds(2)} 20 Points
-Congratulations: Dealer has won the game!
-Failed bonus test #3
+Player's hand: { Ace of Spades(1), Two of Spades(2), Eight of Spades(8) } 21 Points
+Dealer's hand: { } 0 Points
+Dealer's Turn...
+Dealer hits...
+
+Player's hand: { Ace of Spades(1), Two of Spades(2), Eight of Spades(8) } 21 Points
+Dealer's hand: { Two of Diamonds(2) } 2 Points
+Dealer hits...
+
+Player's hand: { Ace of Spades(1), Two of Spades(2), Eight of Spades(8) } 21 Points
+Dealer's hand: { Two of Clubs(2), Two of Diamonds(2) } 4 Points
+Dealer hits...
+
+Player's hand: { Ace of Spades(1), Two of Spades(2), Eight of Spades(8) } 21 Points
+Dealer's hand: { Three of Spades(3), Two of Clubs(2), Two of Diamonds(2) } 7 Points
+Dealer hits...
+
+Player's hand: { Ace of Spades(1), Two of Spades(2), Eight of Spades(8) } 21 Points
+Dealer's hand: { Three of Hearts(3), Three of Spades(3), Two of Clubs(2), Two of Diamonds(2) } 10 Points
+Dealer hits...
+
+Player's hand: { Ace of Spades(1), Two of Spades(2), Eight of Spades(8) } 21 Points
+Dealer's hand: { Three of Diamonds(3), Three of Hearts(3), Three of Spades(3), Two of Clubs(2), Two of Diamonds(2) } 13 Points
+Dealer hits...
+
+Player's hand: { Ace of Spades(1), Two of Spades(2), Eight of Spades(8) } 21 Points
+Dealer's hand: { Three of Clubs(3), Three of Diamonds(3), Three of Hearts(3), Three of Spades(3), Two of Clubs(2), Two of Diamonds(2) } 16 Points
+Dealer hits...
+
+Player's hand: { Ace of Spades(1), Two of Spades(2), Eight of Spades(8) } 21 Points
+Dealer's hand: { Four of Spades(4), Three of Clubs(3), Three of Diamonds(3), Three of Hearts(3), Three of Spades(3), Two of Clubs(2), Two of Diamonds(2) } 20 Points
+Dealer stays...
+
+Player's hand: { Ace of Spades(1), Two of Spades(2), Eight of Spades(8) } 21 Points
+Dealer's hand: { Four of Spades(4), Three of Clubs(3), Three of Diamonds(3), Three of Hearts(3), Three of Spades(3), Two of Clubs(2), Two of Diamonds(2) } 20 Points
+
+Player's hand: { Ace of Spades(1), Two of Spades(2), Eight of Spades(8) } 21 Points
+Dealer's hand: { Four of Spades(4), Three of Clubs(3), Three of Diamonds(3), Three of Hearts(3), Three of Spades(3), Two of Clubs(2), Two of Diamonds(2) } 20 Points
+Congratulations: Player has won the game!
+Passed bonus test #3

@@ -17,12 +17,12 @@
 
     bool gameOver = false; // Bust means >21
     this->printInstructions(); // print instructions
-    this->printBoard("\n** printBoard() Before the game:\n------------------------------------"); // print the board
+    this->printBoard(""); // print the board
     gameOver = this->takePlayerTurn(); // current player takes a turn
-    this->printBoard("\n** printBoard() After Player's Turn:\n------------------------------------"); // print the board
+    this->printBoard(""); // print the board
     if (!gameOver) this->takeDealerTurn(); // AI takes a turn
 
-    this->printBoard("\n** printBoard() After Dealer's Turn:\n------------------------------------"); // print the board 
+    this->printBoard(""); // print the board 
     
     // note below that the winning player is who we want, not the current player
     if (getWinningPlayerId() != -1){
@@ -41,7 +41,7 @@ BlackJack::BlackJack(std::vector<std::string> _playerNames, std::vector<int> car
 
 // print instructions for the game
 void BlackJack::printInstructions() {
-  std::cout << "TODO";
+  std::cout << "Your goal is to score above the deal but not exceed 21. You may either Hit(h) or Stand(s). \nHitting will give you a new card with value between 1-10. Face cards are always equal to 10 and Ace's are 1";
 }
 
  // print a message and the state of the game: player hand (all cards up), and dealer hand (all cards up)
@@ -57,6 +57,7 @@ void BlackJack::printBoard(std::string message) {
 
 // Player takes their turn, setting winningPlayerId to -1, 0, or 1, and returning true if the game is over
 bool BlackJack::takePlayerTurn() {
+  std::cout << "Player's Turn: Hit(h) or Stand(s)? ";
   char action;
   std::cin >> action;
   
@@ -68,6 +69,10 @@ bool BlackJack::takePlayerTurn() {
     int playerPts = getPlayerPoints();
 
     if (playerPts == 21) {
+      if (playerHand.hasAnAce() && playerHand.size() == 2) {
+        winningPlayerId = 0;
+        return true;
+      }
       break;
     } else if (playerPts > 21) {
       winningPlayerId = 1;
@@ -75,9 +80,11 @@ bool BlackJack::takePlayerTurn() {
     } else {
       winningPlayerId = -1;
     }
-
+    printBoard("Player hits...\n");
+    std::cout << "Player's Turn: Hit(h) or Stand(s)? ";
     std::cin >> action;
   }
+  printBoard("Player stands...\n");
   return false;
 }
 
@@ -95,6 +102,7 @@ bool BlackJack::updateWinningState() {
 
 // Dealer takes a turn, setting winnningPlayerId to -1, 0, or 1, and returning true if the game is over
 bool BlackJack::takeDealerTurn() {
+  std::cout << "Dealer's Turn...\n";
   int dealerPts = getDealerPoints();
 
   while (dealerPts < 17) {
@@ -109,7 +117,9 @@ bool BlackJack::takeDealerTurn() {
       winningPlayerId = 0;
       return true;
     }
+    printBoard("Dealer hits...\n");
   }
+  printBoard("Dealer stays...\n");
   if (dealerPts < getPlayerPoints()) {
     winningPlayerId = 0;
   } else {
