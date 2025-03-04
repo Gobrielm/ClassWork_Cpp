@@ -64,7 +64,7 @@ int Hand::getPoints() {
     return sum;
 } 
 
-// BONUS: return true if the Hand currently contains any Ace card
+// Returns true if the Hand currently contains any Ace card
 bool Hand::hasAnAce() {
     for (const Card &card: cards) {
         if (card.name == "Ace") {

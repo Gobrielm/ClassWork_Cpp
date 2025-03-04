@@ -22,8 +22,6 @@ class BlackJack{
     int winningPlayerId; // id # of the player that has won the game, or -1 if the game is not over yet
       // convention is that the dealer is  ID = 1 and the Player is ID = 0;
       // NOTE: the winning player name can always be found by playerNames[ winningPlayerId ]
-    
-    bool updateWinningState();
 
   public:
     BlackJack(     // constructor

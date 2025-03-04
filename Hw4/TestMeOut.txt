@@ -120,11 +120,7 @@ Player's Turn: Hit(h) or Stand(s)? Player hits...
 
 Player's hand: { King of Spades(10), King of Spades(10) } 20 Points
 Dealer's hand: { } 0 Points
-Player's Turn: Hit(h) or Stand(s)? Player stands...
-
-Player's hand: { Ace of Diamonds(1), King of Spades(10), King of Spades(10) } 21 Points
-Dealer's hand: { } 0 Points
-
+Player's Turn: Hit(h) or Stand(s)? 
 Player's hand: { Ace of Diamonds(1), King of Spades(10), King of Spades(10) } 21 Points
 Dealer's hand: { } 0 Points
 Dealer's Turn...
@@ -336,11 +332,7 @@ Player's Turn: Hit(h) or Stand(s)? Player hits...
 
 Player's hand: { King of Spades(10), Queen of Spades(10) } 20 Points
 Dealer's hand: { } 0 Points
-Player's Turn: Hit(h) or Stand(s)? Player stands...
-
-Player's hand: { Ace of Diamonds(1), King of Spades(10), Queen of Spades(10) } 21 Points
-Dealer's hand: { } 0 Points
-
+Player's Turn: Hit(h) or Stand(s)? 
 Player's hand: { Ace of Diamonds(1), King of Spades(10), Queen of Spades(10) } 21 Points
 Dealer's hand: { } 0 Points
 Dealer's Turn...
@@ -471,11 +463,7 @@ Player's Turn: Hit(h) or Stand(s)? Player hits...
 
 Player's hand: { Seven of Hearts(7), Seven of Spades(7) } 14 Points
 Dealer's hand: { } 0 Points
-Player's Turn: Hit(h) or Stand(s)? Player stands...
-
-Player's hand: { Seven of Diamonds(7), Seven of Hearts(7), Seven of Spades(7) } 21 Points
-Dealer's hand: { } 0 Points
-
+Player's Turn: Hit(h) or Stand(s)? 
 Player's hand: { Seven of Diamonds(7), Seven of Hearts(7), Seven of Spades(7) } 21 Points
 Dealer's hand: { } 0 Points
 Dealer's Turn...
@@ -532,11 +520,7 @@ Player's Turn: Hit(h) or Stand(s)? Player hits...
 
 Player's hand: { Ace of Hearts(1), Ace of Diamonds(1) } 12 Points
 Dealer's hand: { } 0 Points
-Player's Turn: Hit(h) or Stand(s)? Player stands...
-
-Player's hand: { Nine of Clubs(9), Ace of Hearts(1), Ace of Diamonds(1) } 21 Points
-Dealer's hand: { } 0 Points
-
+Player's Turn: Hit(h) or Stand(s)? 
 Player's hand: { Nine of Clubs(9), Ace of Hearts(1), Ace of Diamonds(1) } 21 Points
 Dealer's hand: { } 0 Points
 Dealer's Turn...
@@ -593,11 +577,7 @@ Player's Turn: Hit(h) or Stand(s)? Player hits...
 
 Player's hand: { Two of Spades(2), Eight of Spades(8) } 10 Points
 Dealer's hand: { } 0 Points
-Player's Turn: Hit(h) or Stand(s)? Player stands...
-
-Player's hand: { Ace of Spades(1), Two of Spades(2), Eight of Spades(8) } 21 Points
-Dealer's hand: { } 0 Points
-
+Player's Turn: Hit(h) or Stand(s)? 
 Player's hand: { Ace of Spades(1), Two of Spades(2), Eight of Spades(8) } 21 Points
 Dealer's hand: { } 0 Points
 Dealer's Turn...
