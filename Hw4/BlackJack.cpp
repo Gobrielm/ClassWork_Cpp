@@ -37,12 +37,7 @@
 
 
 
-BlackJack::BlackJack(std::vector<std::string> _playerNames, std::vector<int> cardIDs) {
-  playerNames = _playerNames;
-  for (int x: cardIDs) {
-    deck.addACard(Card(x));
-  }
-}
+BlackJack::BlackJack(std::vector<std::string> _playerNames, std::vector<int> cardIDs) : playerNames(_playerNames), deck(cardIDs) {}
 
 // print instructions for the game
 void BlackJack::printInstructions() {
@@ -52,28 +47,36 @@ void BlackJack::printInstructions() {
  // print a message and the state of the game: player hand (all cards up), and dealer hand (all cards up)
 void BlackJack::printBoard(std::string message) {
   std::cout << message << '\n';
-  std::cout << "Dealer's hand: ";
-  playerHand.printMe();
   std::cout << "Player's hand: ";
+  playerHand.printMe();
+  std::cout << std::to_string(getPlayerPoints()) << " Points\n";
+  std::cout << "Dealer's hand: ";
   dealerHand.printMe();
+  std::cout << std::to_string(getDealerPoints()) << " Points\n";
 }
 
 // Player takes their turn, setting winningPlayerId to -1, 0, or 1, and returning true if the game is over
 bool BlackJack::takePlayerTurn() {
   char action;
   std::cin >> action;
-  if (action == 'h') {
+  
+
+  while (action == 'h') {
     Card drawnCard = deck.dealACard();
     playerHand.addACard(drawnCard);
     
     int playerPts = getPlayerPoints();
-    if (playerPts > 21) {
+
+    if (playerPts == 21) {
+      break;
+    } else if (playerPts > 21) {
       winningPlayerId = 1;
       return true;
-    } else if (playerPts == 21) {
-      return true;
+    } else {
+      winningPlayerId = -1;
     }
-    updateWinningState();
+
+    std::cin >> action;
   }
   return false;
 }
@@ -83,10 +86,8 @@ bool BlackJack::updateWinningState() {
   int playerPts = getPlayerPoints();
   if (playerPts > dealerPts) {
     winningPlayerId = 0;
-  } else if (playerPts < dealerPts) {
-    winningPlayerId = 1;
   } else {
-    winningPlayerId = -1;
+    winningPlayerId = 1;
   }
 
   return false;
@@ -95,20 +96,26 @@ bool BlackJack::updateWinningState() {
 // Dealer takes a turn, setting winnningPlayerId to -1, 0, or 1, and returning true if the game is over
 bool BlackJack::takeDealerTurn() {
   int dealerPts = getDealerPoints();
-  if (dealerPts < 17) {
+
+  while (dealerPts < 17) {
     Card drawnCard = deck.dealACard();
-    playerHand.addACard(drawnCard);
+    dealerHand.addACard(drawnCard);
     
-    int dealerPts = getDealerPoints();
-    if (dealerPts > 21) {
+    dealerPts = getDealerPoints();
+    if (dealerPts == 21) {
+      winningPlayerId = 1;
+      return true;
+    } else if (dealerPts > 21) {
       winningPlayerId = 0;
       return true;
-    } else if (dealerPts == 21) {
-      return true;
     }
-    updateWinningState();
   }
-  return false;
+  if (dealerPts < getPlayerPoints()) {
+    winningPlayerId = 0;
+  } else {
+    winningPlayerId = 1;
+  }
+  return true;
 }
 
 // return the value of the private winningPlayerId, as set by isWin().

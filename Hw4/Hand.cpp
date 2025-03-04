@@ -24,7 +24,7 @@ void Hand::printMe () {
     
 }
  // return int of how many cards in the Hand
-int Hand::size () {
+int Hand::size() {
     return cards.size();
 }
 

@@ -5,14 +5,20 @@ Let's Play BlackJack!
 TODO
 ** printBoard() Before the game:
 ------------------------------------
-Dealer's hand: { } Player's hand: { } 
+Player's hand: { } 0 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Player's Turn:
 ------------------------------------
-Dealer's hand: { Five of Hearts(5)} Player's hand: { } 
+Player's hand: { Two of Diamonds(2), Two of Hearts(2), Two of Spades(2)} 6 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Dealer's Turn:
 ------------------------------------
-Dealer's hand: { Five of Spades(5), Five of Hearts(5)} Player's hand: { } Congratulations: Player has won the game!
-Failed test #0
+Player's hand: { Two of Diamonds(2), Two of Hearts(2), Two of Spades(2)} 6 Points
+Dealer's hand: { Eight of Diamonds(8), Six of Hearts(6), Six of Spades(6)} 20 Points
+Congratulations: Dealer has won the game!
+Passed test #0
 
 ***********************
 Starting Test #1: Test B : Player should win with larger hand (19)
@@ -20,13 +26,19 @@ Let's Play BlackJack!
 TODO
 ** printBoard() Before the game:
 ------------------------------------
-Dealer's hand: { } Player's hand: { } 
+Player's hand: { } 0 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Player's Turn:
 ------------------------------------
-Dealer's hand: { Five of Hearts(5)} Player's hand: { } 
+Player's hand: { Ace of Diamonds(1), Nine of Clubs(9), King of Spades(10)} 20 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Dealer's Turn:
 ------------------------------------
-Dealer's hand: { Five of Spades(5), Five of Hearts(5)} Player's hand: { } Congratulations: Player has won the game!
+Player's hand: { Ace of Diamonds(1), Nine of Clubs(9), King of Spades(10)} 20 Points
+Dealer's hand: { Three of Diamonds(3), Three of Hearts(3), Three of Spades(3), Two of Clubs(2), Two of Diamonds(2), Two of Hearts(2), Two of Spades(2), Ace of Clubs(1), Ace of Hearts(1)} 19 Points
+Congratulations: Player has won the game!
 Passed test #1
 
 ***********************
@@ -35,13 +47,19 @@ Let's Play BlackJack!
 TODO
 ** printBoard() Before the game:
 ------------------------------------
-Dealer's hand: { } Player's hand: { } 
+Player's hand: { } 0 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Player's Turn:
 ------------------------------------
-Dealer's hand: { Five of Hearts(5)} Player's hand: { } 
+Player's hand: { Ace of Diamonds(1), King of Spades(10), King of Spades(10)} 21 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Dealer's Turn:
 ------------------------------------
-Dealer's hand: { Five of Spades(5), Five of Hearts(5)} Player's hand: { } Congratulations: Player has won the game!
+Player's hand: { Ace of Diamonds(1), King of Spades(10), King of Spades(10)} 21 Points
+Dealer's hand: { Three of Diamonds(3), Three of Hearts(3), Three of Spades(3), Two of Clubs(2), Two of Diamonds(2), Two of Hearts(2), Two of Spades(2), Ace of Clubs(1), Ace of Hearts(1)} 19 Points
+Congratulations: Player has won the game!
 Passed test #2
 
 ***********************
@@ -50,13 +68,19 @@ Let's Play BlackJack!
 TODO
 ** printBoard() Before the game:
 ------------------------------------
-Dealer's hand: { } Player's hand: { } 
+Player's hand: { } 0 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Player's Turn:
 ------------------------------------
-Dealer's hand: { Five of Hearts(5)} Player's hand: { } 
+Player's hand: { Four of Hearts(4), Eight of Hearts(8), Eight of Spades(8)} 20 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Dealer's Turn:
 ------------------------------------
-Dealer's hand: { Five of Spades(5), Five of Hearts(5)} Player's hand: { } Congratulations: Player has won the game!
+Player's hand: { Four of Hearts(4), Eight of Hearts(8), Eight of Spades(8)} 20 Points
+Dealer's hand: { Three of Diamonds(3), Three of Hearts(3), Three of Spades(3), Two of Clubs(2), Two of Diamonds(2), Two of Hearts(2), Two of Spades(2), Ace of Clubs(1), Ace of Hearts(1)} 19 Points
+Congratulations: Player has won the game!
 Passed test #3
 
 ***********************
@@ -65,14 +89,20 @@ Let's Play BlackJack!
 TODO
 ** printBoard() Before the game:
 ------------------------------------
-Dealer's hand: { } Player's hand: { } 
+Player's hand: { } 0 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Player's Turn:
 ------------------------------------
-Dealer's hand: { Four of Hearts(4)} Player's hand: { } 
+Player's hand: { Nine of Clubs(9), Eight of Hearts(8), Ten of Hearts(10)} 27 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Dealer's Turn:
 ------------------------------------
-Dealer's hand: { Ace of Diamonds(1), Four of Hearts(4)} Player's hand: { } Congratulations: Player has won the game!
-Failed test #4
+Player's hand: { Nine of Clubs(9), Eight of Hearts(8), Ten of Hearts(10)} 27 Points
+Dealer's hand: { } 0 Points
+Congratulations: Dealer has won the game!
+Passed test #4
 
 ***********************
 Starting Test #5: Test F: Player Wins (Dealer Busts)
@@ -80,13 +110,19 @@ Let's Play BlackJack!
 TODO
 ** printBoard() Before the game:
 ------------------------------------
-Dealer's hand: { } Player's hand: { } 
+Player's hand: { } 0 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Player's Turn:
 ------------------------------------
-Dealer's hand: { Four of Diamonds(4)} Player's hand: { } 
+Player's hand: { Ace of Hearts(1), Two of Diamonds(2), Four of Spades(4)} 7 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Dealer's Turn:
 ------------------------------------
-Dealer's hand: { Six of Clubs(6), Four of Diamonds(4)} Player's hand: { } Congratulations: Player has won the game!
+Player's hand: { Ace of Hearts(1), Two of Diamonds(2), Four of Spades(4)} 7 Points
+Dealer's hand: { Jack of Clubs(10), Ten of Spades(10), Three of Spades(3)} 23 Points
+Congratulations: Player has won the game!
 Passed test #5
 
 ***********************
@@ -95,13 +131,19 @@ Let's Play BlackJack!
 TODO
 ** printBoard() Before the game:
 ------------------------------------
-Dealer's hand: { } Player's hand: { } 
+Player's hand: { } 0 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Player's Turn:
 ------------------------------------
-Dealer's hand: { Four of Diamonds(4)} Player's hand: { } 
+Player's hand: { Ace of Hearts(1), Two of Diamonds(2), Four of Spades(4)} 7 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Dealer's Turn:
 ------------------------------------
-Dealer's hand: { Six of Clubs(6), Four of Diamonds(4)} Player's hand: { } Congratulations: Player has won the game!
+Player's hand: { Ace of Hearts(1), Two of Diamonds(2), Four of Spades(4)} 7 Points
+Dealer's hand: { Jack of Clubs(10), Ten of Spades(10), Three of Spades(3)} 23 Points
+Congratulations: Player has won the game!
 Passed test #6
 
 ***********************
@@ -110,13 +152,19 @@ Let's Play BlackJack!
 TODO
 ** printBoard() Before the game:
 ------------------------------------
-Dealer's hand: { } Player's hand: { } 
+Player's hand: { } 0 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Player's Turn:
 ------------------------------------
-Dealer's hand: { Five of Hearts(5)} Player's hand: { } 
+Player's hand: { Ace of Diamonds(1), King of Spades(10), Queen of Spades(10)} 21 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Dealer's Turn:
 ------------------------------------
-Dealer's hand: { Five of Spades(5), Five of Hearts(5)} Player's hand: { } Congratulations: Player has won the game!
+Player's hand: { Ace of Diamonds(1), King of Spades(10), Queen of Spades(10)} 21 Points
+Dealer's hand: { King of Hearts(10), Queen of Clubs(10)} 20 Points
+Congratulations: Player has won the game!
 Passed test #7
 
 ***********************
@@ -125,14 +173,20 @@ Let's Play BlackJack!
 TODO
 ** printBoard() Before the game:
 ------------------------------------
-Dealer's hand: { } Player's hand: { } 
+Player's hand: { } 0 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Player's Turn:
 ------------------------------------
-Dealer's hand: { Five of Hearts(5)} Player's hand: { } 
+Player's hand: { Four of Diamonds(4), Five of Hearts(5), Five of Spades(5)} 14 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Dealer's Turn:
 ------------------------------------
-Dealer's hand: { Five of Spades(5), Five of Hearts(5)} Player's hand: { } Congratulations: Player has won the game!
-Failed test #8
+Player's hand: { Four of Diamonds(4), Five of Hearts(5), Five of Spades(5)} 14 Points
+Dealer's hand: { King of Hearts(10), Queen of Clubs(10)} 20 Points
+Congratulations: Dealer has won the game!
+Passed test #8
 
 ***********************
 Starting Test #9: Test J: Test Dealer Points - should be 17 (dealer stands on > 16)
@@ -140,14 +194,20 @@ Let's Play BlackJack!
 TODO
 ** printBoard() Before the game:
 ------------------------------------
-Dealer's hand: { } Player's hand: { } 
+Player's hand: { } 0 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Player's Turn:
 ------------------------------------
-Dealer's hand: { Five of Hearts(5)} Player's hand: { } 
+Player's hand: { Four of Diamonds(4), Five of Hearts(5), Five of Spades(5)} 14 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Dealer's Turn:
 ------------------------------------
-Dealer's hand: { Five of Spades(5), Five of Hearts(5)} Player's hand: { } Congratulations: Player has won the game!
-Failed test #9
+Player's hand: { Four of Diamonds(4), Five of Hearts(5), Five of Spades(5)} 14 Points
+Dealer's hand: { Five of Clubs(5), Six of Hearts(6), Six of Spades(6)} 17 Points
+Congratulations: Dealer has won the game!
+Passed test #9
 
 ***********************
 Starting Test #10: Test K (WIP): Dealer wins on tie with player at 21 (dealer stands on > 16)
@@ -155,14 +215,20 @@ Let's Play BlackJack!
 TODO
 ** printBoard() Before the game:
 ------------------------------------
-Dealer's hand: { } Player's hand: { } 
+Player's hand: { } 0 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Player's Turn:
 ------------------------------------
-Dealer's hand: { Five of Hearts(5)} Player's hand: { } 
+Player's hand: { Seven of Diamonds(7), Seven of Hearts(7), Seven of Spades(7)} 21 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Dealer's Turn:
 ------------------------------------
-Dealer's hand: { Five of Spades(5), Five of Hearts(5)} Player's hand: { } Congratulations: Player has won the game!
-Failed test #10
+Player's hand: { Seven of Diamonds(7), Seven of Hearts(7), Seven of Spades(7)} 21 Points
+Dealer's hand: { Eight of Clubs(8), Seven of Clubs(7), Six of Clubs(6)} 21 Points
+Congratulations: Dealer has won the game!
+Passed test #10
 
 ***********************
 Starting Bonus Test #0: : Testing Hand::hasAnAce() Hand DOES / DOES NOT have an Ace: stand-alone:
@@ -174,14 +240,20 @@ Let's Play BlackJack!
 TODO
 ** printBoard() Before the game:
 ------------------------------------
-Dealer's hand: { } Player's hand: { } 
+Player's hand: { } 0 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Player's Turn:
 ------------------------------------
-Dealer's hand: { Five of Hearts(5)} Player's hand: { } 
+Player's hand: { Ace of Hearts(1), Ace of Diamonds(1), King of Spades(10)} 12 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Dealer's Turn:
 ------------------------------------
-Dealer's hand: { Five of Spades(5), Five of Hearts(5)} Player's hand: { } Congratulations: Player has won the game!
-Passed bonus test #1
+Player's hand: { Ace of Hearts(1), Ace of Diamonds(1), King of Spades(10)} 12 Points
+Dealer's hand: { Three of Diamonds(3), Three of Hearts(3), Three of Spades(3), Two of Clubs(2), Two of Diamonds(2), Two of Hearts(2), Two of Spades(2), Ace of Clubs(1)} 18 Points
+Congratulations: Dealer has won the game!
+Failed bonus test #1
 
 ***********************
 Starting Bonus Test #2: : Player Wins with Two Aces and Nine: Ace of Hearts (11) and Ace of Diamonds (1) and a Nine of Clubs (9)
@@ -189,14 +261,20 @@ Let's Play BlackJack!
 TODO
 ** printBoard() Before the game:
 ------------------------------------
-Dealer's hand: { } Player's hand: { } 
+Player's hand: { } 0 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Player's Turn:
 ------------------------------------
-Dealer's hand: { Five of Hearts(5)} Player's hand: { } 
+Player's hand: { Nine of Clubs(9), Ace of Hearts(1), Ace of Diamonds(1)} 11 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Dealer's Turn:
 ------------------------------------
-Dealer's hand: { Five of Spades(5), Five of Hearts(5)} Player's hand: { } Congratulations: Player has won the game!
-Passed bonus test #2
+Player's hand: { Nine of Clubs(9), Ace of Hearts(1), Ace of Diamonds(1)} 11 Points
+Dealer's hand: { Three of Diamonds(3), Three of Hearts(3), Three of Spades(3), Two of Clubs(2), Two of Diamonds(2), Two of Hearts(2), Two of Spades(2)} 17 Points
+Congratulations: Dealer has won the game!
+Failed bonus test #2
 
 ***********************
 Starting Bonus Test #3: : Player Wins with and Eight, a Two, and Ace
@@ -204,11 +282,17 @@ Starting Bonus Test #3: : Player Wins with and Eight, a Two, and Ace
 TODO
 ** printBoard() Before the game:
 ------------------------------------
-Dealer's hand: { } Player's hand: { } 
+Player's hand: { } 0 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Player's Turn:
 ------------------------------------
-Dealer's hand: { Five of Hearts(5)} Player's hand: { } 
+Player's hand: { Ace of Spades(1), Two of Spades(2), Eight of Spades(8)} 11 Points
+Dealer's hand: { } 0 Points
+
 ** printBoard() After Dealer's Turn:
 ------------------------------------
-Dealer's hand: { Five of Spades(5), Five of Hearts(5)} Player's hand: { } Congratulations: Player has won the game!
-Passed bonus test #3
+Player's hand: { Ace of Spades(1), Two of Spades(2), Eight of Spades(8)} 11 Points
+Dealer's hand: { Four of Spades(4), Three of Clubs(3), Three of Diamonds(3), Three of Hearts(3), Three of Spades(3), Two of Clubs(2), Two of Diamonds(2)} 20 Points
+Congratulations: Dealer has won the game!
+Failed bonus test #3
