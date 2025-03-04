@@ -1,0 +1,214 @@
+
+***********************
+Starting Test #0: Test A: Dealer Should win with larger hand (20)
+Let's Play BlackJack!
+TODO
+** printBoard() Before the game:
+------------------------------------
+Dealer's hand: { } Player's hand: { } 
+** printBoard() After Player's Turn:
+------------------------------------
+Dealer's hand: { Five of Hearts(5)} Player's hand: { } 
+** printBoard() After Dealer's Turn:
+------------------------------------
+Dealer's hand: { Five of Spades(5), Five of Hearts(5)} Player's hand: { } Congratulations: Player has won the game!
+Failed test #0
+
+***********************
+Starting Test #1: Test B : Player should win with larger hand (19)
+Let's Play BlackJack!
+TODO
+** printBoard() Before the game:
+------------------------------------
+Dealer's hand: { } Player's hand: { } 
+** printBoard() After Player's Turn:
+------------------------------------
+Dealer's hand: { Five of Hearts(5)} Player's hand: { } 
+** printBoard() After Dealer's Turn:
+------------------------------------
+Dealer's hand: { Five of Spades(5), Five of Hearts(5)} Player's hand: { } Congratulations: Player has won the game!
+Passed test #1
+
+***********************
+Starting Test #2: Test C:  Player Should win with 21
+Let's Play BlackJack!
+TODO
+** printBoard() Before the game:
+------------------------------------
+Dealer's hand: { } Player's hand: { } 
+** printBoard() After Player's Turn:
+------------------------------------
+Dealer's hand: { Five of Hearts(5)} Player's hand: { } 
+** printBoard() After Dealer's Turn:
+------------------------------------
+Dealer's hand: { Five of Spades(5), Five of Hearts(5)} Player's hand: { } Congratulations: Player has won the game!
+Passed test #2
+
+***********************
+Starting Test #3: Test D:  Player Should win with 20
+Let's Play BlackJack!
+TODO
+** printBoard() Before the game:
+------------------------------------
+Dealer's hand: { } Player's hand: { } 
+** printBoard() After Player's Turn:
+------------------------------------
+Dealer's hand: { Five of Hearts(5)} Player's hand: { } 
+** printBoard() After Dealer's Turn:
+------------------------------------
+Dealer's hand: { Five of Spades(5), Five of Hearts(5)} Player's hand: { } Congratulations: Player has won the game!
+Passed test #3
+
+***********************
+Starting Test #4: Test E: Dealer Should Win (Player Busts)
+Let's Play BlackJack!
+TODO
+** printBoard() Before the game:
+------------------------------------
+Dealer's hand: { } Player's hand: { } 
+** printBoard() After Player's Turn:
+------------------------------------
+Dealer's hand: { Four of Hearts(4)} Player's hand: { } 
+** printBoard() After Dealer's Turn:
+------------------------------------
+Dealer's hand: { Ace of Diamonds(1), Four of Hearts(4)} Player's hand: { } Congratulations: Player has won the game!
+Failed test #4
+
+***********************
+Starting Test #5: Test F: Player Wins (Dealer Busts)
+Let's Play BlackJack!
+TODO
+** printBoard() Before the game:
+------------------------------------
+Dealer's hand: { } Player's hand: { } 
+** printBoard() After Player's Turn:
+------------------------------------
+Dealer's hand: { Four of Diamonds(4)} Player's hand: { } 
+** printBoard() After Dealer's Turn:
+------------------------------------
+Dealer's hand: { Six of Clubs(6), Four of Diamonds(4)} Player's hand: { } Congratulations: Player has won the game!
+Passed test #5
+
+***********************
+Starting Test #6: Test G: Player Wins (Dealer Busts)
+Let's Play BlackJack!
+TODO
+** printBoard() Before the game:
+------------------------------------
+Dealer's hand: { } Player's hand: { } 
+** printBoard() After Player's Turn:
+------------------------------------
+Dealer's hand: { Four of Diamonds(4)} Player's hand: { } 
+** printBoard() After Dealer's Turn:
+------------------------------------
+Dealer's hand: { Six of Clubs(6), Four of Diamonds(4)} Player's hand: { } Congratulations: Player has won the game!
+Passed test #6
+
+***********************
+Starting Test #7: Test H: Player Win's with 21
+Let's Play BlackJack!
+TODO
+** printBoard() Before the game:
+------------------------------------
+Dealer's hand: { } Player's hand: { } 
+** printBoard() After Player's Turn:
+------------------------------------
+Dealer's hand: { Five of Hearts(5)} Player's hand: { } 
+** printBoard() After Dealer's Turn:
+------------------------------------
+Dealer's hand: { Five of Spades(5), Five of Hearts(5)} Player's hand: { } Congratulations: Player has won the game!
+Passed test #7
+
+***********************
+Starting Test #8: Test I: Test Player Points - should be 14
+Let's Play BlackJack!
+TODO
+** printBoard() Before the game:
+------------------------------------
+Dealer's hand: { } Player's hand: { } 
+** printBoard() After Player's Turn:
+------------------------------------
+Dealer's hand: { Five of Hearts(5)} Player's hand: { } 
+** printBoard() After Dealer's Turn:
+------------------------------------
+Dealer's hand: { Five of Spades(5), Five of Hearts(5)} Player's hand: { } Congratulations: Player has won the game!
+Failed test #8
+
+***********************
+Starting Test #9: Test J: Test Dealer Points - should be 17 (dealer stands on > 16)
+Let's Play BlackJack!
+TODO
+** printBoard() Before the game:
+------------------------------------
+Dealer's hand: { } Player's hand: { } 
+** printBoard() After Player's Turn:
+------------------------------------
+Dealer's hand: { Five of Hearts(5)} Player's hand: { } 
+** printBoard() After Dealer's Turn:
+------------------------------------
+Dealer's hand: { Five of Spades(5), Five of Hearts(5)} Player's hand: { } Congratulations: Player has won the game!
+Failed test #9
+
+***********************
+Starting Test #10: Test K (WIP): Dealer wins on tie with player at 21 (dealer stands on > 16)
+Let's Play BlackJack!
+TODO
+** printBoard() Before the game:
+------------------------------------
+Dealer's hand: { } Player's hand: { } 
+** printBoard() After Player's Turn:
+------------------------------------
+Dealer's hand: { Five of Hearts(5)} Player's hand: { } 
+** printBoard() After Dealer's Turn:
+------------------------------------
+Dealer's hand: { Five of Spades(5), Five of Hearts(5)} Player's hand: { } Congratulations: Player has won the game!
+Failed test #10
+
+***********************
+Starting Bonus Test #0: : Testing Hand::hasAnAce() Hand DOES / DOES NOT have an Ace: stand-alone:
+Passed bonus test #0
+
+***********************
+Starting Bonus Test #1: : Player wins with True Black Jack: Ace of Diamonds (11) and a King of Spades (10)
+Let's Play BlackJack!
+TODO
+** printBoard() Before the game:
+------------------------------------
+Dealer's hand: { } Player's hand: { } 
+** printBoard() After Player's Turn:
+------------------------------------
+Dealer's hand: { Five of Hearts(5)} Player's hand: { } 
+** printBoard() After Dealer's Turn:
+------------------------------------
+Dealer's hand: { Five of Spades(5), Five of Hearts(5)} Player's hand: { } Congratulations: Player has won the game!
+Passed bonus test #1
+
+***********************
+Starting Bonus Test #2: : Player Wins with Two Aces and Nine: Ace of Hearts (11) and Ace of Diamonds (1) and a Nine of Clubs (9)
+Let's Play BlackJack!
+TODO
+** printBoard() Before the game:
+------------------------------------
+Dealer's hand: { } Player's hand: { } 
+** printBoard() After Player's Turn:
+------------------------------------
+Dealer's hand: { Five of Hearts(5)} Player's hand: { } 
+** printBoard() After Dealer's Turn:
+------------------------------------
+Dealer's hand: { Five of Spades(5), Five of Hearts(5)} Player's hand: { } Congratulations: Player has won the game!
+Passed bonus test #2
+
+***********************
+Starting Bonus Test #3: : Player Wins with and Eight, a Two, and Ace
+{ Eight of Spades(8), Two of Spades(2), Ace of Spades(1), Two of Diamonds(2), Two of Clubs(2), Three of Spades(3), Three of Hearts(3), Three of Diamonds(3), Three of Clubs(3), Four of Spades(4), Four of Hearts(4), Four of Diamonds(4), Four of Clubs(4), Five of Spades(5), Five of Hearts(5)} Let's Play BlackJack!
+TODO
+** printBoard() Before the game:
+------------------------------------
+Dealer's hand: { } Player's hand: { } 
+** printBoard() After Player's Turn:
+------------------------------------
+Dealer's hand: { Five of Hearts(5)} Player's hand: { } 
+** printBoard() After Dealer's Turn:
+------------------------------------
+Dealer's hand: { Five of Spades(5), Five of Hearts(5)} Player's hand: { } Congratulations: Player has won the game!
+Passed bonus test #3
