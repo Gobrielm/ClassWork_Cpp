@@ -13,8 +13,8 @@ Hand::Hand(std::vector<int> initialCards) {
 void Hand::printMe () {
     std:: cout << "{ ";
     int counter = 0;
-    for (const Card &card: cards) {
-        std::cout << card;
+    for (auto cardPtr = cards.cbegin(); cardPtr != cards.end(); cardPtr++) {
+        std::cout << *cardPtr;
         if (counter != cards.size() - 1) {
             std::cout << ", ";
         } else {
@@ -47,13 +47,13 @@ int Hand::getPoints() {
     int sum = 0;
     //Assumes all aces are 11's to start
     int aceCount = 0;
-    for (const Card &card: cards) {
-        if (card.name == "Ace") {
+    for (auto cardPtr = cards.cbegin(); cardPtr != cards.end(); cardPtr++) {
+        if (cardPtr -> name == "Ace") {
             
             aceCount++;
             sum += 11;
         } else {
-            sum += card.value;
+            sum += cardPtr -> value;
         }
     }
     //If ace's exist, turn each 11 Ace to 1 Ace until the sum is under 21
@@ -66,8 +66,8 @@ int Hand::getPoints() {
 
 // Returns true if the Hand currently contains any Ace card
 bool Hand::hasAnAce() {
-    for (const Card &card: cards) {
-        if (card.name == "Ace") {
+    for (auto cardPtr = cards.cbegin(); cardPtr != cards.end(); cardPtr++) {
+        if (cardPtr -> name == "Ace") {
             return true;
         }
     }
