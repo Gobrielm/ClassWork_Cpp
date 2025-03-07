@@ -15,7 +15,7 @@ int main() {
             output[i].push_back("-");
         }
     }
-    drawSegment(50, 99, 25, output);
+    drawSegment(49, 100, 25, output);
     ofstream file("output.txt");
     for (int i = 0; i < 100; i++) {
         for (int j = 0; j < 100; j++) {
@@ -28,17 +28,19 @@ int main() {
 }
 
 void drawSegment(int x, int y, int l, vector<vector<string>> &output)  {
-    if (l <= 1 || x - l <= 0 || y - l <= 0 || x + l >= 100) {
+    if (l <= 2) {
         return;
     }
     for (int i = 0; i < l; i++) {
         drawTile(x + i, y - i, output);
         drawTile(x - i, y - i, output);
     }
-    drawSegment(x + l, y - l, l / 2, output);
-    drawSegment(x - l, y - l, l / 2, output);
+    drawSegment(x + l, y - l, l / 2 + 1, output);
+    drawSegment(x - l, y - l, l / 2 + 1, output);
 }
 
 void drawTile(int x, int y, vector<vector<string>> &output) {
-    output[y][x] = "B";
+    if (y >= 0 && output.size() > y && output[y].size() > x && x >= 0) {
+        output[y][x] = "B";
+    }
 }
