@@ -21,6 +21,15 @@ HW 4 : Blackjack Cards (Start)
 using namespace std;
 
 int main() {
+  // This lambda function serves to replace the deprecated random_shuffle() function from the algorithm library
+  auto random_shuffle = [](auto first, auto last) {
+    if (first == last) return;
+    for (auto it = last - 1; it > first; --it) {
+        int j = std::rand() % (it - first + 1);  // generate a random index
+        std::iter_swap(it, first + j);          // swap elements
+    }
+  }; // end function definition 
+  
   srand(time(NULL));
   std::vector<int> cardIDs;
   for(int i=0; i<52; i++)  cardIDs.push_back(i);
