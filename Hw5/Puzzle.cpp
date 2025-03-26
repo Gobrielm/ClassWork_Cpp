@@ -43,7 +43,7 @@ void Puzzle::loadGrid() {
         if (grid[temp -> row] == nullptr) {
             grid[temp -> row] = new Token*[colCount]();
         }
-        grid[temp -> row][temp -> col] = new Token(temp -> letter, temp -> row, temp -> col);
+        grid[temp -> row][temp -> col] = temp;
         num++;
     }
     
