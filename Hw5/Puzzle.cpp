@@ -15,6 +15,9 @@ Puzzle::Puzzle(std::string fileName) {
     int bot;
     int left;
     
+    colCount = 0;
+    rowCount = 0;
+    
     while (fileIn >> futureCharacter >> id >> top >> right >> bot >> left) {
         //Instances new Token and stores it in map
         id_to_token[id] = new Token(futureCharacter, id, top, right, bot, left);
