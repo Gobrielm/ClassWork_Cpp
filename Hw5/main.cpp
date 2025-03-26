@@ -29,6 +29,7 @@ using namespace std;
    myPuzzle_ptr -> printGrid();
   // STEP 7: delete the what the myPuzzle_ptr pointer points to: a Puzzle instance, effectively calling the Puzzle destructor
     delete myPuzzle_ptr;
+
   cout << "\nGoodbye" << endl;
   return 0;
 }
