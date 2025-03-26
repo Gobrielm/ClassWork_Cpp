@@ -8,6 +8,7 @@
 #define PUZZLE_H
 #include <iostream>
 #include <fstream>
+#include <unordered_map>
 #include "Token.h"
 
 class Puzzle{
@@ -26,6 +27,8 @@ class Puzzle{
     int colCount; // number of columns in the puzzle (NOT the number of the last column)
     Token **pieces; // dynamic array of pointers to Tokens.  Token instances will be dynamically allocated.
     Token*** grid; // dynamic 2D array of pointers to arrays of pointers to Tokens stored in pieces array.
+    std::unordered_map<int, Token*> id_to_token;
+    Token* upper_left = nullptr;
 };
 
 #endif

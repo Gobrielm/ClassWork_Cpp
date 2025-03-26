@@ -20,7 +20,7 @@ using namespace std;
   Puzzle* myPuzzle_ptr = nullptr;
 
   // STEP 3: create a new (dynamically allocated) Puzzle instance and store its pointer in myPuzzle_ptr, Pass its constructor the puzzle_input_basic.txt file name
-  myPuzzle_ptr = new Puzzle("puzzle_input_basic.txt");
+  myPuzzle_ptr = new Puzzle("puzzle_input_bonus.txt");
   // STEP 4: print a raw description all the pieces in the puzzle by calling the printPieces() method from the puzzle pointer (this is not the same as printing the puzzle image)
    myPuzzle_ptr -> printPieces();
   // STEP 5: initialize the grid and then load it with all the Token pointers by calling the loadGrid() method from the myPuzzle_ptr pointer
