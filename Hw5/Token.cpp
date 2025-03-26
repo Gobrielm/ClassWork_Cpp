@@ -1,24 +1,25 @@
-/*
-
-DONE - this file has been written for you
-
-*/
-
 #include <iostream>
-#include "Token.h"
- 
- Token::Token(char l, int r, int c){
-        letter = l; // the ascii character that represents the puzzle piece
-        row = r; // the row location of the puzzle piece
-        col = c; // the column location of the puzzle piece
-  }
+#include "Token_bonus.h"
 
-  Token::~Token(){ 
-     // NOTE: you can uncomment this line below to help you debug and SEE when Token instances are being deleted
-    //    That should occur when your ~Puzzle destrcutor gets called when you delete a Puzzle instance
-//     std::cout << "Token Destructor: deleting Token from location row,column = (" << row << ", " << col << ")" << std::endl;
-  }
+// This file is only needed and provided as an example, if you choose to pursue the bonus for this assignment.
+// To use this file, you would copy the contents to the Token.cpp file and modify the #include above to use Token.h instead of Token_bonus.h
 
-  void Token::printMe(){
-       std::cout << "  Puzzle piece \'" << letter << "\' is located at at row, col = (" << row << ", " << col << ")" << std::endl;
-  }
+Token::Token(char l, int _id, int _top, int _right, int _bottom, int _left){
+       row = -1; // unknown so far
+       col = -1; // unknown so far  
+       letter = l; // the ascii character that represents the puzzle piece
+       id = _id;
+       top = _top;
+       right = _right;
+       bottom = _bottom;
+       left = _left;
+ }
+
+ Token::~Token(){
+   //std::cout << "Token Destructor: deleting Token from location row,column = (" << row << ", " << col << ")" << std::endl;
+ }
+
+ void Token::printMe(){
+     std::cout << "  Puzzle piece \'" << letter << "\' is located at at row, col = (" << row << ", " << col << ")" << std::endl;
+ }
+
