@@ -1,0 +1,25 @@
+ #include <iostream>
+ #include "Token_bonus.h"
+
+ // This file is only needed and provided as an example, if you choose to pursue the bonus for this assignment.
+ // To use this file, you would copy the contents to the Token.cpp file and modify the #include above to use Token.h instead of Token_bonus.h
+ 
+ Token::Token(char l, int _id, int _top, int _right, int _bottom, int _left){
+        row = -1; // unknown so far
+        col = -1; // unknown so far  
+        letter = l; // the ascii character that represents the puzzle piece
+        id = _id;
+        top = _top;
+        right = _right;
+        bottom = _bottom;
+        left = _left;
+  }
+
+  Token::~Token(){
+    //std::cout << "Token Destructor: deleting Token from location row,column = (" << row << ", " << col << ")" << std::endl;
+  }
+
+  void Token::printMe(){
+       std::cout << "  Puzzle piece \'" << letter << "\' is located at at row, col = (" << row << ", " << col << ")" << std::endl;
+  }
+
