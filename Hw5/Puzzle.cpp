@@ -1,7 +1,6 @@
 #include "Puzzle.h"
 
 #include <fstream>
-#include <vector>
 
 // constructor: using the filename, load the puzzle pieces into the dynamic pieces array
 Puzzle::Puzzle(std::string fileName) {
