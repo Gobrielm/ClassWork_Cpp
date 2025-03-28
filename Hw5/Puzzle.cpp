@@ -94,7 +94,7 @@ Puzzle::~Puzzle() {
     for (auto& pair: id_to_token) {
         //Deletes the actual Token Here
         delete pair.second;
-        id_to_token[pair.first] = nullptr;
+        id_to_token.erase(pair.first);
     }
     //Deletes dynamically allocated space
     delete[] pieces;
