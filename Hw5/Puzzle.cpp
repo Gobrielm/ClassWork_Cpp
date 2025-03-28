@@ -40,6 +40,7 @@ Puzzle::Puzzle(std::string fileName) {
         pieces[current] = pair.second;
         current ++;
     }
+    fileIn.close();
 }
 
 // print the list of randomized puzzle pieces
