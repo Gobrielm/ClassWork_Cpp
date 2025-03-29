@@ -1,7 +1,6 @@
 #include "Puzzle.h"
 
 #include <fstream>
-#include <vector>
 
 // constructor: using the filename, load the puzzle pieces into the dynamic pieces array
 Puzzle::Puzzle(std::string fileName) {
@@ -41,6 +40,7 @@ Puzzle::Puzzle(std::string fileName) {
         pieces[current] = pair.second;
         current ++;
     }
+    fileIn.close();
 }
 
 // print the list of randomized puzzle pieces
@@ -94,8 +94,8 @@ Puzzle::~Puzzle() {
     for (auto& pair: id_to_token) {
         //Deletes the actual Token Here
         delete pair.second;
-        id_to_token[pair.first] = nullptr;
     }
+    id_to_token.clear();
     //Deletes dynamically allocated space
     delete[] pieces;
     for (int r = 0; r < rowCount; r++) {
