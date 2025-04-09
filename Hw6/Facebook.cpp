@@ -89,14 +89,6 @@
     // Restrictions: you may not use .find() in your solution (-2 pts penalty)
     bool Facebook::deletePerson( std::string personName) {
         if (existsPerson(personName)) {
-            const std::shared_ptr person = people[personName];
-            for (const auto& pair: person -> friends) {
-                const auto& other = pair.second.lock();
-                // if (other) {
-                    // other -> friendedByCount -= 1;
-                    // other -> friends.erase(person -> id);
-                // }
-            }
             people.erase(personName);
             return true;
         }
