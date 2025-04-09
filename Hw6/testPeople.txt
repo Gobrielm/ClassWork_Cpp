@@ -1,0 +1,14 @@
+
+lillian 3 nellie tia ali
+nellie 1 keaton
+chantelle 0 
+tia 4 gene lillian ali jacob
+ali 9 lillian nellie chantelle tia gene jacob rafael abdullah keaton
+gene 2 keaton abdullah
+jacob 4 rafael keaton tia lillian
+rafael 6 lillian keaton nellie abdullah ali jacob
+abdullah 3 gene tia jacob
+keaton 5 chantelle nellie gene lillian abdullah
+
+
+
