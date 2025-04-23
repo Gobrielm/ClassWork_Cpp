@@ -18,7 +18,18 @@ bool Bishop::isLegalMoveTo(int _row, int _col) {
 
     int row_diff = _row - row;
     int col_diff = _col - col;
-    bool status = row_diff == col_diff && row_diff != 0;
+    bool status = (row_diff == col_diff || -row_diff == col_diff) && row_diff != 0;
+
+    //Checking for piecies in the way
+    if (status) {
+        int row_dir = row_diff > 0 ? 1: -1;
+        int col_dir = col_diff > 0 ? 1: -1;
+        for (int i = 0; i < abs(col_diff); i++) {
+            if (board -> isOccupied(row + (i * row_dir), col + (i * col_dir))) {
+                return false;
+            }
+        }
+    }
 
     //Checks for captures
     if (status && temp && temp -> isWhite != isWhite) {

@@ -17,9 +17,28 @@ bool Rook::isLegalMoveTo(int _row, int _col) {
     if (temp && temp -> isWhite == isWhite) {
         return false;
     }
+    int row_diff = _row - row;
+    int col_diff = _col - col;
 
-    bool status = (col == _col || row == _row) && !(col == _col && row == _row);
+    bool status = (row_diff == 0 || col_diff == 0) && !(col == _col && row == _row);
 
+    //Check for pieces in the way
+    if (status) {
+        int row_dir = 0;
+        int col_dir = 0;
+        if (row_diff != 0) {
+            row_dir = row_diff > 0 ? 1: -1;
+        } else {
+            col_dir = col_diff > 0 ? 1: -1;
+        }
+    
+        for (int i = 0; i < abs(std::max(row_diff, col_diff)); i++) {
+            if (board -> isOccupied(row + (i * row_dir), col + (i * col_dir))) {
+                return false;
+            }
+        }
+    }
+    
     //Checks for captures
     if (status && temp && temp -> isWhite != isWhite) {
         temp -> isCaptured = true;

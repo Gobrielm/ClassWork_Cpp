@@ -22,28 +22,36 @@ bool Pawn::isLegalMoveTo(int _row, int _col) {
     bool status = false;
     
     int row_diff = _row - row;
-    if (col == _col) {
-        //White on bottom
-        if (isWhite && (row_diff == 1 || (row_diff == 2 && row == 2))) {
-            if (row_diff == 2) {
-                status = board -> isOccupied(_row - 1, _col);
-            } else {
-                status = true;
-            }
-        } else if (!isWhite && (row_diff == -1 || (row_diff == -2 && row == 6))) {
-            if (row_diff == -2) {
-                status = board -> isOccupied(_row + 1, _col);
-            } else {
-                status = true;
-            }
-        }
-    }
+    int col_diff = _col - col;
+
+    bool could_capture = false;
 
     //Checks for captures
-    if (status && temp && temp -> isWhite != isWhite) {
-        temp -> isCaptured = true;
+    if (temp && temp -> isWhite != isWhite && abs(col_diff) == 1) {
+        could_capture = true;
+    } else if (col_diff != 0) {
+        //Can't move diagonal if not capturing
+        return false;
     }
     
+
+    if (isWhite && (row_diff == 1 || (row_diff == 2 && row == 2))) {
+        if (row_diff == 2) {
+            status = !board -> isOccupied(row + 1, col);
+        } else {
+            status = true;
+        }
+    } else if (!isWhite && (row_diff == -1 || (row_diff == -2 && row == 7))) {
+        if (row_diff == -2) {
+            status = !board -> isOccupied(row - 1, col);
+        } else {
+            status = true;
+        }
+    }
+    
+    if (could_capture) {
+        temp -> isCaptured = true;
+    }
     return status;
 }
 
