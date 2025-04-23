@@ -131,6 +131,7 @@
             const auto& friend_map = person -> friends;
             for (const auto& pair: friend_map) {
                 std::shared_ptr temp = pair.second.lock();
+                //If friend hasn't been destroyed
                 if (temp) {
                     friend_list.push_back(temp -> name);
                 }
