@@ -25,9 +25,17 @@ bool Pawn::isLegalMoveTo(int _row, int _col) {
     if (col == _col) {
         //White on bottom
         if (isWhite && (row_diff == 1 || (row_diff == 2 && row == 2))) {
-            status = true;
+            if (row_diff == 2) {
+                status = board -> isOccupied(_row - 1, _col);
+            } else {
+                status = true;
+            }
         } else if (!isWhite && (row_diff == -1 || (row_diff == -2 && row == 6))) {
-            status = true;
+            if (row_diff == -2) {
+                status = board -> isOccupied(_row + 1, _col);
+            } else {
+                status = true;
+            }
         }
     }
 
