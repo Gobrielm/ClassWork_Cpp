@@ -37,20 +37,25 @@ bool Pawn::isLegalMoveTo(int _row, int _col) {
 
     if (isWhite && (row_diff == 1 || (row_diff == 2 && row == 2))) {
         if (row_diff == 2) {
-            status = !board -> isOccupied(row + 1, col);
+            status = !(board -> isOccupied(row + 1, col));
         } else {
             status = true;
         }
     } else if (!isWhite && (row_diff == -1 || (row_diff == -2 && row == 7))) {
         if (row_diff == -2) {
-            status = !board -> isOccupied(row - 1, col);
+            status = !(board -> isOccupied(row - 1, col));
         } else {
             status = true;
         }
     }
     
-    if (could_capture) {
+    if (status && could_capture) {
         temp -> isCaptured = true;
+    }
+    if (status) {
+        neverMoved = false;
+        row = _row;
+        col = _col;
     }
     return status;
 }

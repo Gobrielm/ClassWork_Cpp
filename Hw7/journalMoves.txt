@@ -1,9 +1,1 @@
-quw 0 ÿ
-quw 4 d
-b1w 3 e
-r2w 3 e
-r2w 7 h
-p1w 5 a
-p1w 4 a
-p2b 5 b
-p1w 5 b
+p1w 3 a

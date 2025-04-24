@@ -26,5 +26,11 @@ bool Knight::isLegalMoveTo(int _row, int _col) {
         temp -> isCaptured = true;
     }
 
+    if (status) {
+        neverMoved = false;
+        row = _row;
+        col = _col;
+    }
+
     return status;
 }
