@@ -21,15 +21,15 @@ bool Rook::isLegalMoveTo(int _row, int _col) {
 
     //Check for pieces in the way
     if (status) {
-        int row_dir = 0;
-        int col_dir = 0;
+        int row_dir = 0, col_dir = 0;
+
         if (row_diff != 0) {
             row_dir = row_diff > 0 ? 1: -1;
         } else {
             col_dir = col_diff > 0 ? 1: -1;
         }
     
-        for (int i = 0; i < abs(std::max(row_diff, col_diff)); i++) {
+        for (int i = 1; i < abs(std::max(row_diff, col_diff)); i++) {
             if (board -> isOccupied(row + (i * row_dir), col + (i * col_dir))) {
                 return false;
             }

@@ -19,7 +19,7 @@ bool Queen::isLegalMoveTo(int _row, int _col) {
     int row_diff = _row - row;
     int col_diff = _col - col;
 
-    bool bishop_capabilities = (row_diff == col_diff);
+    bool bishop_capabilities = (abs(row_diff) == abs(col_diff));
 
     bool status = rook_capabilities || bishop_capabilities;
 
@@ -27,7 +27,7 @@ bool Queen::isLegalMoveTo(int _row, int _col) {
     if (bishop_capabilities) {
         int row_dir = row_diff > 0 ? 1: -1;
         int col_dir = col_diff > 0 ? 1: -1;
-        for (int i = 0; i < abs(col_diff); i++) {
+        for (int i = 1; i < abs(col_diff); i++) {
             if (board -> isOccupied(row + (i * row_dir), col + (i * col_dir))) {
                 return false;
             }
@@ -35,15 +35,15 @@ bool Queen::isLegalMoveTo(int _row, int _col) {
     }
     //Checking for piecies in the way as rook
     if (rook_capabilities) {
-        int row_dir = 0;
-        int col_dir = 0;
+        int row_dir = 0, col_dir = 0;
+
         if (row_diff != 0) {
             row_dir = row_diff > 0 ? 1: -1;
         } else {
             col_dir = col_diff > 0 ? 1: -1;
         }
     
-        for (int i = 0; i < abs(std::max(row_diff, col_diff)); i++) {
+        for (int i = 1; i < abs(std::max(row_diff, col_diff)); i++) {
             if (board -> isOccupied(row + (i * row_dir), col + (i * col_dir))) {
                 return false;
             }

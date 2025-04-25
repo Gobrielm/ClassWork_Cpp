@@ -15,18 +15,19 @@ bool Bishop::isLegalMoveTo(int _row, int _col) {
 
     int row_diff = _row - row;
     int col_diff = _col - col;
-    bool status = (row_diff == col_diff || -row_diff == col_diff);
+    //If not moving in diagonal line then return false
+    if (abs(row_diff) != abs(col_diff)) {
+        return false;
+    }
 
     //Checking for piecies in the way
-    if (status) {
-        int row_dir = row_diff > 0 ? 1: -1;
-        int col_dir = col_diff > 0 ? 1: -1;
-        for (int i = 0; i < abs(col_diff); i++) {
-            if (board -> isOccupied(row + (i * row_dir), col + (i * col_dir))) {
-                return false;
-            }
+    int row_dir = row_diff > 0 ? 1: -1;
+    int col_dir = col_diff > 0 ? 1: -1;
+    for (int i = 1; i < abs(col_diff); i++) {
+        if (board -> isOccupied(row + (i * row_dir), col + (i * col_dir))) {
+            return false;
         }
     }
 
-    return status;
+    return true;
 }

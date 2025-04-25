@@ -21,29 +21,22 @@ bool Pawn::isLegalMoveTo(int _row, int _col) {
     int row_diff = _row - row;
     int col_diff = _col - col;
 
-    bool could_capture = false;
-
-    //Checks for captures
-    if (temp && temp -> isWhite != isWhite && abs(col_diff) == 1) {
-        could_capture = true;
-    } else if (col_diff != 0) {
-        //Can't move diagonal if not capturing
-        return false;
+    //Check if capturing
+    if (temp && temp -> isWhite != isWhite) {
+        //If capturing, must move left/right 1 space
+        if (abs(col_diff) != 1) {
+            return false;
+        //If capturing can't move two spaces
+        } else if (abs(row_diff) > 2) {
+            return false;
+        }
     }
-    
-
+    //Handles white pawns on bottom of board
     if (isWhite && (row_diff == 1 || (row_diff == 2 && row == 2))) {
-        if (row_diff == 2) {
-            status = !(board -> isOccupied(row + 1, col));
-        } else {
-            status = true;
-        }
+        status = row_diff == 2 ? !(board -> isOccupied(row + 1, col)): true;
+    //Handles black pawns on top of board
     } else if (!isWhite && (row_diff == -1 || (row_diff == -2 && row == 7))) {
-        if (row_diff == -2) {
-            status = !(board -> isOccupied(row - 1, col));
-        } else {
-            status = true;
-        }
+        status = row_diff == -2 ? !(board -> isOccupied(row - 1, col)): true;
     }
 
     return status;
