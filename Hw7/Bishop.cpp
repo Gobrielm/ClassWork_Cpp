@@ -15,7 +15,7 @@ bool Bishop::isLegalMoveTo(int _row, int _col) {
 
     int row_diff = _row - row;
     int col_diff = _col - col;
-    bool status = (row_diff == col_diff || -row_diff == col_diff) && row_diff != 0;
+    bool status = (row_diff == col_diff || -row_diff == col_diff);
 
     //Checking for piecies in the way
     if (status) {

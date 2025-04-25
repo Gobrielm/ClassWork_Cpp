@@ -17,7 +17,7 @@ bool Rook::isLegalMoveTo(int _row, int _col) {
     int row_diff = _row - row;
     int col_diff = _col - col;
 
-    bool status = (row_diff == 0 || col_diff == 0) && !(col == _col && row == _row);
+    bool status = (row_diff == 0 || col_diff == 0);
 
     //Check for pieces in the way
     if (status) {

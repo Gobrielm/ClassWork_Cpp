@@ -16,7 +16,7 @@ bool King::isLegalMoveTo(int _row, int _col) {
 
     int row_diff = abs(row - _row);
     int col_diff = abs(col - _col);
-    bool status = (row_diff < 2 && col_diff < 2 && (row_diff != 0 || col_diff != 0));
+    bool status = (row_diff < 2 && col_diff < 2);
 
     return status;
 }

@@ -14,12 +14,12 @@ bool Queen::isLegalMoveTo(int _row, int _col) {
         return false;
     }
 
-    bool rook_capabilities = ((col == _col || row == _row) && !(col == _col && row == _row));
+    bool rook_capabilities = (col == _col || row == _row);
     
     int row_diff = _row - row;
     int col_diff = _col - col;
 
-    bool bishop_capabilities = (row_diff == col_diff && row_diff != 0);
+    bool bishop_capabilities = (row_diff == col_diff);
 
     bool status = rook_capabilities || bishop_capabilities;
 
