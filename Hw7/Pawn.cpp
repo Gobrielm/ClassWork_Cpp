@@ -9,9 +9,6 @@ Pawn::~Pawn(){
 }
 
 bool Pawn::isLegalMoveTo(int _row, int _col) {
-    if (!Piece::isOnBoard(_row, _col)) {
-        return false;
-    }
 
     Piece* temp = board -> pieceAt(_row, _col);
     //Checks if tile is taken by same color
@@ -48,15 +45,7 @@ bool Pawn::isLegalMoveTo(int _row, int _col) {
             status = true;
         }
     }
-    
-    if (status && could_capture) {
-        temp -> isCaptured = true;
-    }
-    if (status) {
-        neverMoved = false;
-        row = _row;
-        col = _col;
-    }
+
     return status;
 }
 
