@@ -1,4 +1,6 @@
 #include "Queen.h"
+#include "Rook.h"
+#include "Bishop.h"
 
 Queen::Queen(int _row, int _col, bool _isWhite, std::string _name) : Piece::Piece(_row, _col, _isWhite, _name) {
     Piece::ptype = "Queen";
