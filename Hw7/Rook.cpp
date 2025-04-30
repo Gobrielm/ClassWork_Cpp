@@ -14,27 +14,11 @@ bool Rook::isLegalMoveTo(int _row, int _col) {
     if (temp && temp -> isWhite == isWhite) {
         return false;
     }
-    int row_diff = _row - row;
-    int col_diff = _col - col;
-
-    bool status = (row_diff == 0 || col_diff == 0);
+    //Checking if moving in straight line
+    if (row != _row && col != _col) {
+        return false;
+    }
 
     //Check for pieces in the way
-    if (status) {
-        int row_dir = 0, col_dir = 0;
-
-        if (row_diff != 0) {
-            row_dir = row_diff > 0 ? 1: -1;
-        } else {
-            col_dir = col_diff > 0 ? 1: -1;
-        }
-    
-        for (int i = 1; i < abs(std::max(row_diff, col_diff)); i++) {
-            if (board -> isOccupied(row + (i * row_dir), col + (i * col_dir))) {
-                return false;
-            }
-        }
-    }
-    
-    return status;
+    return board -> isClear(row, col, _row, _col);
 }
