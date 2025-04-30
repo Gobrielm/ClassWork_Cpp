@@ -1,5 +1,20 @@
-1
-Pawn_Test_All_Illegal_Opening_Moves_black 10
+17
+
+Pawn_Test_All_Illegal_Opening_Moves_white 10
+p4w 3 c
+p4w 3 e
+p4w 4 f
+p4w 4 b
+p4w 1 d
+p4w 1 c
+p4w 1 e
+p4w 5 d
+p4w 2 c
+p4w 2 e
+1081rook0r1b1082knight0h1b1083bishop0b1b1084queen0qub1085king0kib1086bishop0b2b1087knight0h2b1088rook0r2b1071pawn0p1b1072pawn0p2b1073pawn0p3b1074pawn0p4b1075pawn0p5b1076pawn0p6b1077pawn0p7b1078pawn0p8b1011rook1r1w1012knight1h1w1013bishop1b1w1014queen1quw1015king1kiw1016bishop1b2w1017knight1h2w1018rook1r2w1021pawn1p1w1022pawn1p2w1023pawn1p3w1024pawn1p4w1025pawn1p5w1026pawn1p6w1027pawn1p7w1028pawn1p8wKeepPlaying
+
+Pawn_Test_All_Illegal_Opening_Moves_black 11
+p1w 3 a
 p4b 6 c
 p4b 6 e
 p4b 5 f
@@ -10,4 +25,303 @@ p4b 8 e
 p4b 4 d
 p4b 4 c
 p4b 4 e
-1081rook0r1b1082knight0h1b1083bishop0b1b1084queen0qub1085king0kib1086bishop0b2b1087knight0h2b1088rook0r2b1071pawn0p1b1072pawn0p2b1073pawn0p3b1074pawn0p4b1075pawn0p5b1076pawn0p6b1077pawn0p7b1078pawn0p8b1011rook1r1w1012knight1h1w1013bishop1b1w1014queen1quw1015king1kiw1016bishop1b2w1017knight1h2w1018rook1r2w0031pawn1p1w1022pawn1p2w1023pawn1p3w1024pawn1p4w1025pawn1p5w1026pawn1p6w1027pawn1p7w1028pawn1p8w
+1081rook0r1b1082knight0h1b1083bishop0b1b1084queen0qub1085king0kib1086bishop0b2b1087knight0h2b1088rook0r2b1071pawn0p1b1072pawn0p2b1073pawn0p3b1074pawn0p4b1075pawn0p5b1076pawn0p6b1077pawn0p7b1078pawn0p8b1011rook1r1w1012knight1h1w1013bishop1b1w1014queen1quw1015king1kiw1016bishop1b2w1017knight1h2w1018rook1r2w0031pawn1p1w1022pawn1p2w1023pawn1p3w1024pawn1p4w1025pawn1p5w1026pawn1p6w1027pawn1p7w1028pawn1p8wKeepPlaying
+
+Knight_Test_All_Illegal_Opening_Moves_white_knights_only 12
+h1w 1 b
+h1w 1 a
+hw1 1 a
+h1w 2 a
+h1w 2 c
+h1w 2 b
+h1w 3 b
+h1w 2 d
+h1w 1 d
+h2w 2 e
+h2w 3 e
+h2w 4 h
+1081rook0r1b1082knight0h1b1083bishop0b1b1084queen0qub1085king0kib1086bishop0b2b1087knight0h2b1088rook0r2b1071pawn0p1b1072pawn0p2b1073pawn0p3b1074pawn0p4b1075pawn0p5b1076pawn0p6b1077pawn0p7b1078pawn0p8b1011rook1r1w1012knight1h1w1013bishop1b1w1014queen1quw1015king1kiw1016bishop1b2w1017knight1h2w1018rook1r2w1021pawn1p1w1022pawn1p2w1023pawn1p3w1024pawn1p4w1025pawn1p5w1026pawn1p6w1027pawn1p7w1028pawn1p8wKeepPlaying
+
+
+Pawn_Test_1_only_Pawn_moves_white_and_black 29
+p1w 1 a
+p1w 4 a
+p1b 4 a
+p1b 6 b
+p1b 6 a
+p2w 5 c
+p2w 3 b
+p2b 5 c
+p2b 5 b
+p2w 4 a
+p3w 1 c
+p3w 3 c
+p2b 4 a
+p2w 4 a
+p4b 5 d
+p5w 4 e
+p6b 5 f
+p3w 4 c
+p6b 4 e
+p3w 5 d
+p6b 5 d
+p7b 5 g
+p8w 3 h
+p7b 4 g
+p8w 5 f
+p8w 4 h
+p7b 3 g
+p7w 4 g
+p8w 3 g
+1081rook0r1b1082knight0h1b1083bishop0b1b1084queen0qub1085king0kib1086bishop0b2b1087knight0h2b1088rook0r2b0061pawn0p1b0141pawn0p2b1073pawn0p3b0154pawn0p4b1075pawn0p5b0045pawn0p6b0037pawn0p7b1078pawn0p8b1011rook1r1w1012knight1h1w1013bishop1b1w1014queen1quw1015king1kiw1016bishop1b2w1017knight1h2w1018rook1r2w0141pawn1p1w0041pawn1p2w0054pawn1p3w1024pawn1p4w0145pawn1p5w1026pawn1p6w1027pawn1p7w0048pawn1p8wKeepPlaying
+
+
+Bishop_Test_with_pawns_white_and_black 20
+p2b 6 b
+p2w 3 b
+b1w 4 a
+b1w 2 d
+p3b 6 c
+b1w 4 a
+b12 3 a
+b1w 3 a
+p3b 5 c
+b1w 6 d
+b1w 5 c
+p5b 6 e
+p5w 4 e
+b2b 3 a
+b2b 5 c
+b2w 2 e
+b2b 2 e
+b2b 2 e
+b2b 8 f
+b2w 5 h
+1081rook0r1b1082knight0h1b1083bishop0b1b1084queen0qub1085king0kib0086bishop0b2b1087knight0h2b1088rook0r2b1071pawn0p1b1072pawn0p2b0153pawn0p3b1074pawn0p4b0065pawn0p5b1076pawn0p6b1077pawn0p7b1078pawn0p8b1011rook1r1w1012knight1h1w0153bishop1b1w1014queen1quw1015king1kiw0058bishop1b2w1017knight1h2w1018rook1r2w1021pawn1p1w0032pawn1p2w1023pawn1p3w1024pawn1p4w0045pawn1p5w1026pawn1p6w1027pawn1p7w1028pawn1p8wKeepPlaying
+
+
+Rook_Test_white_with_pawns_black_and_white 13
+p1w 4 a
+p1b 5 a
+r1w 4 a
+r1w 5 a
+r1w 3 a
+p5b 5 e
+r1w 5 e
+r1w 3 h
+p5b 4 e
+r1w 4 h
+p6b 5 f
+r1w 4 e
+p8b 5 h
+1081rook0r1b1082knight0h1b1083bishop0b1b1084queen0qub1085king0kib1086bishop0b2b1087knight0h2b1088rook0r2b0051pawn0p1b1072pawn0p2b1073pawn0p3b1074pawn0p4b0145pawn0p5b0056pawn0p6b1077pawn0p7b1078pawn0p8b0045rook1r1w1012knight1h1w1013bishop1b1w1014queen1quw1015king1kiw1016bishop1b2w1017knight1h2w1018rook1r2w0041pawn1p1w1022pawn1p2w1023pawn1p3w1024pawn1p4w1025pawn1p5w1026pawn1p6w1027pawn1p7w1028pawn1p8wKeepPlaying
+
+Knight_Test_both_colors_with_queen_white 25
+h1w 2 c
+h1w 3 c
+h1w 2 e
+h1b 6 c
+h1w 2 e
+h1w 4 e
+h1b 8 c
+h1b 8 c
+h1b 1 b
+h1b 8 d
+h1b 8 b
+h1w 5 c
+h1b 6 c
+h1w 7 b
+h1b 7 e
+h1b 4 b
+h1w 4 b
+h1w 8 d
+h1b 2 c
+quw 2 c
+h2b 6 h
+h2w 4 f
+h2b 5 f
+h2w 6 e
+h2b 3 g
+1081rook0r1b0123knight0h1b1083bishop0b1b1184queen0qub1085king0kib1086bishop0b2b0068knight0h2b1088rook0r2b1071pawn0p1b1172pawn0p2b1073pawn0p3b1074pawn0p4b1075pawn0p5b1076pawn0p6b1077pawn0p7b1078pawn0p8b1011rook1r1w0084knight1h1w1013bishop1b1w0023queen1quw1015king1kiw1016bishop1b2w1017knight1h2w1018rook1r2w1021pawn1p1w1022pawn1p2w1123pawn1p3w1024pawn1p4w1025pawn1p5w1026pawn1p6w1027pawn1p7w1028pawn1p8wKeepPlaying
+
+
+Queen_Test_both_colors_with_pawns_both_colors 20
+p3w 4 c
+p3b 5 c
+quw 4 a
+qub 5 a
+quw 7 d
+b1b 7 d
+p4w 4 d
+qub 3 d
+qub 3 c
+b1b 6 e
+p4b 5 d
+pw4 5 d
+p4w 5 d
+qub 6 h
+qub 6 f
+p2b 6 b
+p2b 6 b
+p3w 5 d
+p1w 4 a
+qub 2 b
+1081rook0r1b1082knight0h1b0074bishop0b1b0051queen0qub1085king0kib1086bishop0b2b1087knight0h2b1088rook0r2b1071pawn0p1b1072pawn0p2b0053pawn0p3b1174pawn0p4b1075pawn0p5b1076pawn0p6b1077pawn0p7b1078pawn0p8b1011rook1r1w1012knight1h1w1013bishop1b1w0174queen1quw1015king1kiw1016bishop1b2w1017knight1h2w1018rook1r2w0041pawn1p1w1022pawn1p2w0043pawn1p3w1024pawn1p4w1025pawn1p5w1026pawn1p6w1027pawn1p7w1028pawn1p8wKeepPlaying
+
+
+King_Test_Basic_with_pawns_both_colors 16
+p5w 4 e
+p5b 5 e
+kiw 2 e
+kib 7 e
+kiw 2 d
+kiw 3 d
+kib 7 f
+kib 6 f
+kiw 4 e
+kiw 3 c
+kib 6 g
+kiw 2 c
+kiw 4 c
+kib 5 g
+kiw 5 d
+kib 4 f
+1081rook0r1b1082knight0h1b1083bishop0b1b1084queen0qub0046king0kib1086bishop0b2b1087knight0h2b1088rook0r2b1071pawn0p1b1072pawn0p2b1073pawn0p3b1074pawn0p4b0055pawn0p5b1076pawn0p6b1077pawn0p7b1078pawn0p8b1011rook1r1w1012knight1h1w1013bishop1b1w1014queen1quw0054king1kiw1016bishop1b2w1017knight1h2w1018rook1r2w1021pawn1p1w1022pawn1p2w1023pawn1p3w1024pawn1p4w0045pawn1p5w1026pawn1p6w1027pawn1p7w1028pawn1p8wKeepPlaying
+
+King_Test_Too_Close_with_pawns_both_colors 17
+p5w 4 e
+p5b 5 e
+kiw 2 e
+kib 7 e
+kiw 2 d
+kiw 3 d
+kib 7 f
+kib 6 f
+kiw 4 e
+kiw 3 c
+kib 6 g
+kiw 2 c
+kiw 4 c
+kib 5 g
+kiw 5 d
+kib 4 f
+kiw 5 e
+1081rook0r1b1082knight0h1b1083bishop0b1b1084queen0qub0046king0kib1086bishop0b2b1087knight0h2b1088rook0r2b1071pawn0p1b1072pawn0p2b1073pawn0p3b1074pawn0p4b0055pawn0p5b1076pawn0p6b1077pawn0p7b1078pawn0p8b1011rook1r1w1012knight1h1w1013bishop1b1w1014queen1quw0054king1kiw1016bishop1b2w1017knight1h2w1018rook1r2w1021pawn1p1w1022pawn1p2w1023pawn1p3w1024pawn1p4w0045pawn1p5w1026pawn1p6w1027pawn1p7w1028pawn1p8wKeepPlaying
+
+
+Fools_Mate_Black_Wins_Checkmate 5
+p6w 3 f
+p5b 5 e
+p7w 4 g
+qub 4 h
+p7w 5 g
+1081rook0r1b1082knight0h1b1083bishop0b1b0048queen0qub1085king0kib1086bishop0b2b1087knight0h2b1088rook0r2b1071pawn0p1b1072pawn0p2b1073pawn0p3b1074pawn0p4b0055pawn0p5b1076pawn0p6b1077pawn0p7b1078pawn0p8b1011rook1r1w1012knight1h1w1013bishop1b1w1014queen1quw1015king1kiw1016bishop1b2w1017knight1h2w1018rook1r2w1021pawn1p1w1022pawn1p2w1023pawn1p3w1024pawn1p4w1025pawn1p5w0036pawn1p6w0047pawn1p7w1028pawn1p8wBlackWinsByCheckmate
+
+Grobs_Attack_Black_Wins_Checkmate 4
+p7w 4 g
+p5b 5 e
+p6w 4 f
+qub 4 h
+1081rook0r1b1082knight0h1b1083bishop0b1b0048queen0qub1085king0kib1086bishop0b2b1087knight0h2b1088rook0r2b1071pawn0p1b1072pawn0p2b1073pawn0p3b1074pawn0p4b0055pawn0p5b1076pawn0p6b1077pawn0p7b1078pawn0p8b1011rook1r1w1012knight1h1w1013bishop1b1w1014queen1quw1015king1kiw1016bishop1b2w1017knight1h2w1018rook1r2w1021pawn1p1w1022pawn1p2w1023pawn1p3w1024pawn1p4w1025pawn1p5w0046pawn1p6w0047pawn1p7w1028pawn1p8wBlackWinsByCheckmate
+
+Scholars_Mate_White_Wins_Checkmate 7
+p5w 4 e
+p5b 5 e
+b2w 4 c
+h1b 6 c
+quw 5 h
+h2b 6 f
+quw 7 f
+1081rook0r1b0063knight0h1b1083bishop0b1b1084queen0qub1085king0kib1086bishop0b2b0066knight0h2b1088rook0r2b1071pawn0p1b1072pawn0p2b1073pawn0p3b1074pawn0p4b0055pawn0p5b1176pawn0p6b1077pawn0p7b1078pawn0p8b1011rook1r1w1012knight1h1w1013bishop1b1w0076queen1quw1015king1kiw0043bishop1b2w1017knight1h2w1018rook1r2w1021pawn1p1w1022pawn1p2w1023pawn1p3w1024pawn1p4w0045pawn1p5w1026pawn1p6w1027pawn1p7w1028pawn1p8wWhiteWinsByCheckmate
+
+Dutch_Defense_White_Wins_Checkmate 9
+p4w 4 d
+p6b 5 f
+b1w 5 g
+p8b 6 h  
+b1w 4 h 
+p7b 5 g 
+p5w 4 e
+p7b 4 h
+quw 5 h 
+1081rook0r1b1082knight0h1b1083bishop0b1b1084queen0qub1085king0kib1086bishop0b2b1087knight0h2b1088rook0r2b1071pawn0p1b1072pawn0p2b1073pawn0p3b1074pawn0p4b1075pawn0p5b0056pawn0p6b0048pawn0p7b0068pawn0p8b1011rook1r1w1012knight1h1w0148bishop1b1w0058queen1quw1015king1kiw1016bishop1b2w1017knight1h2w1018rook1r2w1021pawn1p1w1022pawn1p2w1023pawn1p3w0044pawn1p4w0045pawn1p5w1026pawn1p6w1027pawn1p7w1028pawn1p8wWhiteWinsByCheckmate
+
+Fastest_StaleMate_Known 19
+p3w 4 c 
+p8b 5 h 
+
+p8w 4 h 
+p1b 5 a 
+
+quw 4 a 
+r1b 6 a 
+
+quw 5 a 
+r1b 6 h 
+
+quw 7 c 
+p6b 6 f 
+
+quw 7 d 
+kib 7 f 
+
+quw 7 b 
+qub 3 d 
+
+quw 8 b 
+qub 7 h 
+
+quw 8 c 
+kib 6 g 
+
+quw 6 e
+0068rook0r1b1182knight0h1b1183bishop0b1b0078queen0qub0067king0kib1086bishop0b2b1087knight0h2b1088rook0r2b0151pawn0p1b1172pawn0p2b1173pawn0p3b1174pawn0p4b1075pawn0p5b0066pawn0p6b1077pawn0p7b0058pawn0p8b1011rook1r1w1012knight1h1w1013bishop1b1w0065queen1quw1015king1kiw1016bishop1b2w1017knight1h2w1018rook1r2w1021pawn1p1w1022pawn1p2w0043pawn1p3w1024pawn1p4w1025pawn1p5w1026pawn1p6w1027pawn1p7w0048pawn1p8wStalemate
+
+Fastest_StaleMate_Known_V2 19
+p5w 3 e 
+p1b 5 a 
+
+quw 5 h 
+r1b 6 a 
+
+quw 5 a 
+p8b 5 h 
+
+quw 7 c 
+r1b 6 h 
+
+p8w 4 h 
+p6b 6 f 
+
+quw 7 d 
+kib 7 f 
+
+quw 7 b 
+qub 3 d 
+
+quw 8 b 
+qub 7 h 
+
+quw 8 c 
+kib 6 g 
+
+quw 6 e
+0068rook0r1b1182knight0h1b1183bishop0b1b0078queen0qub0067king0kib1086bishop0b2b1087knight0h2b1088rook0r2b0151pawn0p1b1172pawn0p2b1173pawn0p3b1174pawn0p4b1075pawn0p5b0066pawn0p6b1077pawn0p7b0058pawn0p8b1011rook1r1w1012knight1h1w1013bishop1b1w0065queen1quw1015king1kiw1016bishop1b2w1017knight1h2w1018rook1r2w1021pawn1p1w1022pawn1p2w1023pawn1p3w1024pawn1p4w0035pawn1p5w1026pawn1p6w1027pawn1p7w0048pawn1p8wStalemate
+
+Secret_openning_trap 12
+p4w 4 d       
+p5b 5 e
+p4w 5 e 
+b2b 5 c
+h2w 3 f
+p4b 6 d
+p4w 6 d
+h2b 7 e
+p4w 7 e
+b2b 2 f
+kiw 2 f 
+qub 1 d
+1081rook0r1b1082knight0h1b1083bishop0b1b0014queen0qub1085king0kib0126bishop0b2b0175knight0h2b1088rook0r2b1071pawn0p1b1072pawn0p2b1073pawn0p3b0164pawn0p4b0155pawn0p5b1076pawn0p6b1077pawn0p7b1078pawn0p8b1011rook1r1w1012knight1h1w1013bishop1b1w1114queen1quw0026king1kiw1016bishop1b2w0036knight1h2w1018rook1r2w1021pawn1p1w1022pawn1p2w1023pawn1p3w0075pawn1p4w1025pawn1p5w1126pawn1p6w1027pawn1p7w1028pawn1p8wKeepPlaying
+
+
+

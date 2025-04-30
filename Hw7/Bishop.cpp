@@ -1,6 +1,6 @@
 #include "Bishop.h"
 
-Bishop::Bishop(int _row, int _col, bool _isWhite, string _name) : Piece::Piece(_row, _col, _isWhite, _name) {
+Bishop::Bishop(int _row, int _col, bool _isWhite, std::string _name) : Piece::Piece(_row, _col, _isWhite, _name) {
     Piece::ptype = "Bishop";
 }
 Bishop::~Bishop() {

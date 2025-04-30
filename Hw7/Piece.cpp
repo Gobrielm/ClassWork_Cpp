@@ -9,21 +9,9 @@
 #include <string>
 #include "Piece.h"
 
-// DONE FOR YOU: this file implementation is completely, but should be studied.
+// DONE FOR YOU: this ENTIRE file implementation is complete, but should be studied.
 
-Piece :: Piece(){ // constructor 1: (default)
-    neverMoved = true; // mostly used for pawns
-    isCaptured = false; // this piece has not been captured
-    row = -1; // uninitialized, 1-based row # location of this piece (1..8)
-    col = -1;  // uninitialized, 1-based col # location of this piece (1..8 corresponds to a...h)
-    ptype = "bad"; // string name of type of piece like "rook" "king", "queen", etc.  Different than specified piece name below
-    isWhite = true; // true if a white piece, else black
-    name = "unknown"; // r1b, p1b, p4b, kib, etc.
-    board = nullptr; // a "back-pointer" to an instance of the ChessBoard by each piece
-}
-
-
-Piece :: Piece(int _row, int _col, bool _isWhite, std::string _name ){ // constructor 2
+Piece :: Piece(int _row, int _col, bool _isWhite, std::string _name ){ // constructor 
     
     if(_row<1 || _row > 8) {
         std::cout << "piece() constructor: row = " << _row << " is out of bounds. Placing piece at row = 1 by default." << std::endl;
@@ -98,7 +86,8 @@ bool Piece :: isOnBoard(int _row, int _col){
 // see **** below where this method is called
 
 bool Piece::moveTo(int _row, int _col, bool silent , bool whatIf ){ // return true if the piece was moved to the requested 1-based row, col location
-    
+  // whatIf, when true, allows us to return if a move is possible, without affecting the board  
+  
   if(row==_row && col==_col){ // if the move is not to the same location
       if (!silent) std::cout << "piece.moveTo() : " << colorName() << " " << ptype <<  " move from (" << row << ", " << colNames[col] <<  ") to (" << _row << ", " << colNames[_col] << ") is a NON-move (the piece did not move). Abort Move." << std::endl;;
       return false;
@@ -108,14 +97,29 @@ bool Piece::moveTo(int _row, int _col, bool silent , bool whatIf ){ // return tr
      if (!silent)  std::cout << "piece.moveTo() : " << colorName() << " " << ptype <<  " move from (" << row << ", " << colNames[col] <<  ") to (" << _row << ", " << colNames[_col] << ") is off the board. Abort Move." << std::endl;;
       return false;
   }
+
+  // Check if the final location is occuped by a same-colored piece
+  // if yes, then we are blocked by our own piece - return false
+  // if no, then we MIGHT have a capture
   
-  else if (!isLegalMoveTo(_row, _col)){ // **** this will call the method from the inherited class, not the Piece class
+  Piece *endPiece = board->pieceAt(_row, _col);  // see if there is a piece at the "to" location
+
+  if (endPiece != nullptr ) { // found a piece, now check its color
+      if (!silent) std::cout << "piece.moveTo() : Checking end piece = "  << endPiece->name << std::endl;
+      
+      if (endPiece->isWhite == isWhite) {
+          if (!silent) std::cout << "piece.moveTo() : This move is blocked at the 'to' location by a same-colored piece!. Abort move." << std::endl;
+          return false;
+      }
+  } // done checking "to" location for same-colored piece
+  
+  if (!isLegalMoveTo(_row, _col)){ // **** this will call the method from the inherited class, not the Piece class
       if (!silent) std::cout << "piece.moveTo() : " << colorName() << " " << ptype <<  " move from (" << row << ", " << colNames[col] <<  ") to (" << _row << ", " << colNames[_col] << ") is not valid for the " << ptype <<". Abort Move." << std::endl;;
       return false;
   }
 
 
-  // make the move...
+   // make the move... noting that if it puts the king in check, we will revert the move
   
   int origRow = row; // remember the original piece location in case the move leaves the current king in check
   int origCol = col;
@@ -141,6 +145,15 @@ bool Piece::moveTo(int _row, int _col, bool silent , bool whatIf ){ // return tr
       capturedPiece->isCaptured = origCapture; // return the captured piece to the chess board for continued play
     return false;
   }
+
+  if ( whatIf ) { // we are only being asked if this move is possible, so return true, but leave the board unchanged
+    if (!silent) std::cout << board->redTextStart << "piece.moveTo() : (WHAT IF?)" << colorName() << " " << ptype <<  " COULD move from (" << origRow << ", " << colNames[origCol] <<  ") to (" << _row << ", " << colNames[_col] << ") BUT NO ACTION TAKEN. Abort Move." << board->coloredTextEnd << std::endl;
+    row = origRow; // put this piece back to its original location
+    col = origCol;
+    if ( capturedPiece != nullptr ) 
+      capturedPiece->isCaptured = origCapture; // return the captured piece to the chess board for continued play
+    return true; // yes this move would have worked, but we are just testing and reporting back.
+  } // end whatif
 
   // report the successfull move
     

@@ -2,9 +2,10 @@
 #include <fstream>
 #include <string>
 #include <algorithm>
+#include <sstream>
 #include "Piece.h"
 
-// VERSION 0
+// VERSION 3
 
 void getRandomMove( ChessBoard &g, std::string &piece, int &row, int &col ) {
 
@@ -154,7 +155,7 @@ std::string getBoardCode( const ChessBoard & g){
       tmp += std::to_string(p->neverMoved) + std::to_string(p->isCaptured) + std::to_string(p->row) + std::to_string(p->col) + (p->ptype) + std::to_string(p->isWhite) + p->name;
     }
     
-    std::for_each(tmp.begin(), tmp.end(), [](char & c){ // drop the case to relax our test incase pcode or piece names are capitalized
+    std::for_each(tmp.begin(), tmp.end(), [](char & c){ // drop the case to relax our test in case pcode or piece names are capitalized
       c = ::tolower(c);
     });
   
@@ -163,11 +164,21 @@ std::string getBoardCode( const ChessBoard & g){
 
 
 bool testMe() {
-  
+
+  const char * GREEN = "\n\n\033[;32m";
+  const char * RED = "\n\033[1;31m";
+  const char * RESET  = "\033[0m";
   std::cout << "testMe(): Starting tests..." << std::endl;
 
+  std::cout << "testMe(): which file would you like to use to test? (ex: testMeIn.txt or just y for default)?";
+
+  std::string testFileName = "testMeIn.txt";
+  std::cin >> testFileName;
+
+  if ( testFileName == "y") testFileName = "testMeIn.txt";
+
   // redirect i/o
-  std::ifstream inFile( "testMeIn.txt" );
+  std::ifstream inFile( testFileName );
   // std::streambuf *cinbuf = std::cin.rdbuf(); //save old buf
   // std::cin.rdbuf(inFile.rdbuf()); //redirect std::cin to in.txt!
 
@@ -178,18 +189,19 @@ bool testMe() {
   std::string piece, colChar; // piece name and column name (a-h)
   int row, col; // integer equivalent of moves for row and col
   int totalGames = 0; // number of games we will play
-
+ 
   inFile >> totalGames; // read in the number of games we will play
 
   int goodTests = 0;
   int badTests = 0;
 
   for(int gameCount=0; gameCount<totalGames; gameCount++ ) {
-    std::cout << "\n\n\033[;32mTesting game #" << gameCount << " of " << totalGames << " games: \033[0m" << std::endl;
+    std::cout << GREEN << "------------------------------------------- " << RESET << std::endl;
+    std::cout << GREEN << "Testing game #" << gameCount << " of " << totalGames << " games: " << RESET << std::endl;
     std::string gameName; // Human readable name of this game
     inFile >> gameName;
     //   cout << "\033[;32mGreen Text\033[0m\n";
-    std::cout << "\033[;32m*** " << gameName << "***\033[0m" << std::endl;
+    std::cout << "\033[;32m*** " << gameName << "***" << RESET << std::endl;
     
     int totalMoves; // integer number of moves in the current game
     inFile >> totalMoves; // total moves to expect from the file, if count < 0 we are plahing "randomly generated game" specifed by only a srand() input value
@@ -208,18 +220,48 @@ bool testMe() {
 
     bool wasThisTestOk = true; // init true, set to false  below if we find an error below
 
+    std::string winnerName;
+    std::string stalemateString;
+    
     for( int currentMove=0; currentMove<totalMoves; currentMove++) { // for each move in this game
       bool successfulMove = false;
       
       if (!doRandomMoves) { // reading game moves from the file
-        inFile >> piece >> row >> colChar; // read in the move
+        //inFile >> piece >> row >> colChar; // read in the move (replaced with below)
+
+        std::string line; // a line of input from the file
+
+        while (line.size() == 0)  // eats empty (blank) lines
+        if (!std::getline(inFile, line)) { // if we cannot read a line, something is very wrong
+          std::cout << RED << "!! Error in input file - could not read entire line of text. Skipping." << RESET << std::endl;
+          { char x; std::cout << "Enter any character to skip this input line"; std::cin >> x;}
+          continue;
+        } // end error
+        
+        // {  // DEBUG
+        //  std::cout << "read line: \"" << line << "\"\n";  
+        //  char x; 
+        //  std::cout << "Enter any character to skip this input line"; std::cin >> x;
+        // }
+        
+        std::istringstream iss(line); // hold the line here to parse it
+
+        if (!(iss >> piece >> row >> colChar)) {
+            std::cout << RED << "!! Error in input file - could not parse line of text. Skipping." << RESET << std::endl;
+            { char x; std::cout << "Enter any character to skip this input line"; std::cin >> x;}
+            continue;
+        }
+
+        std::string comments;
+        std::getline(iss, comments); // "consume" any remaining comments from the input file
+        
         col = ((int)colChar[0]-96); // convert to row character to int as 1 for a, 2 for b, 3 for c, etc.
         successfulMove = g.takeTurn(piece, row, col); // allow the current player to take their turn with the provided move
         g.printMe(); // print out the result of the turn (if taken) after the move
 
         // if (!successfulMove) {
         //   //\033[1;31mThis is bold red text\033[0m\n"
-        //   std::cout << "\033[1;31m!!!  ERROR : Legal Move failed.  Please check your solution. Aborting game # " << gameCount << " on move #" << currentMove << ".\033[0m" << std::endl;
+        //   std::cout << "\033[1;31m!!!  ERROR : Legal Move failed.  Please check your solution. Aborting game # " << gameCount << " on move #" << currentMove << "." << RESET << std::endl;
         //   wasThisTestOk = false;
         //   break;
         // }
@@ -230,14 +272,22 @@ bool testMe() {
         if ( successfulMove) g.printMe(); // only print the board if we moved successfully
       }
       
-      // BONUS:  implement these methods in ChessBoard.cpp for a +10 for either or both methods (total of +20 points bonus)
-      std::string winnerName = g.isCheckmate();
-      if (winnerName != "None") { // The game is over 
-        std::cout << (winnerName) << " has won the game via checkmate! Goodbye." << std::endl;
+      // CHALLENGE:  implement these methods in ChessBoard.cpp for a +5 both methods
+      winnerName = g.isCheckmate(); // see who wins: "White", "Black" or "KeepPlaying"
+      if (winnerName != "KeepPlaying" ) { // The game is over 
+        std::cout << (winnerName) << " has won the game via checkmate! This game is over." << std::endl;
       }
+
+
       else if (g.isStalemate()) {
-          std::cout << " The game is a stalemate (tie)! Goodbye." << std::endl;
+          stalemateString="Stalemate";
+          std::cout << " The game is a stalemate (tie)! This game is over." << std::endl;
       }
+      else {
+          std::cout << " This game is still active and it is " << (g.whiteTurn ? "White's" : "Black's" ) << " turn" << std::endl;
+      }
+
+      //{ char c; std::cout << "next move(enter any character) ? ";std::cin >> c;}
       
     } // done with all moves
 
@@ -245,37 +295,47 @@ bool testMe() {
 
     std::string bcode_game = getBoardCode( g );
 
+    if (winnerName != "KeepPlaying")
+      bcode_game = bcode_game + winnerName + "WinsByCheckmate";// append the winnerName (White, Black)
+    else if (stalemateString.size()!= 0)
+      bcode_game = bcode_game + "Stalemate";
+    else
+      bcode_game = bcode_game + "KeepPlaying";
+    
     std::string bcode_fromFile;
     inFile  >> bcode_fromFile; // read in the final board code from the file and compare to current state of this game
-
+    // std::cout << "DEBUG: " << bcode_fromFile << std::endl;
+    // {char x; std::cout << "OK?"; std::cin >> x;}
+    
     if ( bcode_game != bcode_fromFile ) {
-      std::cout << "\n\033[1;31m!!!  ERROR : The final state of the game board does not appear to be correct.  Please check your solution. Game # " << gameCount << " Test has failed after all moves.\033[0m" << std::endl;
+      std::cout << RED << "!!!  ERROR : The final state of the game board does not appear to be correct.  Please check your solution. Game # " << gameCount << " Test has failed after all moves." << RESET << std::endl;
       wasThisTestOk = false;
-      std::cout << "Final Board Code for this game is   ";
+
+      std::cout << "Correct Board Code for this game is ";
       for(int y=0; y<bcode_fromFile.size(); y++) {
-        if (y < bcode_game.size() && bcode_game[y] == bcode_fromFile[y] ) 
+        if (y < bcode_game.size()  && y < bcode_fromFile.size() && bcode_game[y] == bcode_fromFile[y] ) 
           std::cout << "\033[;32m" << bcode_fromFile[y]; // green
         else
           std::cout << "\033[1;31m" << bcode_fromFile[y];  // red
       }
-      std::cout << "\033[0m" << std::endl;
-      std::cout << "Correct Board Code for this game is ";
+      std::cout << "" << RESET << std::endl;
+      std::cout << "Final Board Code for this game is   ";
       for(int y=0; y<bcode_fromFile.size(); y++) {
-        if (y < bcode_game.size() && bcode_game[y] == bcode_fromFile[y] ) 
+        if (y < bcode_game.size()  && y < bcode_fromFile.size() && bcode_game[y] == bcode_fromFile[y] ) 
           std::cout << "\033[;32m" << bcode_game[y]; // green
         else
           std::cout << "\033[1;31m" << bcode_game[y];  // red
       }
-      std::cout << "\033[0m" << std::endl;
+      std::cout << "" << RESET << std::endl;
     }
 
 
     if (wasThisTestOk) {
-      std::cout << "\n\033[;32mGAME OVER:  game #" << gameCount << " " << gameName << " testing succeeded. \033[0m" << std::endl << std::endl;
+      std::cout << "\n\033[;32mGAME OVER:  game #" << gameCount << " " << gameName << " testing succeeded. " << RESET << std::endl << std::endl;
       goodTests++;
     }
     else{
-      std::cout << "\n\033[1;31mGAME OVER:  game #" << gameCount << " " << gameName <<  " testing failed. \033[0m" << std::endl << std::endl;
+      std::cout << RED << "GAME OVER:  game #" << gameCount << " " << gameName <<  " testing failed. " << RESET << std::endl << std::endl;
       badTests++;
     }
 
@@ -296,8 +356,8 @@ bool testMe() {
 
   std::cout << "\n\nYour testing results are: \n";
       //   cout << "\033[;32mGreen Text\033[0m\n";
-  std::cout << "\033[;32m Tests Completed Successfully: \033[0m" << goodTests << std::endl;
-  std::cout << "\033[1;31m Tests Failed: \033[0m" << badTests << std::endl;
+  std::cout << "\033[;32m Tests Completed Successfully: " << RESET << goodTests << std::endl;
+  std::cout << "\033[1;31m Tests Failed: " << RESET << badTests << std::endl;
   std::cout << std::endl;
   
   inFile.close();

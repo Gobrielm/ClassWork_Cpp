@@ -28,18 +28,17 @@ class Piece{ // parent (base) class from which all chess pieces are derrived fro
       
     public:
 
-      bool neverMoved; // true if this piece has never been moved
-      bool isCaptured; // true if this piece was captured
-      int row; // row that this piece occupies : row 1, 2, 3, 4, 5, 6, 7, 8
-      int col; // column that this piece occupies: col a, b, c, d, e, f, g, h (also enums 1-8)
-      std::string ptype; // king, queen, bishop, knight, rook, pawn
-      bool isWhite; //  true means white, else black
-      std::string name; // what we call this piece - a unique human-readable identifier
+      bool neverMoved = true; // true if this piece has never been moved
+      bool isCaptured = false; // true if this piece was captured
+      int row = -1; // row that this piece occupies : row 1, 2, 3, 4, 5, 6, 7, 8
+      int col = -1; // column that this piece occupies: col a, b, c, d, e, f, g, h (also enums 1-8)
+      std::string ptype = "xxx"; // king, queen, bishop, knight, rook, pawn
+      bool isWhite = true; //  true means white, else black
+      std::string name= "unknown"; // what we call this piece - a unique human-readable identifier
       ChessBoard *board; // pointer to the game board
     
      // constructors
-        
-      Piece();
+      
       Piece(int _row, int _col, bool _isWhite, std::string _name);
         // _row is the integer row location of the piece on the board (starting from 1)
         // _col is the integer column location of the piece on the board (starting from 1)
