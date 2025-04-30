@@ -6,9 +6,10 @@
 
 #pragma once
 #include <string>
-#include "Piece.h"
+#include "Rook.h"
+#include "Bishop.h"
 
-class Queen : public Piece{ // Queen derives from (inherits from) Piece
+class Queen : public Rook, public Bishop{ // Queen derives from (inherits from) Piece
     
   public:
     Queen(int _row, int _col, bool _isWhite, std::string _name); // construct a Queen this location, of the specified color, with the specified screen name (qub, quw)

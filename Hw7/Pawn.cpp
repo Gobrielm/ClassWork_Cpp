@@ -15,28 +15,41 @@ bool Pawn::isLegalMoveTo(int _row, int _col) {
     if (temp && temp -> isWhite == isWhite) {
         return false;
     }
-
-    bool status = false;
     
     int row_diff = _row - row;
     int col_diff = _col - col;
 
-    //Check if capturing
-    if (temp && temp -> isWhite != isWhite) {
-        //If capturing, must move left/right 1 space
-        if (abs(col_diff) != 1) {
+    bool status = false;
+
+    //Check for moving 2 spaces
+    if (row_diff == 2) {
+        if (row == 2 && isWhite && !board -> isOccupied(row + 1, col) && !temp && col_diff == 0) {
+            return true;
+        } else {
             return false;
-        //If capturing can't move two spaces
-        } else if (abs(row_diff) > 2) {
+        }
+    } else if (row_diff == -2) {
+        if (row == 7 && !isWhite && !board -> isOccupied(row - 1, col) && !temp && col_diff == 0) {
+            return true;
+        } else {
             return false;
         }
     }
-    //Handles white pawns on bottom of board
-    if (isWhite && (row_diff == 1 || (row_diff == 2 && row == 2))) {
-        status = row_diff == 2 ? !(board -> isOccupied(row + 1, col)): true;
-    //Handles black pawns on top of board
-    } else if (!isWhite && (row_diff == -1 || (row_diff == -2 && row == 7))) {
-        status = row_diff == -2 ? !(board -> isOccupied(row - 1, col)): true;
+
+    //Can only move 1 space
+    if (row_diff == 1 && isWhite) {
+        if (col_diff == 0 && !temp) {
+            status = true;
+        } else if (abs(col_diff) == 1 && temp) {
+            status = true;
+        }
+    //Can only move 1 space
+    } else if (row_diff == -1 && !isWhite) {
+        if (col_diff == 0 && !temp) {
+            status = true;
+        } else if (abs(col_diff) == 1 && temp) {
+            status = true;
+        }
     }
 
     return status;
