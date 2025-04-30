@@ -16,22 +16,14 @@ bool Queen::isLegalMoveTo(int _row, int _col) {
         return false;
     }
     bool rook_capabilities = (col == _col || row == _row);
-    
-    int row_diff = _row - row;
-    int col_diff = _col - col;
 
-    bool bishop_capabilities = (abs(row_diff) == abs(col_diff));
+    bool bishop_capabilities = abs(row - _row) != abs(col - _col);
 
-    bool status = rook_capabilities || bishop_capabilities;
-
-    //Checking for pieces in the way as bishop
-    if (bishop_capabilities && !board -> isClear(row, col, _row, _col)) {
-        return false;
-    }
-    //Checking for piecies in the way as rook
-    if (rook_capabilities && !board -> isClear(row, col, _row, _col)) {
+    //Check if acting as rook or bishop
+    if (!rook_capabilities && !bishop_capabilities) {
         return false;
     }
 
-    return status;
+    //Check if space is clear
+    return board -> isClear(row, col, _row, _col);
 }
