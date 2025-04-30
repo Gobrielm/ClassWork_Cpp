@@ -1,5 +1,2 @@
-p4w 4 d
-p4b 5 d
-b1w 3 e
-p4b 3 d
-p4b 4 d
+p1w -1 a
+[A -1 a
