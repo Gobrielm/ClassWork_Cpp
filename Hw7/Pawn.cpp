@@ -19,8 +19,6 @@ bool Pawn::isLegalMoveTo(int _row, int _col) {
     int row_diff = _row - row;
     int col_diff = _col - col;
 
-    bool status = false;
-
     //Check for moving 2 spaces
     if (row_diff == 2) {
         if (row == 2 && isWhite && !board -> isOccupied(row + 1, col) && !temp && col_diff == 0) {
@@ -39,19 +37,23 @@ bool Pawn::isLegalMoveTo(int _row, int _col) {
     //Can only move 1 space
     if (row_diff == 1 && isWhite) {
         if (col_diff == 0 && !temp) {
-            status = true;
+            return true;
         } else if (abs(col_diff) == 1 && temp) {
-            status = true;
+            return true;
+        } else {
+            return false;
         }
     //Can only move 1 space
     } else if (row_diff == -1 && !isWhite) {
         if (col_diff == 0 && !temp) {
-            status = true;
+            return true;
         } else if (abs(col_diff) == 1 && temp) {
-            status = true;
+            return true;
+        } else {
+            return false;
         }
     }
 
-    return status;
+    return false;
 }
 
