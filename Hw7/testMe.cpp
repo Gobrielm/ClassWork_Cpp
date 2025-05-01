@@ -294,7 +294,6 @@ bool testMe() {
     if ( doRandomMoves ) g.printMe(); // final print for random moves test cases
 
     std::string bcode_game = getBoardCode( g );
-
     if (winnerName != "KeepPlaying")
       bcode_game = bcode_game + winnerName + "WinsByCheckmate";// append the winnerName (White, Black)
     else if (stalemateString.size()!= 0)
