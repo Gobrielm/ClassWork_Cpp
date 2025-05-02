@@ -77,7 +77,7 @@ void doGuess(int secretNumber, mutex *m, int myID, int *winner ){
     // print a message that the guess was incorrect
     // unlock the mutex so other threads have a chance
 
-    this_thread :: sleep_for(  chrono::seconds(0)); // sleep for 1 second to give other threads a chance
+    this_thread :: sleep_for(  chrono::seconds(1)); // sleep for 1 second to give other threads a chance
       // NOTE: not fair to sleep before the unlock... why?
       //     because all other threads are locked while we are sleeping.
   } // end while
