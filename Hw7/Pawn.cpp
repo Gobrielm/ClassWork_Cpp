@@ -11,10 +11,6 @@ Pawn::~Pawn(){
 bool Pawn::isLegalMoveTo(int _row, int _col) {
 
     Piece* temp = board -> pieceAt(_row, _col);
-    //Checks if tile is taken by same color
-    if (temp && temp -> isWhite == isWhite) {
-        return false;
-    }
     
     int row_diff = _row - row;
     int col_diff = _col - col;
