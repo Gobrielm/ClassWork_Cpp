@@ -286,21 +286,24 @@ class Restaurant  {
     while(true) {
 
         m -> lock();
+        //Check to see if they can leave
         if (r -> customersOutside.size() == 0 && r -> ordersUncooked.size() == 0) {
             std::cout << blueTextStart << "cookingOrders(): Thread #" << threadId << " Quitting time for me!" << coloredTextEnd<< std::endl;
             m -> unlock();
             return;
         }
+        //If no work, then wait around
         if (r -> ordersUncooked.size() == 0) {
             m -> unlock();
             this_thread :: sleep_for( chrono::seconds(1));
             continue;
         }
-
+        //Get the food to cook
         Order toCook = r -> ordersUncooked.front();
         r -> ordersUncooked.pop();
         m -> unlock();
         
+        //Get the delay for cooking
         int delay = 2; //Default for Fish
         std::string foodItem = toCook.foodItem;
         if (foodItem == "burger") {
@@ -311,6 +314,7 @@ class Restaurant  {
         std::cout << blueTextStart << "cookingOrders(): Thread #" << threadId << " Cooking a customers " << foodItem  << " order for " << toCook.customerName << "... this will take " << delay << " seconds...!" << coloredTextEnd<< std::endl;
         this_thread :: sleep_for( chrono::seconds(delay));
 
+        //Then put the food in the cooked area
         m -> lock();
         r -> ordersCooked.push(toCook);
         m -> unlock();
@@ -325,34 +329,37 @@ class Restaurant  {
   void servingCookedOrders(int threadId, Restaurant *r, mutex *m) {
     while (true) {
         m -> lock();
+        //Check to see if nobody left to serve
         if (r -> customersWaiting.size() == 0 && r -> customersOutside.size() == 0) {
             m -> unlock();
             std::cout << blueTextStart << "servingCookedOrders(): Thread #" << threadId << " Quitting time for me!" << coloredTextEnd<< std::endl;
             return;
         }
+        //If no food around, then wait around
         if (r -> ordersCooked.size() == 0) {
             m -> unlock();
             this_thread :: sleep_for( chrono::seconds(1));
             continue;
         }
-
+        //Get order to serve
         Order toServe = r -> ordersCooked.front();
         r -> ordersCooked.pop();
 
         m -> unlock();
-
+        //Take time to serve
         int delay = 2;
         std::cout << blueTextStart << "servingCookedOrders(): Thread #" << threadId << " Serving a customers " << toServe.foodItem  << " order for " << toServe.customerName << "... this will take " << delay << " seconds...!" << coloredTextEnd<< std::endl;
         this_thread :: sleep_for( chrono::seconds(delay));
 
         m -> lock();
-
+        //Make sure that the customer exists
         if (r -> customersWaiting.count(toServe.customerName) == 0) {
             m -> unlock();
             std::cout << "No customer of name " << toServe.customerName << " found!\n";
             return;
         }
 
+        //Serve the customer food
         Customer c = r -> customersWaiting[toServe.customerName];
         c.foodReceived = toServe.foodItem;
         r -> customersWaiting.erase(toServe.customerName);
