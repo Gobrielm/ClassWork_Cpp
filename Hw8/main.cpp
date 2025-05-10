@@ -373,7 +373,7 @@ class Restaurant  {
 
 int main() {
 
-  Restaurant r( "customersSmall.txt"); // create a default restaurant.
+  Restaurant r( "customersLarge.txt"); // create a default restaurant.
   mutex m; // create a mutex
 
   thread t1( takingOrders, 1, &r, &m ); // start cashier #1, passing in the address of the restaurant and mutex
