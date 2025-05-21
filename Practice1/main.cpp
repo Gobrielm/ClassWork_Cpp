@@ -12,7 +12,7 @@ class Bee {
     const string type;
     
     public:
-    Bee(string _type = "Base"): type(_type), id(count) {
+    Bee(string _type = "Base"): id(count), type(_type) {
         cout << "Bee created with type " << type << " and id " << id << '\n';
         count += 1;
     }
@@ -64,6 +64,7 @@ class Cell {
     Bee* beePtr;
     public:
     Cell(bool _dronesOnly = false): id(count), dronesOnly(_dronesOnly), beePtr(nullptr) {
+        cout << "Cell class with id " << id << "is being created that has statud DronesOnly: " << dronesOnly << '\n';
         count += 1;
     }
     ~Cell() {
@@ -117,12 +118,14 @@ class Hive {
     Cell **** arr;
     public:
     Hive(int _rows, int _cols, int _slices): rows(_rows), columnsPerRow(_cols), slicesPerRow(_slices) {
+        cout << "Hive with rows: " << rows << ", cols: " << columnsPerRow << ", and slices: " << slicesPerRow << " is being created.\n";
         arr = new Cell***[rows];
         for (int r = 0; r < rows; r++) {
             arr[r] = new Cell**[columnsPerRow];
             for (int c = 0; c < columnsPerRow; c++) {
                 arr[r][c] = new Cell*[slicesPerRow];
                 for (int s = 0; s < slicesPerRow; s++) {
+                    //Randomly creates cells with dronesOnly flipped around
                     arr[r][c][s] = new Cell(rand() % 2);
                 }
             }
@@ -145,7 +148,7 @@ class Hive {
     }
 
     void printHive() {
-        cout << "Hive with rows: " << rows << ", cols" << columnsPerRow << ", and slices: " << slicesPerRow << "\n";
+        cout << "Hive has rows: " << rows << ", cols" << columnsPerRow << ", and slices: " << slicesPerRow << "\n";
     }
 
     int countEmptyCells() {
@@ -196,7 +199,6 @@ class Hive {
 void testMe(); // prototype
 
 int main() { // written for you, may au
-  
     testMe(); // defined below
     return 0;
   
